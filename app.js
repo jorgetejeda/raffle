@@ -23,6 +23,10 @@ app.get('/raffle', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/pages/raffle.html'));
 })
 
+app.get('/winners', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/pages/winners.html'));
+})
+
 const DIRECTORY = './database';
 
 app.post('/particpants/upload', fileUpload({ createParentPath: true }), async (req, res) => {
@@ -50,9 +54,10 @@ app.post('/particpants/upload', fileUpload({ createParentPath: true }), async (r
         const uniqueId = id.split('').sort(() => Math.random() - 0.5).join('');
         return {
             id: uniqueId,
-            name: participant[0],
+            company: participant[0],
             department: participant[1],
-            position: participant[2],
+            identification: participant[2],
+            name: participant[3] + ' ' + participant[4],
             winner: false,
         }
     });
@@ -73,9 +78,10 @@ app.get('/participants/view', (req, res) => {
     return res.json({ status: 'success', message: 'success', participants: JSON.parse(participants) });
 });
 
-app.put('/participants/winner/:id/:amount', (req, res) => {
+app.put('/participants/winner/:id/:prizeId', (req, res) => {
     const winnerId = req.params.id;
     let participants = fs.readFileSync('./database/participants.json', 'utf8');
+    let prizes = fs.readFileSync('./database/prizes.json', 'utf8');
 
     const findWinner = JSON.parse(participants).find(participant => participant.id === winnerId);
     participants = JSON.parse(participants).map(participant => {
@@ -88,11 +94,21 @@ app.put('/participants/winner/:id/:amount', (req, res) => {
         return participant;
     });
 
+    prizes = JSON.parse(prizes).map(prize => {
+        if (prize.id === req.params.prizeId) {
+            return {
+                ...prize,
+                left: prize.left - 1,
+            }
+        }
+        return prize;
+    });
+
+    fs.writeFileSync('./database/prizes.json', JSON.stringify(prizes, null, 2));
     fs.writeFileSync('./database/participants.json', JSON.stringify(participants, null, 2));
-    
-    findWinner.amount = req.params.amount;    
-    // insert into winners.json
-    // create if no exists
+
+    findWinner.amount = prizes.find(prize => prize.id === req.params.prizeId).amount;
+    delete findWinner.winner;
     fs.mkdirSync(DIRECTORY, { recursive: true });
     const winners = fs.readFileSync('./database/winners.json', 'utf8');
     if (winners) {
@@ -107,15 +123,22 @@ app.put('/participants/winner/:id/:amount', (req, res) => {
     return res.json({ status: 'success', message: 'success' });
 });
 
-app.get('/participants/winner', (req, res) => {
-    let participants = fs.readFileSync('./database/participants.json', 'utf8');
-    participants = JSON.parse(participants).filter(participant => participant.winner);
-    return res.json({ status: 'success', message: 'success', participants });
+// Winners
+app.get('/winners/view', (req, res) => {
+    const winners = fs.readFileSync('./database/winners.json', 'utf8');
+    return res.json({ status: 'success', message: 'success', winners: JSON.parse(winners) });
+});
+
+app.delete('/winners/delete', (req, res) => {
+    fs.writeFileSync('./database/winners.json', JSON.stringify([], null, 2));
+    return res.json({ status: 'success', message: 'success' });
 });
 
 // Prizes
-
-
+app.get('/prizes/view', (req, res) => {
+    const prizes = fs.readFileSync('./database/prizes.json', 'utf8');
+    return res.json({ status: 'success', message: 'success', prizes: JSON.parse(prizes) });
+})
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
