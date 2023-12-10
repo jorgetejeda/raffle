@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ganadore</title>
     <link type="text/css" rel="stylesheet" href="styles/main.css" />
     <link type="text/css" rel="stylesheet" href="styles/util.css" />
     <link type="text/css" rel="stylesheet" href="styles/participants.css" />
@@ -19,7 +19,7 @@
             <div id="menu-list"></div>
 
             <div class="header-content">
-                <h1 class="title">Lista de participantes</h1>
+                <h1 class="title">Lista de ganadores</h1>
                 <button class="clear" onclick="clearParticipants()">Limpiar lista de participantes</button>
             </div>
 
@@ -34,10 +34,13 @@
                             <th>Cedula</th>
                             <th>Area o departamento</th>
                             <th>Compania</th>
+                            <th>Premio</th>
                         </tr>
                     </thead>
                     <tbody id="participantsData"></tbody>
                 </table>
+                <button class="export" onclick="exportExcel()">Exportar a Excel</button>
+
             </div>
 
             <div class="table-footer">
@@ -50,6 +53,9 @@
     <footer></footer>
 
     <script src="scripts/common.js"></script>
+    <!-- Add this script tag to include the XLSX library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
     <script>
         let participants = [];
         let filterParticipants = [];
@@ -66,14 +72,13 @@
             buildDropdownView();
             await getParticipants();
             filterParticipants = participants;
-            console.log(participants);
             displayParticipants();
         }
 
         const getParticipants = async () => {
-            const response = await fetch('/participants/view');
+            const response = await fetch('/winners/view');
             const json = await response.json();
-            participants = json.participants;
+            participants = json.winners;
         }
 
         const displayParticipants = () => {
@@ -87,16 +92,20 @@
                 const tr = document.createElement('tr');
                 const td = document.createElement('td');
                 td.textContent = 'No hay registros';
-                td.colSpan = 4;
+                td.colSpan = 5;
                 td.style.textAlign = 'center';
                 tr.appendChild(td);
                 participantsData.appendChild(tr);
 
                 //disabled export button
+                const exportButton = document.querySelector('.export');
                 const clearButton = document.querySelector('.clear');
                 clearButton.disabled = true;
+                exportButton.disabled = true;
                 clearButton.classList.add('disabled');
+                exportButton.classList.add('disabled');
                 clearButton.setAttribute('disabled', 'disabled')
+                exportButton.setAttribute('disabled', 'disabled')
                 return;
             }
 
@@ -108,25 +117,19 @@
                 const tdIdentification = document.createElement('td');
                 const tdDepartment = document.createElement('td');
                 const tdCompany = document.createElement('td');
+                const tdAmount = document.createElement('td');
 
-                // capitilze name
-                participant.name = participant.name.toLowerCase().split(' ').map(name => {
-                    return name.charAt(0).toUpperCase() + name.slice(1);
-                }).join(' ');
-
-                participant.department = participant.department.toLowerCase().split(' ').map(name => {
-                    return name.charAt(0).toUpperCase() + name.slice(1);
-                }).join(' ');
-
-                tdName.textContent = participant.name;
+                tdName.textContent = capitalize(participant.name);
                 tdIdentification.textContent = participant.identification;
-                tdDepartment.textContent = participant.department;
+                tdDepartment.textContent = capitalize(participant.department);
                 tdCompany.textContent = participant.company;
+                tdAmount.textContent = participant.amount;
 
                 tr.appendChild(tdName);
                 tr.appendChild(tdIdentification);
                 tr.appendChild(tdDepartment);
                 tr.appendChild(tdCompany);
+                tr.appendChild(tdAmount);
 
                 participantsData.appendChild(tr);
             }
@@ -247,6 +250,7 @@
                     person.identification.toLowerCase().includes(searchInput.toLowerCase()) ||
                     person.department.toLowerCase().includes(searchInput.toLowerCase()) ||
                     person.company.toLowerCase().includes(searchInput.toLowerCase())
+                    || person.amount.toLowerCase().includes(searchInput.toLowerCase())
                 ) {
                     return person;
                 }
@@ -255,19 +259,36 @@
         };
 
         const clearParticipants = () => {
-            const confirmation = confirm('¿Está seguro que desea eliminar la lista de participantes?');
+            const confirmation = confirm('¿Está seguro que desea eliminar la lista de ganadores?');
             if (!confirmation) return;
-            fetch('/participants/delete', {
+            fetch('/winners/delete', {
                 method: 'DELETE'
             })
                 .then(response => response.json())
                 .then(json => {
                     if (json.success) {
-                        alert('Lista de participantes eliminada');
+                        alert('Lista de ganadores eliminada');
                         window.location.reload();
                     }
                 });
             onLoad();
+        }
+
+        const exportExcel = () => {
+            const data = filterParticipants.map(participant => {
+                return {
+                    'Nombre Completo': participant.name,
+                    'Cedula': participant.identification,
+                    'Area o departamento': participant.department,
+                    'Empresa': participant.company,
+                    'Premio': participant.amount
+                }
+            });
+
+            const worksheet = XLSX.utils.json_to_sheet(data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Ganadores');
+            XLSX.writeFile(workbook, 'ganadores.xlsx');
         }
 
     </script>

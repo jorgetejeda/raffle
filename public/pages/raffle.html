@@ -8,318 +8,8 @@
 
     <link rel="stylesheet" href="styles/colors.css">
     <link rel="stylesheet" href="styles/util.css">
+    <link rel="stylesheet" href="styles/raffle.css">
 
-    <style>
-        html {
-            overflow-y: hidden;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
-
-        body {
-            background-color: var(--primary-purple);
-        }
-
-        .pearls {
-            width: 100%;
-            height: 160px;
-        }
-
-        .container {
-            margin: 0 auto;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            max-width: 950px;
-        }
-
-        .mask {
-            width: 560px;
-            margin: auto;
-            object-fit: cover;
-            text-align: center;
-        }
-
-        .init-raffle {
-            margin: auto;
-            padding: 8px 24px;
-            border-radius: 56px;
-            border: 1px solid var(--neutral-white);
-            background-color: transparent;
-            color: var(--neutral-white);
-            margin-top: 64px;
-            max-width: 132px;
-            cursor: pointer;
-
-            /* Body Bold */
-            /* font-family: Manrope; */
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 16px;
-            /* 114.286% */
-        }
-
-        .init-raffle:hover {
-            background-color: var(--neutral-white);
-            color: var(--primary-purple);
-        }
-
-        footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .divider {
-            border: 1px solid #E0E0E0;
-        }
-
-        .content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .content .right-reserved {
-            color: var(--neutral-white);
-            /* Small */
-            /* font-family: Manrope; */
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 16px;
-        }
-
-        .content img {
-            width: 144px;
-        }
-
-        /* Modal it should be in center on the screen it sould have backdrop */
-        dialog {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            max-width: 776px;
-            background-color: var(--neutral-white);
-            border-radius: 16px;
-            padding: 24px;
-            border: none;
-        }
-
-        .modal {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        .modal-header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--primary-purple, #41295A);
-            border-bottom: 1px solid var(--neutral-black);
-        }
-
-        .modal-header h1 {
-            /* Heading 1 */
-            /* font-family: Gilroy; */
-            font-style: normal;
-            font-weight: 700;
-            line-height: 32px;
-            padding: 16px 0;
-            /* 133.333% */
-        }
-
-        .modal-body {
-            width: 100%;
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .modal-body .content {
-            display: flex;
-            padding: 24px;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            border-radius: 8px;
-            border: 1px solid var(--primary-purple-4);
-            background-image: url('images/Star1.png');
-            background-position: bottom right;
-            background-size: 132px;
-            background-repeat: no-repeat;
-            width: 132px;
-        }
-
-        .modal-body .content .prize {
-            color: var(--neutral-black);
-            /* font-family: Gilroy; */
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 24px;
-            /* 133.333% */
-        }
-
-        .modal-body .content .quantity {
-            color: var(--primary-purple, #41295A);
-            /* Heading 2 */
-            /* font-family: Gilroy; */
-            font-size: 48px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 40px;
-            /* 125% */
-        }
-
-        .modal-body .content:hover {
-            background-color: var(--primary-purple-4);
-            cursor: pointer;
-        }
-
-        .modal-body .content:hover .quantity,
-        .modal-body .content:hover .prize {
-            color: var(--neutral-white);
-        }
-
-        .modal-body .content.active {
-            background-color: var(--primary-purple-4);
-        }
-
-        .modal-body .content.active .quantity,
-        .modal-body .content.active .prize {
-            color: var(--neutral-white);
-        }
-
-        .modal-footer {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 16px;
-            margin-top: 32px;
-        }
-
-        .modal-footer .message-error {
-            color: var(--accent-red);
-            /* Small */
-            /* font-family: Manrope; */
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 16px;
-            /* 133.333% */
-        }
-
-        .modal-footer .cancel {
-            border: 1px solid var(--primary-purple);
-            border-radius: 8px;
-            padding: 8px 16px;
-            color: var(--primary-purple);
-            background-color: transparent;
-            cursor: pointer;
-        }
-
-        .modal-footer .cancel:hover {
-            background-color: var(--primary-purple);
-            color: var(--neutral-white);
-        }
-
-        .modal-footer .confirm {
-            background-color: var(--primary-purple);
-            border-radius: 8px;
-            padding: 8px 16px;
-            color: var(--neutral-white);
-            border: 1px solid var(--primary-purple);
-            cursor: pointer;
-        }
-
-        .counter {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--neutral-white);
-            font-size: 72px;
-            font-weight: 700;
-            line-height: 96px;
-            /* 133.333% */
-        }
-
-        .game {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: var(--neutral-white);
-        }
-
-        .names {
-            /* Heading 1 */
-            /* font-family: Gilroy; */
-            font-size: 40px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 48px;
-            text-align: center;
-            /* 120% */
-        }
-
-        .names .raffle {
-            margin-top: 116px;
-        }
-
-        .the-winner {
-            /* Heading 3 */
-            /* font-family: Gilroy; */
-            font-size: 24px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 32px;
-            margin-bottom: 16px;
-            /* 133.333% */
-        }
-
-        .name {
-            /* font-family: Gilroy; */
-            font-size: 40px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 48px;
-            /* 120% */
-        }
-
-        .position {
-            /* font-family: Gilroy; */
-            font-size: 24px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 32px;
-            /* 133.333% */
-        }
-
-        .congratulations {
-            margin-top: 104px;
-
-            /* Heading 1 */
-            /* font-family: Gilroy; */
-            font-size: 40px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 48px;
-            /* 120% */
-        }
-    </style>
 </head>
 
 <body onload="onLoad()">
@@ -331,7 +21,7 @@
                 <img src="images/mask@2x.png" alt="logo_raffle">
                 <img src="images/mardi-text@2x.png" alt="raffle_text">
             </div>
-            <button class="init-raffle" onclick="openModal()">Iniciar Rifa</button>
+            <button class="init-raffle btn-raffle" onclick="openModal()">Iniciar Rifa</button>
 
             <!-- Show counter -->
             <div class="counter"></div>
@@ -339,15 +29,20 @@
             <div class="game">
                 <h1 class="names" attr="winner-id"></h1>
                 <div class="winner hidden">
-                    <h3 class="the-winner">El ganador es:</h3>
-                    <h1 class="name"></h1>
-                    <h3 class="position"></h3>
+                    <h3 class="the-winner"></h3>
+                    <div>
+                        <h1 class="name"></h1>
+                        <h3 class="department"></h3>
 
+                    </div>
                     <h1 class="congratulations">¡Felicidades!</h1>
 
-                    <button class="raffle" onclick="showRaffle()">Rifar de nuevo</button>
-
-                    <button class="raffle" onclick="counter()">Generar Nuevo Ganador</button>
+                    <div class="btn-raffle-actions">
+                        <button class="restart-raffle btn-raffle" onclick="restartInitRaffle()">Rifar de nuevo</button>
+                        <button class="generate-new-raffle btn-raffle" onclick="genereNewRaffle()">Generar Nuevo
+                            Ganador
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -357,57 +52,13 @@
     <dialog>
         <div class="modal">
             <div class="modal-header">
-                <h1 class="modal-title">Iniciar Rifa</h1>
+                <h1 class="modal-title">Escoge el premio para la rifa</h1>
             </div>
-            <div class="modal-body">
-                <div class="content" onclick="selectPrize(this)">
-                    <div class="quantity">5<small>/5</small></div>
-                    <div class="prize">
-                        <h2>100,000RD$</h2>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="quantity">4<small>/5</small></div>
-                    <div class="prize">
-                        <h2>10,000RD$</h2>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="quantity">5<small>/5</small></div>
-                    <div class="prize">
-                        <h2>1,000RD$</h2>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="quantity">4<small>/5</small></div>
-                    <div class="prize">
-                        <h2>100,000RD$</h2>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="quantity">4<small>/5</small></div>
-                    <div class="prize">
-                        <h2>10,000RD$</h2>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="quantity">5<small>/5</small></div>
-                    <div class="prize">
-                        <h2>1,000RD$</h2>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="quantity">4<small>/5</small></div>
-                    <div class="prize">
-                        <h2>100,000RD$</h2>
-                    </div>
-                </div>
-            </div>
-
+            <div class="modal-body"></div>
             <div class="modal-footer">
                 <div class="message-error"></div>
                 <button class="cancel" onclick="closeModal()">Cancelar</button>
-                <button class="confirm" onclick="selectedPrice()">Confirmar</button>
+                <button class="confirm" onclick="priceChoosed()">Confirmar</button>
             </div>
         </div>
     </dialog>
@@ -416,15 +67,78 @@
     <script>
 
         let participants = [];
+        let prizes = [];
+        let selectedPrize = null;
+
         const namesEl = document.querySelector(".names");
         const winnerEl = document.querySelector(".winner");
         const attrId = document.querySelector(".names").getAttribute('attr');
+        const winnerContainer = document.querySelector(".winner");
+
+        let winnerId = null;
+
+        const init = () => {
+            winnerEl.classList.add('hidden');
+            namesEl.classList.add('hidden');
+            winnerContainer.style.display = "none";
+
+            const pearls = document.querySelector('.pearls');
+            pearls.classList.remove('hidden');
+            const mask = document.querySelector('.mask');
+            // remove margin top
+            mask.style.marginTop = 'unset';
+            const imgs = mask.querySelectorAll('img');
+            imgs.forEach(img => {
+                img.style.width = 'auto';
+            });
+        }
 
         const onLoad = async () => {
+            init();
+            const initRaffle = document.querySelector('.init-raffle');
+            initRaffle.classList.remove('hidden');
+
             const response = await fetch('/participants/view');
             const json = await response.json();
             participants = json.participants.filter(p => !p.winner);
+            const prizesResponse = await fetch('/prizes/view');
+            const prizesJson = await prizesResponse.json();
+            prizes = prizesJson.prizes;
+            buildPrizes();
         }
+
+        const buildPrizes = () => {
+            const modalBody = document.querySelector('.modal-body');
+            modalBody.innerHTML = '';
+            prizes.forEach(prize => {
+
+                if (prize.left === 0) {
+                    return;
+                }
+
+                const content = document.createElement('div');
+                content.classList.add('content');
+                content.setAttribute('attr', prize.id);
+                // Add a class to indicate active state
+                content.classList.add(prize.isActive && 'active');
+
+                content.onclick = () => selectPrize(content);
+
+                const quantity = document.createElement('div');
+                quantity.classList.add('quantity');
+                quantity.innerHTML = `${prize.left} / <small>${prize.quantity}</small>`;
+
+                const prizeEl = document.createElement('div');
+                prizeEl.classList.add('prize');
+                const h2 = document.createElement('h2');
+                h2.innerText = prize.amount;
+                prizeEl.appendChild(h2);
+
+                content.appendChild(quantity);
+                content.appendChild(prizeEl);
+                modalBody.appendChild(content);
+            });
+        };
 
         const openModal = () => {
             const dialog = document.querySelector('dialog');
@@ -436,11 +150,17 @@
             const dialog = document.querySelector('dialog');
             dialog.close();
         }
+
         const selectPrize = (element) => {
+            const prizesElements = document.querySelectorAll('.content');
+            prizesElements.forEach(el => {
+                el.classList.remove('active');
+            });
             element.classList.toggle('active');
+            selectedPrize = element.getAttribute('attr');
         }
 
-        const selectedPrice = () => {
+        const priceChoosed = () => {
             if (document.querySelector('.active') === null) {
                 const messageEl = document.querySelector('.message-error');
                 messageEl.innerText = 'Debe seleccionar al menos un premio';
@@ -465,9 +185,9 @@
         const counter = () => {
             winnerEl.classList.add('hidden');
             namesEl.classList.add('hidden');
-            
+
             const counter = document.querySelector('.counter');
-            counter.classList.remove('hidden');
+            counter.style.display = "flex";
             let count = 3;
             counter.innerText = count;
             const interval = setInterval(() => {
@@ -475,7 +195,8 @@
                 counter.innerText = count;
                 if (count === 0) {
                     clearInterval(interval);
-                    counter.classList.add('hidden');
+                    counter.style.display = "none";
+
                     // show raffle
                     showRaffle();
                 }
@@ -484,34 +205,41 @@
 
         function randomName() {
             const rand = Math.floor(Math.random() * participants.length);
-            const name = participants[rand];
+            const name = participants[rand].name;
             namesEl.setAttribute('attr', participants[rand].id);
-            namesEl.innerText = name.name;
+        
+            namesEl.innerText = capitalize(name);
         }
-
 
         function showRaffle() {
             winnerEl.classList.add("hidden");
             namesEl.classList.remove("hidden");
+            winnerContainer.style.display = "none";
+
             setDeceleratingTimeout(randomName, 10, 30);
 
             setTimeout(() => {
-                const winnerId = namesEl.getAttribute('attr');
-                const position = participants.find(p => p.id === winnerId).position;
-                winnerEl.querySelector(".name").innerText = namesEl.innerText;
-                winnerEl.querySelector(".position").innerText = position;
+                winnerContainer.style.display = "flex";
+                winnerId = namesEl.getAttribute('attr');
+
+                const winner = participants.find(p => p.id === winnerId);
+                const amount = prizes.find(p => p.id === selectedPrize).amount;
+
+                winnerEl.querySelector(".name").innerText = capitalize(namesEl.innerText);
+                winnerEl.querySelector(".department").innerText = `${winner.department} - ${winner.company}`;
+                winnerEl.querySelector(".the-winner").innerText = `El ganador de ${amount} es:`;
+
+
+                console.log(winnerId)
 
                 namesEl.classList.add("hidden");
                 winnerEl.classList.remove("hidden");
 
-                fetch(`/participants/winner/${winnerId}`, {
-                    method: 'PUT'
-                });
             }, 4000);
 
         }
 
-        function setDeceleratingTimeout(callback, factor, times) {
+        const setDeceleratingTimeout = (callback, factor, times) => {
             const internalCallback = ((t, counter) => {
                 return () => {
                     if (--t > 0) {
@@ -522,6 +250,20 @@
             })(times, 0);
 
             setTimeout(internalCallback, factor);
+        }
+
+        const restartInitRaffle = async () => {
+            // const winnerId = namesEl.getAttribute('attr');
+            console.log(winnerId)
+            await fetch(`/participants/winner/${winnerId}/${selectedPrize}`, {
+                method: 'PUT'
+            });
+            onLoad();
+        }
+
+        const genereNewRaffle = () => {
+            winnerContainer.style.display = "none";
+            counter();
         }
 
     </script>

@@ -17,6 +17,10 @@
     background: var(--secondary-orange-1);
 }
 
+.export {
+    margin-top: 16px;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
