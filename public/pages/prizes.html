@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Premios</title>
+    <link type="text/css" rel="stylesheet" href="styles/main.css" />
+    <link type="text/css" rel="stylesheet" href="styles/util.css" />
+
+    <style>
+        .card {
+            margin-bottom: 16px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        form .form-control {
+            display: flex;
+            align-items: flex-end;
+            gap: 24px;
+        }
+
+        form .control label {
+            display: block;
+            align-items: center;
+            color: var(--neutral-black);
+            /* Label */
+            /* font-family: Manrope; */
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 16px;
+            /* 133.333% */
+            margin-bottom: 8px;
+        }
+
+        form .money {
+            width: 100%;
+            max-width: 452px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form .custom-quantity {
+            display: flex;
+            align-items: center;
+            outline: 1px solid var(--neutral-black);
+            border-radius: 20px;
+        }
+
+        form .custom-quantity input {
+            border-radius: 0px;
+            max-width: 14px;
+            border: none;
+            outline: none;
+        }
+
+        form .custom-quantity button.less {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        form .custom-quantity button.add {
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        form .add-row,
+        form .remove-row {
+            display: inline-flex;
+            border-radius: 40px;
+            padding: 4px;
+        }
+
+        form .add-row {
+            background: var(--secondary-yellow-1);
+        }
+
+        form .remove-row {
+            background: var(--accent-red);
+        }
+
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    </style>
+</head>
+
+<body class="loading" onload="onLoad()">
+
+    <header></header>
+
+    <main>
+        <div class="container">
+            <div id="menu-list"></div>
+
+            <h1 class="title">Premios</h1>
+            <div class="card">
+                <form>
+                    <div class="form-control" id="firstRow-1">
+                        <div class="control money">
+                            <label for="money">Monto en RD$</label>
+                            <input type="number" id="money" name="money" placeholder="Monto en RD$" required>
+                        </div>
+                        <div class="control">
+                            <label for="quantity">Cantidad de premios</label>
+                            <div class="custom-quantity">
+                                <button class="less">-</button>
+                                <input type="number" name="quantity" placeholder="0" required>
+                                <button class="add" onclick="addRow(this)">+</button>
+                            </div>
+                        </div>
+                        <div class="control">
+                            <button class="add-row" onclick="addRow()">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M18.8571 10.2857H13.7143V5.14286C13.7143 4.51179 13.2025 4 12.5714 4H11.4286C10.7975 4 10.2857 4.51179 10.2857 5.14286V10.2857H5.14286C4.51179 10.2857 4 10.7975 4 11.4286V12.5714C4 13.2025 4.51179 13.7143 5.14286 13.7143H10.2857V18.8571C10.2857 19.4882 10.7975 20 11.4286 20H12.5714C13.2025 20 13.7143 19.4882 13.7143 18.8571V13.7143H18.8571C19.4882 13.7143 20 13.2025 20 12.5714V11.4286C20 10.7975 19.4882 10.2857 18.8571 10.2857Z"
+                                        fill="white" />
+                                </svg>
+                            </button>
+                            <button class="remove-row" onclick="removeRow(this)">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M21.75 12C21.75 12.8297 21.0797 13.5 20.25 13.5H3.75C2.92031 13.5 2.25 12.8297 2.25 12C2.25 11.1703 2.92031 10.5 3.75 10.5H20.25C21.0797 10.5 21.75 11.1703 21.75 12Z"
+                                        fill="white" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Botón para agregar nuevas filas -->
+
+                </form>
+            </div>
+            <div class="">
+                <button>Guardar sorteo</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer></footer>
+
+    <script src="scripts/common.js"></script>
+    <script>
+        const onLoad = () => {
+            // Muestra el botón "Agregar" en la primera fila
+            const addButton = document.querySelector('#firstRow .add');
+            addButton.style.display = 'block';
+        };
+        let counter = 1;
+        const addRow = () => {
+            const form = document.querySelector("form");
+            const container = document.querySelector(`#firstRow-${counter}`);
+            const newRow = document.createElement("div");
+
+
+            // // Muestra el botón "Eliminar" en la nueva fila
+            const removeButton = newRow.querySelector('.control .hidden');
+            // removeButton.classList.remove('hidden');
+            // removeButton.classList.add('remove-row');
+
+            // // Esconde el boton de agregar
+            // const addButton = newRow.querySelector('.add-row');
+            // addButton.classList.add('hidden');
+            // addButton.classList.remove('add-row');
+
+            newRow.innerHTML = container.innerHTML
+            newRow.classList.add("form-control");
+            newRow.id = `firstRow-${++counter}`;
+
+            // agregar a los label el numero de permio por ejemplo
+            // <label for="money"> #2 Monto en RD$</label>
+            const label = newRow.querySelector('label');
+            label.textContent = `#${counter} Monto en RD$`;
+
+            // Inserta después de la fila actual
+            form.insertBefore(newRow, container.nextSibling);
+        };
+
+        const removeRow = (button) => {
+            const form = document.querySelector("form");
+            // Elimina la fila actual
+            form.removeChild(button.parentNode.parentNode);
+        };
+    </script>
+</body>
+
+</html>

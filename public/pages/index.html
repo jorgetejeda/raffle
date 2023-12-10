@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link type="text/css" rel="stylesheet" href="styles/main.css" />
+    <link type="text/css" rel="stylesheet" href="styles/upload-file-form.css" />
+    <link type="text/css" rel="stylesheet" href="styles/util.css" />
+</head>
+
+<body>
+    <header></header>
+
+    <main class="container">
+        <div id="menu-list"></div>
+
+        <h1 class="title">Subir Archivo .csv</h1>
+
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div id="drag-file" class="drag-file-area styling-drag-file-area">
+                <div class="fileName hidden">
+                    <span class="file-name-text"></span>
+
+                    <button class="icon-button remove-file" onclick="clearInput()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19.5265 6.73247C20.1512 6.10776 20.1512 5.09324 19.5265 4.46853C18.9018 3.84382 17.8872 3.84382 17.2625 4.46853L12 9.73606L6.73247 4.47353C6.10776 3.84882 5.09324 3.84882 4.46853 4.47353C3.84382 5.09824 3.84382 6.11276 4.46853 6.73747L9.73606 12L4.47353 17.2675C3.84882 17.8922 3.84882 18.9068 4.47353 19.5315C5.09824 20.1562 6.11276 20.1562 6.73747 19.5315L12 14.2639L17.2675 19.5265C17.8922 20.1512 18.9068 20.1512 19.5315 19.5265C20.1562 18.9018 20.1562 17.8872 19.5315 17.2625L14.2639 12L19.5265 6.73247Z"
+                                fill="#E42313" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="upload-file-header">
+                    <svg width="65" height="64" viewBox="0 0 65 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M8.5 16C8.5 13.0584 10.8917 10.6667 13.8333 10.6667H27.1667V21.3334C27.1667 22.8084 28.3583 24 29.8333 24H40.5V27.2167C34.3417 28.9584 29.8333 34.6167 29.8333 41.3334C29.8333 46.2584 32.2583 50.6083 35.975 53.275C35.7083 53.3167 35.4417 53.3334 35.1667 53.3334H13.8333C10.8917 53.3334 8.5 50.9417 8.5 48V16ZM40.5 21.3334H29.8333V10.6667L40.5 21.3334ZM44.5 29.3334C47.6826 29.3334 50.7348 30.5976 52.9853 32.8481C55.2357 35.0985 56.5 38.1508 56.5 41.3334C56.5 44.5159 55.2357 47.5682 52.9853 49.8186C50.7348 52.0691 47.6826 53.3334 44.5 53.3334C41.3174 53.3334 38.2652 52.0691 36.0147 49.8186C33.7643 47.5682 32.5 44.5159 32.5 41.3334C32.5 38.1508 33.7643 35.0985 36.0147 32.8481C38.2652 30.5976 41.3174 29.3334 44.5 29.3334ZM45.8333 36C45.8333 35.2667 45.2333 34.6667 44.5 34.6667C43.7667 34.6667 43.1667 35.2667 43.1667 36V40H39.1667C38.4333 40 37.8333 40.6 37.8333 41.3334C37.8333 42.0667 38.4333 42.6667 39.1667 42.6667H43.1667V46.6667C43.1667 47.4 43.7667 48 44.5 48C45.2333 48 45.8333 47.4 45.8333 46.6667V42.6667H49.8333C50.5667 42.6667 51.1667 42.0667 51.1667 41.3334C51.1667 40.6 50.5667 40 49.8333 40H45.8333V36Z" />
+                    </svg>
+
+                    <h4>Subir archivo en formato .csv</h4>
+                </div>
+
+                <div class="file-search-button">
+                    <label for="myFiles" class="button-file-upload">
+                        Subir archivo
+                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.0714 6.85716H9.64285V3.42859C9.64285 3.00788 9.30166 2.66669 8.88094 2.66669H8.11904C7.69832 2.66669 7.35713 3.00788 7.35713 3.42859V6.85716H3.92856C3.50785 6.85716 3.16666 7.19835 3.16666 7.61907V8.38097C3.16666 8.80169 3.50785 9.14288 3.92856 9.14288H7.35713V12.5714C7.35713 12.9922 7.69832 13.3334 8.11904 13.3334H8.88094C9.30166 13.3334 9.64285 12.9922 9.64285 12.5714V9.14288H13.0714C13.4921 9.14288 13.8333 8.80169 13.8333 8.38097V7.61907C13.8333 7.19835 13.4921 6.85716 13.0714 6.85716Z" />
+                        </svg>
+                    </label>
+                    <input type="file" name="myFiles" id="myFiles" accept=".csv" onchange="onDragOver(event)" />
+                </div>
+
+            </div>
+            <div class="error-message"></div>
+            <div class="success-message"></div>
+            <div class="form-links-bottom">
+                <button>Guardar cambios</button>
+                <a class="view-participants hidden" href="/participants">Ver lista de participantes</a>
+            </div>
+        </form>
+    </main>
+
+    <footer></footer>
+
+    <script src="scripts/common.js"></script>
+    <script>
+
+        const onDragOver = (event) => {
+            const dragFileArea = document.querySelector("#drag-file");
+            const uploadFileHeader = document.querySelector(".upload-file-header");
+            const fileNameElement = document.querySelector(".fileName");
+            const fileSearchButton = document.querySelector(".file-search-button");
+            const fileNameText = document.querySelector(".file-name-text");
+
+            dragFileArea.classList.remove("styling-drag-file-area");
+            dragFileArea.classList.add("uploaded-file-styling-file-area");
+            uploadFileHeader.classList.add("hidden");
+            fileSearchButton.classList.add("hidden");
+
+            const myFiles = event.target.files;
+            fileNameText.textContent = myFiles[0].name;
+            fileNameElement.classList.remove("hidden");
+        };
+
+        const clearInput = () => {
+            const dragFileArea = document.querySelector("#drag-file");
+            const uploadFileHeader = document.querySelector(".upload-file-header");
+            const fileNameElement = document.querySelector(".fileName");
+            const fileSearchButton = document.querySelector(".file-search-button");
+            const fileNameText = document.querySelector(".file-name-text");
+            const viewLinkButton = document.querySelector(".view-participants");
+            const errorMessage = document.querySelector(".error-message");
+            const successMessage = document.querySelector(".success-message");
+
+            dragFileArea.classList.remove("uploaded-file-styling-file-area");
+            dragFileArea.classList.add("styling-drag-file-area");
+            uploadFileHeader.classList.remove("hidden");
+            fileSearchButton.classList.remove("hidden");
+            fileNameElement.classList.add("hidden");
+            viewLinkButton.classList.add("hidden");
+            errorMessage.textContent = "";
+            successMessage.textContent = "";
+            fileNameText.textContent = "";
+        };
+
+
+        // TODO: Convert into a function
+        const form = document.getElementById('uploadForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            sendFiles();
+        });
+
+        const sendFiles = async () => {
+            const myFiles = document.getElementById('myFiles').files;
+
+            if (myFiles.length === 0) {
+                const errorMessage = document.querySelector(".error-message");
+                errorMessage.textContent = "Debe seleccionar un archivo";
+                return;
+            }
+
+            const formData = new FormData();
+
+            formData.append('csvFile', myFiles.item(0));
+
+            const response = await fetch('http://localhost:3500/particpants/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const json = await response.json();
+
+            if (json.status === "200") {
+                const viewLinkButton = document.querySelector(".view-participants");
+                const successMessage = document.querySelector(".success-message");
+                viewLinkButton.classList.remove("hidden");
+                successMessage.textContent = json.message;
+                setTimeout(() => {
+                    successMessage.textContent = "";
+                }, 3000);
+            } else {
+                const errorMessage = document.querySelector(".error-message");
+                errorMessage.textContent = json.message;
+                setTimeout(() => {
+                    errorMessage.textContent = "";
+                }, 3000);
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
