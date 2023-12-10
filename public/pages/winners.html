@@ -288,7 +288,9 @@
             const worksheet = XLSX.utils.json_to_sheet(data);
             const workbook = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(workbook, worksheet, 'Ganadores');
-            XLSX.writeFile(workbook, 'ganadores.xlsx');
+            const date = new Date();
+            const dateString = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+            XLSX.writeFile(workbook, `ganadores-${dateString}.xlsx`);
         }
 
     </script>
