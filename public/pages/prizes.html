@@ -7,92 +7,10 @@
     <title>Formulario de Premios</title>
     <link type="text/css" rel="stylesheet" href="styles/main.css" />
     <link type="text/css" rel="stylesheet" href="styles/util.css" />
+    <link type="text/css" rel="stylesheet" href="styles/prizes.css" />
 
     <style>
-        .card {
-            margin-bottom: 16px;
-        }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        form .form-control {
-            display: flex;
-            align-items: flex-end;
-            gap: 24px;
-        }
-
-        form .control label {
-            display: block;
-            align-items: center;
-            color: var(--neutral-black);
-            /* Label */
-            /* font-family: Manrope; */
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 16px;
-            /* 133.333% */
-            margin-bottom: 8px;
-        }
-
-        form .money {
-            width: 100%;
-            max-width: 452px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        form .custom-quantity {
-            display: flex;
-            align-items: center;
-            outline: 1px solid var(--neutral-black);
-            border-radius: 20px;
-        }
-
-        form .custom-quantity input {
-            border-radius: 0px;
-            max-width: 14px;
-            border: none;
-            outline: none;
-        }
-
-        form .custom-quantity button.less {
-            border-top-right-radius: 0px;
-            border-bottom-right-radius: 0px;
-        }
-
-        form .custom-quantity button.add {
-            border-top-left-radius: 0px;
-            border-bottom-left-radius: 0px;
-        }
-
-        form .add-row,
-        form .remove-row {
-            display: inline-flex;
-            border-radius: 40px;
-            padding: 4px;
-        }
-
-        form .add-row {
-            background: var(--secondary-yellow-1);
-        }
-
-        form .remove-row {
-            background: var(--accent-red);
-        }
-
-        input[type='number'] {
-            -moz-appearance: textfield;
-        }
-
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-        }
     </style>
 </head>
 
@@ -104,20 +22,26 @@
         <div class="container">
             <div id="menu-list"></div>
 
-            <h1 class="title">Premios</h1>
+            <div class="header-content">
+                <h1 class="title">Premios</h1>
+                <button class="clear" onclick="clearPrizes()">Limpiar lista de premios</button>
+            </div>
             <div class="card">
                 <form>
-                    <div class="form-control" id="firstRow-1">
+                    <div class="form-control" id="firstRow-1" attr="1">
                         <div class="control money">
-                            <label for="money">Monto en RD$</label>
-                            <input type="number" id="money" name="money" placeholder="Monto en RD$" required>
+                            <label for="money">#1 Monto en RD$</label>
+                            <input type="text" id="money" name="money" placeholder="Monto en RD$"
+                                oninput="moneyMask(event)" onpaste="handlePaste(event)" required>
                         </div>
                         <div class="control">
                             <label for="quantity">Cantidad de premios</label>
                             <div class="custom-quantity">
-                                <button class="less">-</button>
+                                <button type="button" class="less" onclick="lessInput(1)">-</button>
                                 <input type="number" name="quantity" placeholder="0" required>
-                                <button class="add" onclick="addRow(this)">+</button>
+                                <button type="button" class="add" onclick="addInput(1)">
+                                    +
+                                </button>
                             </div>
                         </div>
                         <div class="control">
@@ -143,8 +67,10 @@
 
                 </form>
             </div>
-            <div class="">
-                <button>Guardar sorteo</button>
+            <div class="error-message hidden"></div>
+            <div class="success-message hidden"></div>
+            <div>
+                <button type="submit" onclick="saveForm()">Guardar sorteo</button>
             </div>
 
         </div>
@@ -154,46 +80,237 @@
 
     <script src="scripts/common.js"></script>
     <script>
-        const onLoad = () => {
-            // Muestra el botón "Agregar" en la primera fila
-            const addButton = document.querySelector('#firstRow .add');
-            addButton.style.display = 'block';
+        let prizesArr = [];
+        const successMessage = document.querySelector(".success-message");
+        const errorMessage = document.querySelector(".error-message");
+
+        const onLoad = async () => {
+            const response = await fetch('/prizes/view');
+            const json = await response.json();
+            prizesArr = json.prizes;
+
+            // first row is already in the html
+            const firstRow = document.querySelector("#firstRow-1");
+            const addButton = firstRow.querySelector(".remove-row");
+            addButton.style.display = 'none';
+            buildForm();
         };
+
+        // build form prizes base on prizesArr
+        const buildForm = () => {
+            if (prizesArr.length === 0) {
+                const clearButton = document.querySelector('.clear');
+                clearButton.disabled = true;
+                return;
+            }
+            prizesArr.forEach((prize, index) => {
+                if (index === 0) {
+                    const moneyInput = document.querySelector("#firstRow-1 input[name='money']");
+                    const quantityInput = document.querySelector("#firstRow-1 input[name='quantity']");
+                    moneyInput.value = prize.amount;
+                    quantityInput.value = prize.quantity;
+                } else {
+                    addRow();
+                    const lastRow = document.querySelector(`#firstRow-${index + 1}`);
+                    const moneyInput = lastRow.querySelector("input[name='money']");
+                    const quantityInput = lastRow.querySelector("input[name='quantity']");
+                    moneyInput.value = prize.amount;
+                    quantityInput.value = prize.quantity;
+                }
+                
+            });
+        }
+
         let counter = 1;
         const addRow = () => {
             const form = document.querySelector("form");
             const container = document.querySelector(`#firstRow-${counter}`);
+
+            if (counter > 1) {
+                const remove = container.querySelector(".remove-row");
+                remove.style.display = 'inline-flex';
+            }
+
+            const moneyInput = container.querySelector(".money input");
+            const quantityInput = container.querySelector(".custom-quantity input");
+            if (moneyInput.value === '' || quantityInput.value === '') {
+                return;
+            }
+
             const newRow = document.createElement("div");
-
-
-            // // Muestra el botón "Eliminar" en la nueva fila
-            const removeButton = newRow.querySelector('.control .hidden');
-            // removeButton.classList.remove('hidden');
-            // removeButton.classList.add('remove-row');
-
-            // // Esconde el boton de agregar
-            // const addButton = newRow.querySelector('.add-row');
-            // addButton.classList.add('hidden');
-            // addButton.classList.remove('add-row');
-
-            newRow.innerHTML = container.innerHTML
             newRow.classList.add("form-control");
-            newRow.id = `firstRow-${++counter}`;
+            newRow.setAttribute("id", `firstRow-${counter + 1}`);
+            newRow.setAttribute("attr", `${counter + 1}`);
+            newRow.innerHTML = container.innerHTML;
 
-            // agregar a los label el numero de permio por ejemplo
-            // <label for="money"> #2 Monto en RD$</label>
-            const label = newRow.querySelector('label');
-            label.textContent = `#${counter} Monto en RD$`;
+            // Update label and button attributes
+            const label = newRow.querySelector(".money label");
+            label.textContent = `#${parseInt(counter) + 1} Monto en RD$`;
 
-            // Inserta después de la fila actual
-            form.insertBefore(newRow, container.nextSibling);
+            const add = newRow.querySelector(".add");
+            add.setAttribute("onclick", `addInput(${counter + 1})`);
+            const less = newRow.querySelector(".less");
+            less.setAttribute("onclick", `lessInput(${counter + 1})`);
+
+            // hide add button in the previous row
+            const previousRow = document.querySelector(`#firstRow-${counter}`);
+            const addButton = previousRow.querySelector(".add-row");
+            addButton.style.display = 'none';
+
+            form.appendChild(newRow);
+            counter++;
         };
+
 
         const removeRow = (button) => {
             const form = document.querySelector("form");
-            // Elimina la fila actual
+            // cannot remove the first row
+            if (counter === 1) {
+                return;
+            }
+
+            const rowNumber = button.parentNode.parentNode.getAttribute('attr')
+            const countRows = document.querySelectorAll('.form-control').length;
+
+            counter = countRows - 1;
+
+            // if the row to remove is not the last one reorder the rows
+            if (rowNumber != countRows) {
+                for (let i = parseInt(rowNumber) + 1; i <= countRows; i++) {
+                    const row = document.querySelector(`#firstRow-${i}`);
+                    const label = row.querySelector(".money label");
+                    label.textContent = `#${parseInt(i) - 1} Monto en RD$`;
+
+                    const add = row.querySelector(".add");
+                    add.setAttribute("onclick", `addInput(${i - 1})`);
+                    const less = row.querySelector(".less");
+                    less.setAttribute("onclick", `lessInput(${i - 1})`);
+
+                    row.setAttribute("id", `firstRow-${i - 1}`);
+                    row.setAttribute("attr", `${i - 1}`);
+                }
+            }
+
+            // there always be add button in the previous row, unless you remove a middle row
+            if (rowNumber == countRows) {
+                const previousRow = document.querySelector(`#firstRow-${parseInt(rowNumber) - 1}`);
+                const addButton = previousRow.querySelector(".add-row");
+                addButton.style.display = 'inline-flex';
+            }
+
             form.removeChild(button.parentNode.parentNode);
         };
+
+        const addInput = (rowNumber) => {
+            const input = document.querySelector(`#firstRow-${rowNumber} input[name='quantity']`);
+            if (input.value === '') {
+                input.value = 0;
+            }
+            input.value = parseInt(input.value) + 1;
+        };
+
+        const lessInput = (rowNumber) => {
+            const input = document.querySelector(`#firstRow-${rowNumber} input[name='quantity']`);
+            if (input.value === '') {
+                input.value = 0;
+            }
+            if (parseInt(input.value) > 0) {
+                input.value = parseInt(input.value) - 1;
+            }
+        };
+
+        let numericValue = 0;
+
+        const moneyMask = (event) => {
+            const value = event.target.value.replace(/\D/g, '');
+            event.target.value = currencyFormat(value);
+        };
+
+
+        const handlePaste = (event) => {
+            const clipboardData = event.clipboardData || window.clipboardData;
+            const pastedData = clipboardData.getData('text');
+            if (!/^\d+$/.test(pastedData)) {
+                event.preventDefault();
+            }
+        };
+
+
+        const saveForm = async () => {
+            const form = document.querySelector("form");
+            const formControls = form.querySelectorAll(".form-control");
+            errorMessage.classList.add("hidden");
+            successMessage.classList.add("hidden");
+
+            const formData = [];
+
+            let isValid = true;
+
+            formControls.forEach((control) => {
+                const moneyInput = control.querySelector(".money input");
+                const quantityInput = control.querySelector(".custom-quantity input");
+
+                const amount = moneyInput.value.replace(/[^\d]/g, ''); // Remove non-numeric characters
+                const quantity = quantityInput.value;
+
+                if (amount === '' || quantity === '') {
+                    isValid = false;
+
+                    // Highlight or display an error for the user
+                    moneyInput.classList.toggle("error", amount === '');
+                    quantityInput.classList.toggle("error", quantity === '');
+
+                    // Focus on the first empty input
+                    if (amount === '' && isValid) {
+                        moneyInput.focus();
+                    } else if (quantity === '' && isValid) {
+                        quantityInput.focus();
+                    }
+                } else {
+                    formData.push({
+                        // amount should be in money format
+                        amount: currencyFormat(amount) || 0,
+                        quantity: parseInt(quantity) || 0,
+                    });
+                }
+            });
+
+            if (isValid) {
+                // Do something with the form data
+                const response = await fetch('/prizes/upload', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+                const json = await response.json();
+                // success message
+                successMessage.classList.remove("hidden");
+                successMessage.textContent = json.message;
+            } else {
+                // Optionally, display an error message or take appropriate action
+                errorMessage.classList.remove("hidden");
+                errorMessage.textContent = "Debe llenar todos los campos";
+            }
+        };
+
+        const clearPrizes = async () => {
+            const confirmation = confirm('¿Está seguro que desea eliminar la lista de premios?');
+            if (!confirmation) return;
+            fetch('/prizes/delete', {
+                method: 'DELETE'
+            })
+                .then(response => response.json())
+                .then(json => {
+                    if (json.success) {
+                        alert('Lista de participantes eliminada');
+                        window.location.reload();
+                    }
+                });
+            onLoad();
+        }
+
     </script>
 </body>
 

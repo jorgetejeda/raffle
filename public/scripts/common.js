@@ -88,3 +88,17 @@ const capitalize = (string) => {
         return name.charAt(0).toUpperCase() + name.slice(1);
     }).join(' ');
 }
+
+const currencyFormat = (value) => {
+    if (value === '') {
+        value = '0';
+    }
+    const options = {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+        useGrouping: true,
+    };
+    return new Intl.NumberFormat('es-DO', { style: 'currency', currency: 'DOP', ...options }).format(
+        parseInt(value)
+    );
+}

@@ -5,6 +5,9 @@ const fs = require('fs-extra');
 
 const PORT = process.env.PORT || 3500;
 const app = express();
+
+app.use(express.json());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
@@ -95,7 +98,7 @@ app.put('/participants/winner/:id/:prizeId', (req, res) => {
     });
 
     prizes = JSON.parse(prizes).map(prize => {
-        if (prize.id === req.params.prizeId) {
+        if (prize.id == req.params.prizeId) {
             return {
                 ...prize,
                 left: prize.left - 1,
@@ -107,7 +110,7 @@ app.put('/participants/winner/:id/:prizeId', (req, res) => {
     fs.writeFileSync('./database/prizes.json', JSON.stringify(prizes, null, 2));
     fs.writeFileSync('./database/participants.json', JSON.stringify(participants, null, 2));
 
-    findWinner.amount = prizes.find(prize => prize.id === req.params.prizeId).amount;
+    findWinner.amount = prizes.find(prize => prize.id == req.params.prizeId).amount;
     delete findWinner.winner;
     fs.mkdirSync(DIRECTORY, { recursive: true });
     const winners = fs.readFileSync('./database/winners.json', 'utf8');
@@ -139,6 +142,27 @@ app.get('/prizes/view', (req, res) => {
     const prizes = fs.readFileSync('./database/prizes.json', 'utf8');
     return res.json({ status: 'success', message: 'success', prizes: JSON.parse(prizes) });
 })
+
+app.post('/prizes/upload', async (req, res) => {
+    const prizes = req.body;
+  
+    const prizesArr = prizes.map(prize => ({
+            id: new Date().getTime() + Math.floor(Math.random() * 1000),
+            amount: prize.amount,
+            quantity: prize.quantity,
+            left: prize.quantity,
+        }
+    ));
+
+    fs.mkdirSync(DIRECTORY, { recursive: true });
+    fs.writeFileSync('./database/prizes.json', JSON.stringify(prizesArr, null, 2));
+    return res.json({ status: 'success', message: "Los premios han sido creado con exito!" });
+})
+
+app.delete('/prizes/delete', (req, res) => {
+    fs.writeFileSync('./database/prizes.json', JSON.stringify([], null, 2));
+    return res.json({ status: 'success', message: 'Los premios han sido eliminados' });
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)

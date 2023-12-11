@@ -33,7 +33,6 @@
                     <div>
                         <h1 class="name"></h1>
                         <h3 class="department"></h3>
-
                     </div>
                     <h1 class="congratulations">¡Felicidades!</h1>
 
@@ -221,9 +220,12 @@
             setTimeout(() => {
                 winnerContainer.style.display = "flex";
                 winnerId = namesEl.getAttribute('attr');
-
+                
                 const winner = participants.find(p => p.id === winnerId);
-                const amount = prizes.find(p => p.id === selectedPrize).amount;
+                console.log(prizes, selectedPrize)
+                const amount = prizes.find(p => p.id == selectedPrize).amount;
+                winnerContainer.classList.remove("hidden");
+
 
                 winnerEl.querySelector(".name").innerText = capitalize(namesEl.innerText);
                 winnerEl.querySelector(".department").innerText = `${winner.department} - ${winner.company}`;

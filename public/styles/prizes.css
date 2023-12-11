@@ -1,0 +1,84 @@
+.card {
+    margin-bottom: 16px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+form .form-control {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+}
+
+form .control label {
+    display: block;
+    align-items: center;
+    color: var(--neutral-black);
+    /* Label */
+    /* font-family: Manrope; */
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    /* 133.333% */
+    margin-bottom: 8px;
+}
+
+form .money {
+    width: 100%;
+    max-width: 452px;
+    display: flex;
+    flex-direction: column;
+}
+
+form .custom-quantity {
+    display: flex;
+    align-items: center;
+    outline: 1px solid var(--neutral-black);
+    border-radius: 20px;
+}
+
+form .custom-quantity input {
+    border-radius: 0px;
+    max-width: 14px;
+    border: none;
+    outline: none;
+}
+
+form .custom-quantity button.less {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+form .custom-quantity button.add {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+form .add-row,
+form .remove-row {
+    display: inline-flex;
+    border-radius: 40px;
+    padding: 4px;
+}
+
+form .add-row {
+    background: var(--secondary-yellow-1);
+}
+
+form .remove-row {
+    background: var(--accent-red);
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
