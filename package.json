@@ -1,7 +1,6 @@
 {
   "name": "upload-files",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -19,5 +18,14 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgetejeda/raffle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jorgetejeda/raffle/issues"
+  },
+  "homepage": "https://github.com/jorgetejeda/raffle#readme",
+  "description": ""
 }

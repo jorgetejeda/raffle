@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Gilroy';
+  src: local('Gilroy-Bold'),
+      url('../fonts/Gilroy-Bold.woff2') format('woff2'),
+      url('../fonts/Gilroy-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: local('Manrope Regular'), local('Manrope-Regular'),
+      url('../fonts/Manrope-Regular.woff2') format('woff2'),
+      url('../fonts/Manrope-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: local('Manrope Bold'), local('Manrope-Bold'),
+      url('../fonts/Manrope-Bold.woff2') format('woff2'),
+      url('../fonts/Manrope-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Manrope';
+}
+
+label { 
+  font-family: 'Manrope';
+  font-weight: bold;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Gilroy';
+}
+
+button { 
+  font-family: 'Gilroy';
+}
+
