@@ -18,14 +18,11 @@ form .control label {
     display: block;
     align-items: center;
     color: var(--neutral-black);
-    /* Label */
-    /* font-family: Manrope; */
-    font-size: 12px;
-    font-style: normal;
+    font-size: .95rem;
+    font-style: bold;
     font-weight: 700;
     line-height: 16px;
-    /* 133.333% */
-    margin-bottom: 8px;
+    margin-bottom: .5rem;
 }
 
 form .money {
@@ -39,7 +36,7 @@ form .custom-quantity {
     display: flex;
     align-items: center;
     outline: 1px solid var(--neutral-black);
-    border-radius: 20px;
+    border-radius: 3rem;
 }
 
 form .custom-quantity input {

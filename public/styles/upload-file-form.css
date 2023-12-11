@@ -4,8 +4,6 @@ input[type=file] {
 
 .fileName {
     color: var(--neutral-black);
-    /* Body Bold */
-    font-family: Manrope;
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
@@ -44,7 +42,6 @@ input[type=file] {
 .drag-file-area h4 {
     font-size: 26px;
     color: var(--neutral-black);
-    font-family: Gilroy;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -93,8 +90,6 @@ input[type=file]::file-selector-button {
 
 .view-participants {
     color: var(--primary-purple-4);
-    /* Body Bold */
-    font-family: Manrope;
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
