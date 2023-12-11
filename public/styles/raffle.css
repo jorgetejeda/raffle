@@ -4,12 +4,16 @@ body {
     background-color: var(--primary-purple);
     background: linear-gradient(315deg, var(--primary-purple) 0%, var(--primary-purple-2) 100%);
     min-height: 100vh;
+    margin: 0;
 }
+
 .pearls {
+    z-index: -1;
     height: 256px;
     max-width: 100%;
-    margin: 0 auto;
+    margin: -32px auto;
     object-fit: cover;
+    position: relative;
 }
 
 .container {
@@ -234,11 +238,9 @@ dialog {
 }
 
 .names {
-    
     font-size: 40px;
     font-style: normal;
     font-weight: 700;
-    line-height: 4rem;
     text-align: center;
     /* 120% */
 }
@@ -251,7 +253,6 @@ dialog {
     display: none;
     flex-direction: column;
     align-items: center;
-    gap: 32px;
     animation: fadeIn 1s ease-in-out;
 }
 
@@ -268,7 +269,7 @@ dialog {
     font-size: 40px;
     font-style: normal;
     font-weight: 700;
-    line-height: 4rem;
+    margin: 12px;
     /* 120% */
 }
 
