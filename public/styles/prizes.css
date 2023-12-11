@@ -41,7 +41,7 @@ form .custom-quantity {
 
 form .custom-quantity input {
     border-radius: 0px;
-    max-width: 14px;
+    max-width: 72px;
     border: none;
     outline: none;
 }
