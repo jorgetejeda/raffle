@@ -12,29 +12,6 @@
     <link rel="alternate" type="application/json+oembed" href="scripts/confetti_video.json" />
 
     <style>
-        .loading-page {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #fff;
-            animation: fadeOut 1s ease-in-out;
-        }
-
-        @keyframes fadeOut {
-            0% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0;
-                display: none;
-            }
-        }
-
         #confetti-container {
             width: 100%;
             height: 100%;
@@ -55,11 +32,22 @@
                 transform: translateY(-20px);
             }
         }
+
+        .add-prize {
+            color: #fff;
+            font-size: 1.5rem;
+            text-decoration: none;
+            margin-top: 16px;
+            text-align: center;
+        }
+        /* hover and text decoraton*/
+        .add-prize:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
 <body onload="onLoad()">
-    <div class="loading-page"></div>
     <div id="confetti-container" class="hidden">
         <dotlottie-player id="confetti" src="scripts/confetti.json" background="transparent"
             speed="1"></dotlottie-player>
@@ -72,6 +60,8 @@
                 <img src="images/mardi-text@2x.png" alt="raffle_text">
             </div>
             <button class="init-raffle btn-raffle" onclick="openModal()">Iniciar rifa</button>
+            <!-- Add link to add prizes-->
+            <a href="/prizes" class="add-prize hidden">Click para agregar premios</a>
 
             <!-- Show counter -->
             <div class="counter"></div>
@@ -160,9 +150,13 @@
             const prizesResponse = await fetch('/prizes/view');
             const prizesJson = await prizesResponse.json();
             prizes = prizesJson.prizes;
-
-            const loadingPage = document.querySelector('.loading-page');
-            loadingPage.classList.remove('loading-page');
+            console.log(prizes.length);
+            if(prizes.length === 0) {
+                console.log('it doesnt have prizes')
+                initRaffle.setAttribute('disabled', true);
+                const addPrize = document.querySelector('.add-prize');
+                addPrize.classList.remove('hidden');
+            }
 
             buildPrizes();
         }
