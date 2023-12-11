@@ -9,16 +9,66 @@
     <link rel="stylesheet" href="styles/colors.css">
     <link rel="stylesheet" href="styles/util.css">
     <link rel="stylesheet" href="styles/raffle.css">
+    <link rel="alternate" type="application/json+oembed" href="scripts/confetti_video.json" />
 
+    <style>
+        .loading-page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            animation: fadeOut 1s ease-in-out;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                display: none;
+            }
+        }
+
+        #confetti-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .mask img.image-logo {
+            animation: moveUpDown 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes moveUpDown {
+            0% {
+                transform: translateY(25px);
+            }
+
+            100% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
 </head>
 
 <body onload="onLoad()">
-
+    <div class="loading-page"></div>
+    <div id="confetti-container" class="hidden">
+        <dotlottie-player id="confetti" src="scripts/confetti.json" background="transparent"
+            speed="1"></dotlottie-player>
+    </div>
     <img class="pearls" src="images/pearls@2x.png" alt="logo_header">
     <main>
         <div class="container">
             <div class="mask">
-                <img src="images/mask@2x.png" alt="logo_raffle">
+                <img src="images/mask@2x.png" class="image-logo" alt="logo_raffle">
                 <img src="images/mardi-text@2x.png" alt="raffle_text">
             </div>
             <button class="init-raffle btn-raffle" onclick="openModal()">Iniciar Rifa</button>
@@ -44,23 +94,27 @@
                     </div>
                 </div>
             </div>
+            <dialog>
+                <div class="modal">
+                    <div class="modal-header">
+                        <h1 class="modal-title">Escoge el premio para la rifa</h1>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <div class="message-error"></div>
+                        <button class="cancel" onclick="closeModal()">Cancelar</button>
+                        <button class="confirm" onclick="priceChoosed()">Confirmar</button>
+                    </div>
+                </div>
+            </dialog>
         </div>
+
     </main>
     <footer></footer>
 
-    <dialog>
-        <div class="modal">
-            <div class="modal-header">
-                <h1 class="modal-title">Escoge el premio para la rifa</h1>
-            </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-                <div class="message-error"></div>
-                <button class="cancel" onclick="closeModal()">Cancelar</button>
-                <button class="confirm" onclick="priceChoosed()">Confirmar</button>
-            </div>
-        </div>
-    </dialog>
+
+
+    <script src="https://unpkg.com/@dotlottie/player-component@v1.3.0/dist/dotlottie-player.js"></script>
 
     <script src="scripts/common.js"></script>
     <script>
@@ -73,6 +127,7 @@
         const winnerEl = document.querySelector(".winner");
         const attrId = document.querySelector(".names").getAttribute('attr');
         const winnerContainer = document.querySelector(".winner");
+        const confettiContainer = document.querySelector("#confetti-container");
 
         let winnerId = null;
 
@@ -103,6 +158,10 @@
             const prizesResponse = await fetch('/prizes/view');
             const prizesJson = await prizesResponse.json();
             prizes = prizesJson.prizes;
+
+            const loadingPage = document.querySelector('.loading-page');
+            loadingPage.classList.remove('loading-page');
+
             buildPrizes();
         }
 
@@ -145,7 +204,6 @@
         }
 
         const closeModal = () => {
-            console.log('close')
             const dialog = document.querySelector('dialog');
             dialog.close();
         }
@@ -206,7 +264,7 @@
             const rand = Math.floor(Math.random() * participants.length);
             const name = participants[rand].name;
             namesEl.setAttribute('attr', participants[rand].id);
-        
+
             namesEl.innerText = capitalize(name);
         }
 
@@ -220,9 +278,17 @@
             setTimeout(() => {
                 winnerContainer.style.display = "flex";
                 winnerId = namesEl.getAttribute('attr');
-                
+                confettiContainer.classList.remove("hidden");
+
+                const confetti = document.querySelector("#confetti");
+                confetti.play();
+
+                setTimeout(() => {
+                    confetti.stop();
+                    confettiContainer.classList.add("hidden");
+                }, 5000);
+
                 const winner = participants.find(p => p.id === winnerId);
-                console.log(prizes, selectedPrize)
                 const amount = prizes.find(p => p.id == selectedPrize).amount;
                 winnerContainer.classList.remove("hidden");
 
@@ -231,8 +297,6 @@
                 winnerEl.querySelector(".department").innerText = `${winner.department} - ${winner.company}`;
                 winnerEl.querySelector(".the-winner").innerText = `El ganador de ${amount} es:`;
 
-
-                console.log(winnerId)
 
                 namesEl.classList.add("hidden");
                 winnerEl.classList.remove("hidden");
@@ -256,7 +320,6 @@
 
         const restartInitRaffle = async () => {
             // const winnerId = namesEl.getAttribute('attr');
-            console.log(winnerId)
             await fetch(`/participants/winner/${winnerId}/${selectedPrize}`, {
                 method: 'PUT'
             });
