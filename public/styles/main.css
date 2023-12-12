@@ -3,9 +3,6 @@
 @import url('colors.css');
 
 
-/** .loading on body class */
-.loading {}
-
 body {
     background-color: var(--main-background);
     min-height: 100vh;
