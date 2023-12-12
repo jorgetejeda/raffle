@@ -6,10 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>App Sorteo - AFP Crecer</title>
 
-	<link rel="stylesheet" href="../styles/colors.css" />
-	<link rel="stylesheet" href="../styles/util.css" />
-	<link rel="stylesheet" href="../styles/raffle.css" />
-	<link rel="alternate" type="application/json+oembed" href="../scripts/confetti_video.json" />
+	<link rel="stylesheet" href="styles/colors.css" />
+	<link rel="stylesheet" href="styles/util.css" />
+	<link rel="stylesheet" href="styles/raffle.css" />
+	<link rel="alternate" type="application/json+oembed" href="scripts/confetti_video.json" />
 
 	<style>
 		#confetti-container {
@@ -50,7 +50,7 @@
 
 <body onload="onLoad()">
 	<div id="confetti-container" class="hidden">
-		<dotlottie-player id="confetti" src="../scripts/confetti.json" background="transparent"
+		<dotlottie-player id="confetti" src="scripts/confetti.json" background="transparent"
 			speed="1"></dotlottie-player>
 	</div>
 	<img class="pearls" src="images/pearls@2x.png" alt="logo_header" />
@@ -58,7 +58,11 @@
 		<div class="container">
 			<div class="mask">
 				<img src="images/mask@2x.png" class="image-logo" alt="logo_raffle" />
-				<h1 class="text-white">Fiesta de Navidad Crecer</h1>
+				<h1 class="text-white">
+					Fiesta de Navidad Crecer
+					<small class="text-white small" id="round"></small>
+				</h1>
+				
 			</div>
 			<button class="init-raffle btn-raffle" onclick="startRaffle()">Iniciar rifa</button>
 			<!-- Add link to add prizes-->
@@ -90,13 +94,15 @@
 	</main>
 	<footer></footer>
 
-	<script src="../scripts/dotlottie-player.js"></script>
-	<script src="../scripts/common.js"></script>
+	<script src="scripts/dotlottie-player.js"></script>
+	<script src="scripts/common.js"></script>
+	<script src="scripts/api.js"></script>
 	<script>
 		let participants = [];
 		let prizes = [];
 		let selectedPrize = null;
-		let selectedAmount = null;
+		let winnerId = null;
+		let round = null;
 
 		const namesEl = document.querySelector(".names");
 		const winnerEl = document.querySelector(".winner");
@@ -104,7 +110,6 @@
 		const winnerContainer = document.querySelector(".winner");
 		const confettiContainer = document.querySelector("#confetti-container");
 
-		let winnerId = null;
 
 		const init = () => {
 			winnerEl.classList.add("hidden");
@@ -130,16 +135,19 @@
 			const response = await fetch("/participants/view");
 			const json = await response.json();
 			participants = json.participants.filter((p) => !p.winner);
-			const prizesResponse = await fetch("/prizes/round");
-			const prizesJson = await prizesResponse.json();
-			prizes = prizesJson.prizes;
 
-			if (prizes === null || prizes.length === 0) {
+			const prizesResponse = await callIn("GET", "/prizes/round");
+			if (prizesResponse.status === 400) {
 				console.log("it doesnt have prizes");
 				initRaffle.setAttribute("disabled", true);
 				const addPrize = document.querySelector(".add-prize");
 				addPrize.classList.remove("hidden");
+				return;
 			}
+			prizes = prizesResponse.prizes;
+			round = prizesResponse.prizes[0].round;
+			const roundEl = document.querySelector("#round");
+			roundEl.innerText = `Ronda ${round}`;
 		};
 
 		const startRaffle = () => {
@@ -156,7 +164,7 @@
 		};
 
 		const counter = () => {
-			if(prizes.every(p => p.left === 0)){
+			if (prizes.every(p => p.left === 0)) {
 				const textCompleteRound = document.querySelector("#complete-round");
 				textCompleteRound.innerText = "Ronda Finalizada!";
 				winnerEl.style.display = "none";
@@ -194,6 +202,7 @@
 			winnerEl.classList.add("hidden");
 			namesEl.classList.remove("hidden");
 			winnerContainer.style.display = "none";
+
 			selectedPrize = prizes.find((p) => p.left > 0).id;
 
 			const btnContainer = document.querySelector(".btn-raffle-actions");
@@ -220,12 +229,12 @@
 				}, 5000);
 
 				const winner = participants.find((p) => p.id === winnerId);
-				selectedAmount = prizes.find((p) => p.id == selectedPrize).amount;
+				const amount = prizes.find((p) => p.id == selectedPrize).amount;
 				winnerContainer.classList.remove("hidden");
 
 				winnerEl.querySelector(".name").innerText = capitalize(namesEl.innerText);
 				winnerEl.querySelector(".department").innerText = `${winner.department} - ${winner.company}`;
-				winnerEl.querySelector(".the-winner").innerText = `El ganador de ${selectedAmount} es:`;
+				winnerEl.querySelector(".the-winner").innerText = `El ganador de ${amount} es:`;
 
 				namesEl.classList.add("hidden");
 				winnerEl.classList.remove("hidden");
@@ -233,30 +242,21 @@
 		}
 
 		const restartInitRaffle = async () => {
-			try {
-				const response = await fetch(`/participants/winner/${winnerId}/${parseInt(selectedPrize)}/${selectedAmount}`, {
-					method: "PUT",
-				});
-				const json = await response.json();
-				if (json.status === 200) {
-					const prize = prizes.find((p) => p.id == selectedPrize);
-					prize.left = prize.left - 1;
+			const prizeResponse = await callIn("PUT", `/participants/winner/${winnerId}/${selectedPrize}`);
 
-					const participant = participants.find((p) => p.id == winnerId);
-					participant.winner = true;
-				}
-
-				if (prizes.every((p) => p.left === 0)) {
-					const textCompleteRound = document.querySelector("#complete-round");
-					textCompleteRound.innerText = "Ronda Finalizada!";
-					winnerEl.style.display = "none";
-					return
-				}
-				showRaffle();
-
-			} catch (error) {
-				console.log(error);
+			if (prizes.every((p) => p.left === 0)) {
+				const textCompleteRound = document.querySelector("#complete-round");
+				textCompleteRound.innerText = "Ronda Finalizada!";
+				winnerEl.style.display = "none";
+				return
 			}
+
+			const prize = prizes.find((p) => p.id == selectedPrize);
+			prize.left = prize.left - 1;
+
+			const participant = participants.find((p) => p.id == winnerId);
+			participant.winner = true;
+			showRaffle();
 		};
 
 		const genereNewRaffle = () => {
