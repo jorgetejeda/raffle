@@ -81,56 +81,60 @@ app.get('/participants/view', (req, res) => {
     return res.json({ status: 'success', message: 'success', participants: JSON.parse(participants) });
 });
 
-app.put('/participants/winner/:id/:prizeId/:amount', (req, res) => {
+app.put('/participants/winner/:winnerId/:prizeId', (req, res) => {
 
-    const { id: winnerId, prizeId: prizeId, amount: prizeAmount } = req.params;
+    try {
+        const { winnerId, prizeId } = req.params;
 
-    let participants = fs.readFileSync('./database/participants.json', 'utf8');
+        const fileParticipants = fs.readFileSync('./database/participants.json', 'utf8');
+        const participants = JSON.parse(fileParticipants)
 
-    const findWinner = JSON.parse(participants).find(participant => participant.id === winnerId);
-    participants = JSON.parse(participants).map(participant => {
-        if (participant.id === winnerId) {
-            return {
-                ...participant,
-                winner: true,
-            }
-        }
-        return participant;
-    });
-
-    const prizes = fs.readFileSync('./database/prizes.json', 'utf8');
-    const prizesObject = JSON.parse(prizes);
-
-    const updatedPrizes = Object.fromEntries(
-        Object.entries(prizesObject).map(([ronda, premios]) => [
-            ronda,
-            premios.map((prize) => {
-                if (prize.id == prizeId && prize.left > 0) {
-                    prize.left -= 1;
+        const findWinner = participants.find(participant => participant.id === winnerId);
+        const updateParticipants = participants.map(participant => {
+            if (participant.id === winnerId) {
+                return {
+                    ...participant,
+                    winner: true,
                 }
-                return prize;
-            })
-        ])
-    );
+            }
+            return participant;
+        });
 
-    fs.writeFileSync('./database/prizes.json', JSON.stringify(updatedPrizes, null, 2));
-    fs.writeFileSync('./database/participants.json', JSON.stringify(participants, null, 2));
+        const filePrizes = fs.readFileSync('./database/prizes.json', 'utf8');
+        const updatedPrizes = JSON.parse(filePrizes).map(prize => {
+            if (prize.id === parseInt(prizeId)) {
+                console.log(typeof prize.id, typeof parseInt(prizeId))
+                return {
+                    ...prize,
+                    left: prize.left - 1,
+                }
+            }
+            return prize;
+        });
 
-    findWinner.amount = prizeAmount;
-    delete findWinner.winner;
+        const amount = updatedPrizes.find(prize => prize.id === parseInt(prizeId)).amount;
 
-    fs.mkdirSync(DIRECTORY, { recursive: true });
-    const winners = fs.readFileSync('./database/winners.json', 'utf8');
-    if (winners) {
-        const winnersArray = JSON.parse(winners);
+        if (amount === 0) {
+            throw new Error('No hay premios disponibles');
+        }
 
+        findWinner.amount = amount;
+        delete findWinner.winner;
+        fs.mkdirSync(DIRECTORY, { recursive: true });
+
+        const fileWinners = fs.readFileSync('./database/winners.json', 'utf8');
+        const winnersArray = fileWinners ? JSON.parse(fileWinners) : [];
         winnersArray.push(findWinner);
-        fs.writeFileSync('./database/winners.json', JSON.stringify(winnersArray, null, 2));
-    } else {
-        fs.writeFileSync('./database/winners.json', JSON.stringify([findWinner], null, 2));
-    }
 
-    return res.json({ status: 200, message: 'success', prizes: updatedPrizes });
+        fs.writeFileSync('./database/prizes.json', JSON.stringify(updatedPrizes, null, 2));
+        fs.writeFileSync('./database/participants.json', JSON.stringify(updateParticipants, null, 2));
+        fs.writeFileSync('./database/winners.json', JSON.stringify(winnersArray, null, 2));
+
+        return res.json({ status: 200, message: 'success', prizes: updatedPrizes });
+    }
+    catch (error) {
+        return res.json({ status: 400, message: 'error', error: error.message });
+    }
 });
 
 // Winners
@@ -152,26 +156,26 @@ app.get('/prizes/view', (req, res) => {
 
 app.get('/prizes/round', (req, res) => {
     try {
-        const prizes = fs.readFileSync('./database/prizes.json', 'utf8');
-        const prizesObject = JSON.parse(prizes);
+        const filePrizes = fs.readFileSync('./database/prizes.json', 'utf8');
+        const prizes = JSON.parse(filePrizes);
 
-        let prizesWithLeft = null;
-        for (const [ronda, premios] of Object.entries(prizesObject)) {
-            const premiosConLeft = premios.filter((premio) => premio.left > 0);
-            if (premiosConLeft.length > 0) {
-                prizesWithLeft = premiosConLeft;
-                break;
+        const nonEmptyRounds = prizes.reduce((rounds, prize) => {
+            if (prize.left !== 0 || prize.left < 0 && !rounds.includes(prize.round)) {
+                rounds.push(prize.round);
             }
+            return rounds;
+        }, []);
+
+        if (nonEmptyRounds.length < 0) {
+            throw new Error('No hay premios disponibles');
         }
 
-        if (prizesWithLeft) {
-            return res.json({ status: 'success', message: 'success', prizes: prizesWithLeft });
-        } else {
-            return res.json({ status: 'success', message: 'No prizes available', prizes: null });
-        }
+        const firstNonEmptyRound = nonEmptyRounds[0];
+        const roundPrizes = prizes.filter(prize => prize.round === firstNonEmptyRound);
+        return res.json({ status: 200, message: 'success', prizes: roundPrizes });
+
     } catch (error) {
-        console.error("Error reading prizes file:", error.message);
-        return res.json({ status: 'error', message: 'Error reading prizes file', prizes: null });
+        return res.json({ status: 400, message: 'error', error: error.message });
     }
 });
 
