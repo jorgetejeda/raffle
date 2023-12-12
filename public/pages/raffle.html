@@ -1,316 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>App Sorteo - AFP Crecer</title>
 
-		<link rel="stylesheet" href="styles/colors.css" />
-		<link rel="stylesheet" href="styles/util.css" />
-		<link rel="stylesheet" href="styles/raffle.css" />
-		<link rel="alternate" type="application/json+oembed" href="scripts/confetti_video.json" />
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>App Sorteo - AFP Crecer</title>
 
-		<style>
-			#confetti-container {
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				overflow: hidden;
+	<link rel="stylesheet" href="styles/colors.css" />
+	<link rel="stylesheet" href="styles/util.css" />
+	<link rel="stylesheet" href="styles/raffle.css" />
+	<link rel="alternate" type="application/json+oembed" href="scripts/confetti_video.json" />
+
+	<style>
+		#confetti-container {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			overflow: hidden;
+		}
+
+		.mask img.image-logo {
+			animation: moveUpDown 1.5s ease-in-out infinite alternate;
+		}
+
+		@keyframes moveUpDown {
+			0% {
+				transform: translateY(25px);
 			}
 
-			.mask img.image-logo {
-				animation: moveUpDown 1.5s ease-in-out infinite alternate;
+			100% {
+				transform: translateY(-20px);
 			}
+		}
 
-			@keyframes moveUpDown {
-				0% {
-					transform: translateY(25px);
-				}
+		.add-prize {
+			color: #fff;
+			font-size: 1.5rem;
+			text-decoration: none;
+			margin-top: 16px;
+			text-align: center;
+		}
 
-				100% {
-					transform: translateY(-20px);
-				}
-			}
+		/* hover and text decoraton*/
+		.add-prize:hover {
+			text-decoration: underline;
+		}
+	</style>
+</head>
 
-			.add-prize {
-				color: #fff;
-				font-size: 1.5rem;
-				text-decoration: none;
-				margin-top: 16px;
-				text-align: center;
-			}
-			/* hover and text decoraton*/
-			.add-prize:hover {
-				text-decoration: underline;
-			}
-		</style>
-	</head>
-
-	<body onload="onLoad()">
-		<div id="confetti-container" class="hidden">
-			<dotlottie-player id="confetti" src="scripts/confetti.json" background="transparent" speed="1"></dotlottie-player>
-		</div>
-		<img class="pearls" src="images/pearls@2x.png" alt="logo_header" />
-		<main>
-			<div class="container">
-				<div class="mask">
-					<img src="images/mask@2x.png" class="image-logo" alt="logo_raffle" />
-					<h1 class="text-white">Fiesta de Navidad Crecer</h1>
-				</div>
-				<button class="init-raffle btn-raffle" onclick="openModal()">Iniciar rifa</button>
-				<!-- Add link to add prizes-->
-				<a href="/prizes" class="add-prize hidden">Click para agregar premios</a>
-
-				<!-- Show counter -->
-				<div class="counter"></div>
-
-				<div class="game">
-					<h1 class="names" attr="winner-id"></h1>
-					<div class="winner hidden">
-						<h3 class="the-winner"></h3>
-						<div>
-							<h1 class="name"></h1>
-							<h3 class="department"></h3>
-						</div>
-						<h1 class="congratulations">¡Felicidades!</h1>
-
-						<div class="btn-raffle-actions">
-							<button class="restart-raffle btn-raffle" onclick="restartInitRaffle()">Rifar de nuevo</button>
-							<button class="generate-new-raffle btn-raffle" onclick="genereNewRaffle()">Generar nuevo ganador</button>
-						</div>
-					</div>
-				</div>
-				<dialog>
-					<div class="modal">
-						<div class="modal-header">
-							<h1 class="modal-title">Escoge el premio para la rifa</h1>
-						</div>
-						<div class="modal-body"></div>
-						<div class="modal-footer">
-							<div class="message-error"></div>
-							<button class="cancel" onclick="closeModal()">Cancelar</button>
-							<button class="confirm" onclick="priceChoosed()">Confirmar</button>
-						</div>
-					</div>
-				</dialog>
+<body onload="onLoad()">
+	<div id="confetti-container" class="hidden">
+		<dotlottie-player id="confetti" src="scripts/confetti.json" background="transparent"
+			speed="1"></dotlottie-player>
+	</div>
+	<img class="pearls" src="images/pearls@2x.png" alt="logo_header" />
+	<main>
+		<div class="container">
+			<div class="mask">
+				<img src="images/mask@2x.png" class="image-logo" alt="logo_raffle" />
+				<h1 class="text-white">Fiesta de Navidad Crecer</h1>
 			</div>
-		</main>
-		<footer></footer>
+			<button class="init-raffle btn-raffle" onclick="startRaffle()">Iniciar rifa</button>
+			<!-- Add link to add prizes-->
+			<a href="/prizes" class="add-prize hidden">Click para agregar premios</a>
 
-		<script src="https://unpkg.com/@dotlottie/player-component@v1.3.0/dist/dotlottie-player.js"></script>
+			<!-- Show counter -->
+			<div class="counter"></div>
 
-		<script src="scripts/common.js"></script>
-		<script>
-			let participants = [];
-			let prizes = [];
-			let selectedPrize = null;
+			<div class="game">
+				<h1 class="names" attr="winner-id"></h1>
+				<div class="winner hidden">
+					<h3 class="the-winner"></h3>
+					<div>
+						<h1 class="name"></h1>
+						<h3 class="department"></h3>
+					</div>
+					<h1 class="congratulations">¡Felicidades!</h1>
 
-			const namesEl = document.querySelector(".names");
-			const winnerEl = document.querySelector(".winner");
-			const attrId = document.querySelector(".names").getAttribute("attr");
-			const winnerContainer = document.querySelector(".winner");
-			const confettiContainer = document.querySelector("#confetti-container");
+					<div class="btn-raffle-actions opacity">
+						<button class="restart-raffle btn-raffle" onclick="restartInitRaffle()">Rifar de nuevo</button>
+						<button class="generate-new-raffle btn-raffle" onclick="genereNewRaffle()">Generar nuevo
+							ganador</button>
+					</div>
+				</div>
+			</div>
+			<h1 class="text-white text-center" id="complete-round"></h1>
 
-			let winnerId = null;
+		</div>
+	</main>
+	<footer></footer>
 
-			const init = () => {
-				winnerEl.classList.add("hidden");
-				namesEl.classList.add("hidden");
-				winnerContainer.style.display = "none";
+	<script src="scripts/dotlottie-player.js"></script>
+	<script src="scripts/common.js"></script>
+	<script>
+		let participants = [];
+		let prizes = [];
+		let selectedPrize = null;
+		let selectedAmount = null;
 
-				const pearls = document.querySelector(".pearls");
-				pearls.classList.remove("hidden");
-				const mask = document.querySelector(".mask");
-				// remove margin top
-				mask.style.marginTop = "unset";
-				const imgs = mask.querySelectorAll("img");
-				imgs.forEach((img) => {
-					img.style.width = "auto";
-				});
-			};
+		const namesEl = document.querySelector(".names");
+		const winnerEl = document.querySelector(".winner");
+		const attrId = document.querySelector(".names").getAttribute("attr");
+		const winnerContainer = document.querySelector(".winner");
+		const confettiContainer = document.querySelector("#confetti-container");
 
-			const onLoad = async () => {
-				init();
-				const initRaffle = document.querySelector(".init-raffle");
-				initRaffle.classList.remove("hidden");
+		let winnerId = null;
 
-				const response = await fetch("/participants/view");
-				const json = await response.json();
-				participants = json.participants.filter((p) => !p.winner);
-				const prizesResponse = await fetch("/prizes/view");
-				const prizesJson = await prizesResponse.json();
-				prizes = prizesJson.prizes;
-				console.log(prizes.length);
-				if (prizes.length === 0) {
-					console.log("it doesnt have prizes");
-					initRaffle.setAttribute("disabled", true);
-					const addPrize = document.querySelector(".add-prize");
-					addPrize.classList.remove("hidden");
-				}
+		const init = () => {
+			winnerEl.classList.add("hidden");
+			namesEl.classList.add("hidden");
+			winnerContainer.style.display = "none";
 
-				buildPrizes();
-			};
+			const pearls = document.querySelector(".pearls");
+			pearls.classList.remove("hidden");
+			const mask = document.querySelector(".mask");
+			// remove margin top
+			mask.style.marginTop = "unset";
+			const imgs = mask.querySelectorAll("img");
+			imgs.forEach((img) => {
+				img.style.width = "auto";
+			});
+		};
 
-			const buildPrizes = () => {
-				const modalBody = document.querySelector(".modal-body");
-				modalBody.innerHTML = "";
-				prizes.forEach((prize) => {
-					if (prize.left === 0) {
-						return;
-					}
+		const onLoad = async () => {
+			init();
+			const initRaffle = document.querySelector(".init-raffle");
+			initRaffle.classList.remove("hidden");
 
-					const content = document.createElement("div");
-					content.classList.add("content");
-					content.setAttribute("attr", prize.id);
-					// Add a class to indicate active state
-					content.classList.add(prize.isActive && "active");
+			const response = await fetch("/participants/view");
+			const json = await response.json();
+			participants = json.participants.filter((p) => !p.winner);
+			const prizesResponse = await fetch("/prizes/round");
+			const prizesJson = await prizesResponse.json();
+			prizes = prizesJson.prizes;
 
-					content.onclick = () => selectPrize(content);
+			if (prizes === null || prizes.length === 0) {
+				console.log("it doesnt have prizes");
+				initRaffle.setAttribute("disabled", true);
+				const addPrize = document.querySelector(".add-prize");
+				addPrize.classList.remove("hidden");
+			}
+		};
 
-					const quantity = document.createElement("div");
-					quantity.classList.add("quantity");
-					quantity.innerHTML = `${prize.left} / <small>${prize.quantity}</small>`;
+		const startRaffle = () => {
+			const pearls = document.querySelector(".pearls");
+			pearls.classList.add("hidden");
+			const mask = document.querySelector(".mask");
+			mask.style.marginTop = "72px";
+			const img = mask.querySelector("img");
+			img.style.width = "300px";
 
-					const prizeEl = document.createElement("div");
-					prizeEl.classList.add("prize");
-					const h2 = document.createElement("h2");
-					h2.innerText = prize.amount;
-					prizeEl.appendChild(h2);
+			const initRaffle = document.querySelector(".init-raffle");
+			initRaffle.classList.add("hidden");
+			counter();
+		};
 
-					content.appendChild(quantity);
-					content.appendChild(prizeEl);
-					modalBody.appendChild(content);
-				});
-			};
-
-			const openModal = () => {
-				const dialog = document.querySelector("dialog");
-				dialog.showModal();
-			};
-
-			const closeModal = () => {
-				const dialog = document.querySelector("dialog");
-				dialog.close();
-			};
-
-			const selectPrize = (element) => {
-				const prizesElements = document.querySelectorAll(".content");
-				prizesElements.forEach((el) => {
-					el.classList.remove("active");
-				});
-				element.classList.toggle("active");
-				selectedPrize = element.getAttribute("attr");
-			};
-
-			const priceChoosed = () => {
-				if (document.querySelector(".active") === null) {
-					const messageEl = document.querySelector(".message-error");
-					messageEl.innerText = "Debe seleccionar al menos un premio";
-					return;
-				}
-				const dialog = document.querySelector("dialog");
-				dialog.close();
-
-				const pearls = document.querySelector(".pearls");
-				pearls.classList.add("hidden");
-				const mask = document.querySelector(".mask");
-				mask.style.marginTop = "72px";
-				const imgs = mask.querySelectorAll("img");
-				imgs.forEach((img) => {
-					img.style.width = "300px";
-				});
-				const initRaffle = document.querySelector(".init-raffle");
-				initRaffle.classList.add("hidden");
-				counter();
-			};
-
-			const counter = () => {
-				winnerEl.classList.add("hidden");
-				namesEl.classList.add("hidden");
-
-				const counter = document.querySelector(".counter");
-				counter.style.display = "flex";
-				let count = 3;
-				counter.innerText = count;
-				const interval = setInterval(() => {
-					count--;
-					counter.innerText = count;
-					if (count === 0) {
-						clearInterval(interval);
-						counter.style.display = "none";
-
-						// show raffle
-						showRaffle();
-					}
-				}, 1000);
-			};
-
-			function randomName() {
-				const rand = Math.floor(Math.random() * participants.length);
-				const name = participants[rand].name;
-				namesEl.setAttribute("attr", participants[rand].id);
-
-				namesEl.innerText = capitalize(name);
+		const counter = () => {
+			if(prizes.every(p => p.left === 0)){
+				const textCompleteRound = document.querySelector("#complete-round");
+				textCompleteRound.innerText = "Ronda Finalizada!";
+				winnerEl.style.display = "none";
+				return
 			}
 
-			function showRaffle() {
-				winnerEl.classList.add("hidden");
-				namesEl.classList.remove("hidden");
-				winnerContainer.style.display = "none";
+			winnerEl.classList.add("hidden");
+			namesEl.classList.add("hidden");
 
-				setDeceleratingTimeout(randomName, 10, 30);
+			const counter = document.querySelector(".counter");
+			counter.style.display = "flex";
+			let count = 3;
+			counter.innerText = count;
+			const interval = setInterval(() => {
+				count--;
+				counter.innerText = count;
+				if (count === 0) {
+					clearInterval(interval);
+					counter.style.display = "none";
+
+					// show raffle
+					showRaffle();
+				}
+			}, 1000);
+		};
+
+		function randomName() {
+			const rand = Math.floor(Math.random() * participants.length);
+			const name = participants[rand].name;
+			namesEl.setAttribute("attr", participants[rand].id);
+			namesEl.innerText = capitalize(name);
+		}
+
+		function showRaffle() {
+			winnerEl.classList.add("hidden");
+			namesEl.classList.remove("hidden");
+			winnerContainer.style.display = "none";
+			selectedPrize = prizes.find((p) => p.left > 0).id;
+
+			const btnContainer = document.querySelector(".btn-raffle-actions");
+			btnContainer.classList.add("opacity");
+
+			const interval = setInterval(() => {
+				randomName();
+			}, 10);
+
+			setTimeout(() => {
+				clearInterval(interval);
+				namesEl.classList.add("hidden");
+				winnerContainer.style.display = "flex";
+				winnerId = namesEl.getAttribute("attr");
+				confettiContainer.classList.remove("hidden");
+
+				const confetti = document.querySelector("#confetti");
+				confetti.play();
 
 				setTimeout(() => {
-					winnerContainer.style.display = "flex";
-					winnerId = namesEl.getAttribute("attr");
-					confettiContainer.classList.remove("hidden");
+					confetti.stop();
+					confettiContainer.classList.add("hidden");
+					btnContainer.classList.remove("opacity");
+				}, 5000);
 
-					const confetti = document.querySelector("#confetti");
-					confetti.play();
+				const winner = participants.find((p) => p.id === winnerId);
+				selectedAmount = prizes.find((p) => p.id == selectedPrize).amount;
+				winnerContainer.classList.remove("hidden");
 
-					setTimeout(() => {
-						confetti.stop();
-						confettiContainer.classList.add("hidden");
-					}, 5000);
+				winnerEl.querySelector(".name").innerText = capitalize(namesEl.innerText);
+				winnerEl.querySelector(".department").innerText = `${winner.department} - ${winner.company}`;
+				winnerEl.querySelector(".the-winner").innerText = `El ganador de ${selectedAmount} es:`;
 
-					const winner = participants.find((p) => p.id === winnerId);
-					const amount = prizes.find((p) => p.id == selectedPrize).amount;
-					winnerContainer.classList.remove("hidden");
+				namesEl.classList.add("hidden");
+				winnerEl.classList.remove("hidden");
+			}, 4000);
+		}
 
-					winnerEl.querySelector(".name").innerText = capitalize(namesEl.innerText);
-					winnerEl.querySelector(".department").innerText = `${winner.department} - ${winner.company}`;
-					winnerEl.querySelector(".the-winner").innerText = `El ganador de ${amount} es:`;
-
-					namesEl.classList.add("hidden");
-					winnerEl.classList.remove("hidden");
-				}, 4000);
-			}
-
-			const setDeceleratingTimeout = (callback, factor, times) => {
-				const internalCallback = ((t, counter) => {
-					return () => {
-						if (--t > 0) {
-							setTimeout(internalCallback, ++counter * factor);
-							callback();
-						}
-					};
-				})(times, 0);
-
-				setTimeout(internalCallback, factor);
-			};
-
-			const restartInitRaffle = async () => {
-				// const winnerId = namesEl.getAttribute('attr');
-				await fetch(`/participants/winner/${winnerId}/${selectedPrize}`, {
+		const restartInitRaffle = async () => {
+			try {
+				const response = await fetch(`/participants/winner/${winnerId}/${parseInt(selectedPrize)}/${selectedAmount}`, {
 					method: "PUT",
 				});
-				onLoad();
-			};
+				const json = await response.json();
+				if (json.status === 200) {
+					const prize = prizes.find((p) => p.id == selectedPrize);
+					prize.left = prize.left - 1;
 
-			const genereNewRaffle = () => {
-				winnerContainer.style.display = "none";
-				counter();
-			};
-		</script>
-	</body>
+					const participant = participants.find((p) => p.id == winnerId);
+					participant.winner = true;
+				}
+
+				if (prizes.every((p) => p.left === 0)) {
+					const textCompleteRound = document.querySelector("#complete-round");
+					textCompleteRound.innerText = "Ronda Finalizada!";
+					winnerEl.style.display = "none";
+					return
+				}
+				showRaffle();
+
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		const genereNewRaffle = () => {
+			winnerContainer.style.display = "none";
+			counter();
+		};
+	</script>
+</body>
+
 </html>

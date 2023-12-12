@@ -81,10 +81,11 @@ app.get('/participants/view', (req, res) => {
     return res.json({ status: 'success', message: 'success', participants: JSON.parse(participants) });
 });
 
-app.put('/participants/winner/:id/:prizeId', (req, res) => {
-    const winnerId = req.params.id;
+app.put('/participants/winner/:id/:prizeId/:amount', (req, res) => {
+
+    const { id: winnerId, prizeId: prizeId, amount: prizeAmount } = req.params;
+
     let participants = fs.readFileSync('./database/participants.json', 'utf8');
-    let prizes = fs.readFileSync('./database/prizes.json', 'utf8');
 
     const findWinner = JSON.parse(participants).find(participant => participant.id === winnerId);
     participants = JSON.parse(participants).map(participant => {
@@ -97,21 +98,27 @@ app.put('/participants/winner/:id/:prizeId', (req, res) => {
         return participant;
     });
 
-    prizes = JSON.parse(prizes).map(prize => {
-        if (prize.id == req.params.prizeId) {
-            return {
-                ...prize,
-                left: prize.left - 1,
-            }
-        }
-        return prize;
-    });
+    const prizes = fs.readFileSync('./database/prizes.json', 'utf8');
+    const prizesObject = JSON.parse(prizes);
 
-    fs.writeFileSync('./database/prizes.json', JSON.stringify(prizes, null, 2));
+    const updatedPrizes = Object.fromEntries(
+        Object.entries(prizesObject).map(([ronda, premios]) => [
+            ronda,
+            premios.map((prize) => {
+                if (prize.id == prizeId && prize.left > 0) {
+                    prize.left -= 1;
+                }
+                return prize;
+            })
+        ])
+    );
+
+    fs.writeFileSync('./database/prizes.json', JSON.stringify(updatedPrizes, null, 2));
     fs.writeFileSync('./database/participants.json', JSON.stringify(participants, null, 2));
 
-    findWinner.amount = prizes.find(prize => prize.id == req.params.prizeId).amount;
+    findWinner.amount = prizeAmount;
     delete findWinner.winner;
+
     fs.mkdirSync(DIRECTORY, { recursive: true });
     const winners = fs.readFileSync('./database/winners.json', 'utf8');
     if (winners) {
@@ -123,7 +130,7 @@ app.put('/participants/winner/:id/:prizeId', (req, res) => {
         fs.writeFileSync('./database/winners.json', JSON.stringify([findWinner], null, 2));
     }
 
-    return res.json({ status: 'success', message: 'success' });
+    return res.json({ status: 200, message: 'success', prizes: updatedPrizes });
 });
 
 // Winners
@@ -143,15 +150,40 @@ app.get('/prizes/view', (req, res) => {
     return res.json({ status: 'success', message: 'success', prizes: JSON.parse(prizes) });
 })
 
+app.get('/prizes/round', (req, res) => {
+    try {
+        const prizes = fs.readFileSync('./database/prizes.json', 'utf8');
+        const prizesObject = JSON.parse(prizes);
+
+        let prizesWithLeft = null;
+        for (const [ronda, premios] of Object.entries(prizesObject)) {
+            const premiosConLeft = premios.filter((premio) => premio.left > 0);
+            if (premiosConLeft.length > 0) {
+                prizesWithLeft = premiosConLeft;
+                break;
+            }
+        }
+
+        if (prizesWithLeft) {
+            return res.json({ status: 'success', message: 'success', prizes: prizesWithLeft });
+        } else {
+            return res.json({ status: 'success', message: 'No prizes available', prizes: null });
+        }
+    } catch (error) {
+        console.error("Error reading prizes file:", error.message);
+        return res.json({ status: 'error', message: 'Error reading prizes file', prizes: null });
+    }
+});
+
 app.post('/prizes/upload', async (req, res) => {
     const prizes = req.body;
-  
+
     const prizesArr = prizes.map(prize => ({
-            id: new Date().getTime() + Math.floor(Math.random() * 1000),
-            amount: prize.amount,
-            quantity: prize.quantity,
-            left: prize.quantity,
-        }
+        id: new Date().getTime() + Math.floor(Math.random() * 1000),
+        amount: prize.amount,
+        quantity: prize.quantity,
+        left: prize.quantity,
+    }
     ));
 
     fs.mkdirSync(DIRECTORY, { recursive: true });
