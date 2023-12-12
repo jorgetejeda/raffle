@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Sorteo - AFP Crecer - Formulario de Premios</title>
-    <link type="text/css" rel="stylesheet" href="styles/main.css" />
-    <link type="text/css" rel="stylesheet" href="styles/util.css" />
-    <link type="text/css" rel="stylesheet" href="styles/prizes.css" />
+    <link type="text/css" rel="stylesheet" href="../styles/main.css" />
+    <link type="text/css" rel="stylesheet" href="../styles/util.css" />
+    <link type="text/css" rel="stylesheet" href="../styles/prizes.css" />
 
     <style>
 
@@ -38,7 +38,7 @@
                             <label for="quantity">Cantidad de premios</label>
                             <div class="custom-quantity">
                                 <button type="button" class="less" onclick="lessInput(1)">-</button>
-                                <input type="number" name="quantity" placeholder="0" required>
+                                <input class="quantityOfPrices" type="number" name="quantity" placeholder="0" required>
                                 <button type="button" class="add" onclick="addInput(1)">
                                     +
                                 </button>
@@ -78,7 +78,7 @@
 
     <footer></footer>
 
-    <script src="scripts/common.js"></script>
+    <script src="../scripts/common.js"></script>
     <script>
         let prizesArr = [];
         const successMessage = document.querySelector(".success-message");
@@ -156,6 +156,15 @@
             const previousRow = document.querySelector(`#firstRow-${counter}`);
             const addButton = previousRow.querySelector(".add-row");
             addButton.style.display = 'none';
+            //Make the button + - dissapear
+            const customQuantity = document.querySelector('.custom-quantity')
+            customQuantity.querySelector('.less').remove()
+            customQuantity.querySelector('.add').remove()
+
+
+            quantityOfPrices = customQuantity.querySelector('.quantityOfPrices')
+            quantityOfPrices.setAttribute('readonly','true')
+        
 
             form.appendChild(newRow);
             counter++;

@@ -37,6 +37,12 @@ form .custom-quantity {
     align-items: center;
     outline: 1px solid var(--neutral-black);
     border-radius: 3rem;
+    outline: 1px solid var(--neutral-black);
+}
+
+form .static-quantity {
+    border-radius: 3rem;
+
 }
 
 form .custom-quantity input {
