@@ -1,37 +1,9 @@
 [
   {
-    "id": 1702327564669,
-    "amount": "RD$100,000",
+    "id": 1702438453586,
+    "amount": "RD$1",
     "quantity": 1,
-    "left": 0,
+    "left": 1,
     "round": 1
-  },
-  {
-    "id": 1702327564435,
-    "amount": "RD$50,000",
-    "quantity": 2,
-    "left": 0,
-    "round": 1
-  },
-  {
-    "id": 1702327564193,
-    "amount": "RD$1,000",
-    "quantity": 10,
-    "left": 0,
-    "round": 1
-  },
-  {
-    "id": 1702327564649,
-    "amount": "RD$100,000",
-    "quantity": 1,
-    "left": 0,
-    "round": 2
-  },
-  {
-    "id": 1702327564665,
-    "amount": "RD$500,000",
-    "quantity": 1,
-    "left": 0,
-    "round": 3
   }
 ]
