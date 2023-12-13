@@ -62,7 +62,7 @@
 					Fiesta de Navidad Crecer
 					<small class="text-white small" id="round"></small>
 				</h1>
-				
+
 			</div>
 			<button class="init-raffle btn-raffle" onclick="startRaffle()">Iniciar rifa</button>
 			<!-- Add link to add prizes-->
@@ -86,9 +86,11 @@
 						<button class="generate-new-raffle btn-raffle" onclick="genereNewRaffle()">Generar nuevo
 							ganador</button>
 					</div>
+
+					<h1 class="text-white text-center" id="complete-round"></h1>
 				</div>
 			</div>
-			<h1 class="text-white text-center" id="complete-round"></h1>
+
 
 		</div>
 	</main>
@@ -244,18 +246,20 @@
 		const restartInitRaffle = async () => {
 			const prizeResponse = await callIn("PUT", `/participants/winner/${winnerId}/${selectedPrize}`);
 
-			if (prizes.every((p) => p.left === 0)) {
-				const textCompleteRound = document.querySelector("#complete-round");
-				textCompleteRound.innerText = "Ronda Finalizada!";
-				winnerEl.style.display = "none";
-				return
-			}
-
 			const prize = prizes.find((p) => p.id == selectedPrize);
 			prize.left = prize.left - 1;
 
 			const participant = participants.find((p) => p.id == winnerId);
 			participant.winner = true;
+
+			if (prizes.every((p) => p.left === 0)) {
+				const textCompleteRound = document.querySelector("#complete-round");
+				textCompleteRound.innerText = "Ronda Finalizada!";
+				// const btnContainer = document.querySelector(".btn-raffle-actions");
+				// btnContainer.classList.add("opacity");
+				return
+			}
+
 			showRaffle();
 		};
 
