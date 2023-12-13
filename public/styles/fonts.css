@@ -28,20 +28,16 @@
   font-display: swap;
 }
 
-body {
-  font-family: 'Manrope';
+body, label {
+  font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 label { 
-  font-family: 'Manrope';
   font-weight: bold;
 }
 
-h1, h2, h3, h4 {
-  font-family: 'Gilroy';
+h1, h2, h3, h4, button, a {
+  font-family: 'Gilroy', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-button { 
-  font-family: 'Gilroy';
-}
 
