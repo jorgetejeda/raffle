@@ -15,19 +15,7 @@ button[disabled] {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-}
-
-.clear {
-	margin-bottom: 24px;
-	padding: 8px 24px;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
-	cursor: pointer;
-	border: none;
-	border-radius: 56px;
-	color: var(--neutral-white);
-	background: var(--secondary-orange-1);
+	margin-bottom: 1rem;
 }
 
 .text-white {

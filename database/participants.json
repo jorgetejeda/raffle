@@ -1,1 +1,2962 @@
-[]
+[
+  {
+    "id": "r3st4i2af1ia1p0060n22mc1nao6i4d",
+    "company": "AFP",
+    "department": "ADMINISTRACION",
+    "identification": "00112462361",
+    "name": "CLARISA  MATOS \r",
+    "winner": false
+  },
+  {
+    "id": "nnmi0a43r16i7i90cdto89apfa0531s",
+    "company": "AFP",
+    "department": "ADMINISTRACION",
+    "identification": "00108163734",
+    "name": "EDUIN  PEREZ GIL\r",
+    "winner": false
+  },
+  {
+    "id": "a500p85r8nm2i1d72i0fao9nac9i6ts",
+    "company": "AFP",
+    "department": "ADMINISTRACION",
+    "identification": "29500051692",
+    "name": "INGRID ESTEFANY DIAZ SANTOS \r",
+    "winner": false
+  },
+  {
+    "id": "aa09i48a1ndi611iot96fnp03csrm76",
+    "company": "AFP",
+    "department": "ADMINISTRACION",
+    "identification": "00116146978",
+    "name": "SILVIA ELENA CEPIN COLLADO\r",
+    "winner": false
+  },
+  {
+    "id": "31pdf2a9sa0on6m4icatini217r3027",
+    "company": "AFP",
+    "department": "ADMINISTRACION",
+    "identification": "22900217633",
+    "name": "WELINSON  UREÑA DE AZA\r",
+    "winner": false
+  },
+  {
+    "id": "oiannaf01527892tica5i0p3s12md7r",
+    "company": "AFP",
+    "department": "ADMINISTRACION",
+    "identification": "00118735729",
+    "name": "WENER DOMINGO DE LA CRUZ NERIS\r",
+    "winner": false
+  },
+  {
+    "id": "p69a52ft3a66r3diuaio202774",
+    "company": "AFP",
+    "department": "AUDITORIA",
+    "identification": "40223592367",
+    "name": "GRECIA REGINA VILLAR PEREZ\r",
+    "winner": false
+  },
+  {
+    "id": "ab07i8e20p52esff7821n0c20oi",
+    "company": "AFP",
+    "department": "BENEFICIOS",
+    "identification": "22500007871",
+    "name": "CARMEN PAOLA DE LOS SANTOS MARTINEZ\r",
+    "winner": false
+  },
+  {
+    "id": "fbec15po4in0sef75i5126125a",
+    "company": "AFP",
+    "department": "BENEFICIOS",
+    "identification": "40212761155",
+    "name": "CHARIDEY  ABAD FAJARDO\r",
+    "winner": false
+  },
+  {
+    "id": "eo2168n5b06spfa4if1e0241ci4",
+    "company": "AFP",
+    "department": "BENEFICIOS",
+    "identification": "40221065168",
+    "name": "GRISEL IRONERYS PEGUERO SUERO\r",
+    "winner": false
+  },
+  {
+    "id": "00ei00n46afop40b91279s6feic",
+    "company": "AFP",
+    "department": "BENEFICIOS",
+    "identification": "06900092716",
+    "name": "INGRID ROSANNY VOLQUEZ PEREZ\r",
+    "winner": false
+  },
+  {
+    "id": "0ebpi02ff12096a4coe62ins161",
+    "company": "AFP",
+    "department": "BENEFICIOS",
+    "identification": "40220612960",
+    "name": "JOHAN ESMERLIN FRIAS MONTILLA\r",
+    "winner": false
+  },
+  {
+    "id": "fi0722oae04cs0ei18bf36pn312",
+    "company": "AFP",
+    "department": "BENEFICIOS",
+    "identification": "40220182063",
+    "name": "KARLA VIVIANA ALVARADO MACHADO\r",
+    "winner": false
+  },
+  {
+    "id": "292o7iei49cb28f11n3a0f0e5ps",
+    "company": "AFP",
+    "department": "BENEFICIOS",
+    "identification": "40220521799",
+    "name": "KATHERINE INDHIRA ACOSTA SANTANA \r",
+    "winner": false
+  },
+  {
+    "id": "1518pb87iff058s7i1e0ea0ocn7",
+    "company": "AFP",
+    "department": "BENEFICIOS",
+    "identification": "00117850578",
+    "name": "MAITEE ROXANNA CARO GONZALEZ\r",
+    "winner": false
+  },
+  {
+    "id": "i1c7o1a3f01375neebf6s67ip0",
+    "company": "AFP",
+    "department": "BENEFICIOS",
+    "identification": "00117756361",
+    "name": "SUGHEIRY  QUEZADA DE LOS SANTOS\r",
+    "winner": false
+  },
+  {
+    "id": "2da3i6f6p3400aca82d6l512",
+    "company": "AFP",
+    "department": "CALIDAD",
+    "identification": "40220631325",
+    "name": "ANA MARYS ARNAUD DE LA ROSA\r",
+    "winner": false
+  },
+  {
+    "id": "a1fcp1418d35ia02265lda48",
+    "company": "AFP",
+    "department": "CALIDAD",
+    "identification": "40215184231",
+    "name": "CINTHIA NOLBELIS PAULINO ENCARNACION\r",
+    "winner": false
+  },
+  {
+    "id": "fia4792l20020acdda4p1074",
+    "company": "AFP",
+    "department": "CALIDAD",
+    "identification": "10900074724",
+    "name": "FRANCISCO  COMAS DE LA CRUZ\r",
+    "winner": false
+  },
+  {
+    "id": "6ca51dd0ap8f5a190l1i0996",
+    "company": "AFP",
+    "department": "CALIDAD",
+    "identification": "00119519908",
+    "name": "KARILIN  DE LA ROSA REYNOSO\r",
+    "winner": false
+  },
+  {
+    "id": "2d203a4lp112ic0f76d0aa80",
+    "company": "AFP",
+    "department": "CALIDAD",
+    "identification": "40223101680",
+    "name": "LAURA  ESCOLASTICO JIMENEZ\r",
+    "winner": false
+  },
+  {
+    "id": "070d0a937i0fp6d7cl7a8a30",
+    "company": "AFP",
+    "department": "CALIDAD",
+    "identification": "09300770063",
+    "name": "MARIA MAGDALENA ENCARNACION NOVAS\r",
+    "winner": false
+  },
+  {
+    "id": "843a4fp2aa596dd50c8l7i92",
+    "company": "AFP",
+    "department": "CALIDAD",
+    "identification": "40223689478",
+    "name": "MARIA DEL PILAR GIL GONZALEZ\r",
+    "winner": false
+  },
+  {
+    "id": "df1p4404a52c9l35ada1361i",
+    "company": "AFP",
+    "department": "CALIDAD",
+    "identification": "40214319135",
+    "name": "MELANY NICOLE HERNANDEZ JAVIER\r",
+    "winner": false
+  },
+  {
+    "id": "dc52i9pd601f8aaa39l15459",
+    "company": "AFP",
+    "department": "CALIDAD",
+    "identification": "40213819556",
+    "name": "NAYELI  FERNANDEZ DE MATIAS\r",
+    "winner": false
+  },
+  {
+    "id": "8c4a24a02d61868lp5id60fa",
+    "company": "AFP",
+    "department": "CALIDAD",
+    "identification": "40215806684",
+    "name": "ROSSY MARIANNY VENTURA \r",
+    "winner": false
+  },
+  {
+    "id": "cr52a458e0l0f18c7le8pt1na40",
+    "company": "AFP",
+    "department": "CALL CENTER",
+    "identification": "40208515478",
+    "name": "RUBI MARISOL GARCIA ROSA\r",
+    "winner": false
+  },
+  {
+    "id": "tr0705a5f45a1dtc29t0eceoo3n75pcno",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "40200735955",
+    "name": "CAROLINA ALTAGRACIA SOLANO MELO\r",
+    "winner": false
+  },
+  {
+    "id": "8nfta62coen2td28opr03t44c54e9oca2",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "40226248934",
+    "name": "CINTHIA  DEL ROSARIO JAVIER\r",
+    "winner": false
+  },
+  {
+    "id": "3ta0cfodtn41aet76r2occnpe341o845",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "40213436187",
+    "name": "DIDIANA ISABEL LAJARA JIMENEZ\r",
+    "winner": false
+  },
+  {
+    "id": "a06f52pet0n20co6oo2tec6rtd4nc9a42",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "40209262654",
+    "name": "FREDERICK ESTEBAN RODRIGUEZ OZUNA\r",
+    "winner": false
+  },
+  {
+    "id": "0ator481e880epd0ca1otfc71ot658nnc",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "00118088475",
+    "name": "GLENYS  DE LA CRUZ DE LA CRUZ\r",
+    "winner": false
+  },
+  {
+    "id": "c6oa09cdf2p1t2o6e6c0a4n10t1eo1rnt",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "00112064621",
+    "name": "ISIS FRANCISCA FERNANDEZ GRIÑAN\r",
+    "winner": false
+  },
+  {
+    "id": "t4or8cf4a0pc7ot500aee0ndo1n05c72t",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "40200705487",
+    "name": "JEREMY ALEJANDRO GUZMAN MORETA\r",
+    "winner": false
+  },
+  {
+    "id": "on88ca4e0tccfa2o2r2423td01oe7ptn5",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "22400175224",
+    "name": "LLISEL MARIELA JIMENEZ ADAMES\r",
+    "winner": false
+  },
+  {
+    "id": "dec41t64pteo506of5ona4cct31na042r",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "40210516346",
+    "name": "MARIDANIA  RODRIGUEZ REYES\r",
+    "winner": false
+  },
+  {
+    "id": "4ecoa60tc88on0d5aft554023rtepo5nc",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "40235645005",
+    "name": "RACHELL LYNETTE GARCIA ESPIRITUSANTO\r",
+    "winner": false
+  },
+  {
+    "id": "a1p0cdecr2893cofao651t1t4oen1tn92",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "40225811369",
+    "name": "RAFAEL ARMANDO MELO CASTRO\r",
+    "winner": false
+  },
+  {
+    "id": "n5e022e2t34cd9co81c8no9ptfo9raat4",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "40234925218",
+    "name": "RUTH ESTEFANI DE LA ROSA \r",
+    "winner": false
+  },
+  {
+    "id": "3p27ecta02oc1to0r2a9f62o1cde4nnt8",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "40226012918",
+    "name": "YIHRA YINETTE LEON TEJEDA\r",
+    "winner": false
+  },
+  {
+    "id": "9nr8ond12cacc11pe04o9t54o01ft9tae",
+    "company": "AFP",
+    "department": "CENTRO DE CONTACTO",
+    "identification": "40210919185",
+    "name": "YVELCA VANESSA PEÑA SANTIAGO\r",
+    "winner": false
+  },
+  {
+    "id": "ce21a325ennli0rdtiep1ieax04e4e17plf5c2",
+    "company": "AFP",
+    "department": "EXPERIENCIA DEL CLIENTE",
+    "identification": "40221205137",
+    "name": "AMERICA CAROLINA JIMENEZ ORTIZ\r",
+    "winner": false
+  },
+  {
+    "id": "epea7ni5drl34pi2cc0ee400lafxetn271i5e2",
+    "company": "AFP",
+    "department": "EXPERIENCIA DEL CLIENTE",
+    "identification": "40200535421",
+    "name": "PAMELA ALEXANDRA JIMENEZ \r",
+    "winner": false
+  },
+  {
+    "id": "em0f33t6v208ar4osfftv2250ep10e",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00800352221",
+    "name": "ALBA PAOLA ABREU \r",
+    "winner": false
+  },
+  {
+    "id": "5af43pffr0v20s2eetvo2mt40e0154",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "40223150240",
+    "name": "ALEJANDRO MICHEL MUÑOZ PATRICIO\r",
+    "winner": false
+  },
+  {
+    "id": "8fvv9a1o3t89fsr0ep100e8tf92me5",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00115388290",
+    "name": "ANGELA  BRITO CASTRO\r",
+    "winner": false
+  },
+  {
+    "id": "0vfo1188ree1f700v8ma3esptt4f07",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00110803178",
+    "name": "DAMARIS CRISTINA GUZMAN DE ORTIZ\r",
+    "winner": false
+  },
+  {
+    "id": "61ffosa1vft089215ve3et4r01me9p",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00116599812",
+    "name": "ESMERLING LEONEL PUJOLS DILONE \r",
+    "winner": false
+  },
+  {
+    "id": "0f9r285pf24mafv28eo1s939tve0te",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "40225028931",
+    "name": "ESTEFFANY  HERNANDEZ REYES\r",
+    "winner": false
+  },
+  {
+    "id": "v0240m1fpoe58s72erffavtet64335",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "22500134386",
+    "name": "FERNANDA ESTHER LUZON VALERA\r",
+    "winner": false
+  },
+  {
+    "id": "a0f65tp9tf03eosf4vvme01151e51r",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00111955514",
+    "name": "GUILLERMO MANUEL BLANCO QUIÑONES\r",
+    "winner": false
+  },
+  {
+    "id": "f4vve28o7a80m23t8e1e0p71strf4f",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00114834872",
+    "name": "JOSEFINA  PLASENCIO DE LA CRUZ\r",
+    "winner": false
+  },
+  {
+    "id": "6as010tmt389vfe26rf0pee4fov218",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00108419623",
+    "name": "JUAN MANUEL RAMIREZ RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "a16f2p7f4fv0vtsm6e4eoret972106",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00114722697",
+    "name": "JUAN CARLOS LUNA SANCHEZ\r",
+    "winner": false
+  },
+  {
+    "id": "a38motf3e1resv4pte22f076038v0f",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "22300063314",
+    "name": "KEYLA MARGARITA CRUZ NUÑEZ\r",
+    "winner": false
+  },
+  {
+    "id": "tf71f04etmo9vr6p5v16faes081e6",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00116945817",
+    "name": "LARISSA MARLENE RONDON ALVAREZ\r",
+    "winner": false
+  },
+  {
+    "id": "a0emt04o2r4vfepf0s9t81e01fv343",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00110892403",
+    "name": "MARIA ALTAGRACIA HERNANDEZ PEÑA\r",
+    "winner": false
+  },
+  {
+    "id": "t1ese528vv9017rfet6f140pof0ma0",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00117201806",
+    "name": "MELVYN AGUSTIN RICHETTI JIMENEZ\r",
+    "winner": false
+  },
+  {
+    "id": "49ffetp880a1f0mvt77os0ee1260vr",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00108740267",
+    "name": "MIRTHA ALTAGRACIA GARCIA SANCHEZ\r",
+    "winner": false
+  },
+  {
+    "id": "f8s05pfevfm9t26eroa78050391tve",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00108952938",
+    "name": "RUTH MARIA PACHECO GARCIA\r",
+    "winner": false
+  },
+  {
+    "id": "9t04ftse322e2pfav90mf8oe80r2v9",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "40220098293",
+    "name": "SADDALA NASSER MASSIH BICHARA\r",
+    "winner": false
+  },
+  {
+    "id": "rtfve69f08s9o0am0e7t18p1v2f6e4",
+    "company": "AFP",
+    "department": "FFVV METRO ESTE",
+    "identification": "00118048966",
+    "name": "STEPHANIE  CALDERON BUGARIN\r",
+    "winner": false
+  },
+  {
+    "id": "a51fvmstrr0p27f0o20v275f7ue45",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "22500457027",
+    "name": "ANEYKA MASSIEL VALDEZ HERNANDEZ\r",
+    "winner": false
+  },
+  {
+    "id": "37sftuo78vf20v0285pr0f7a3mre9",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "22300859877",
+    "name": "ANTHONY YHONNELLY GONZALEZ NOVA\r",
+    "winner": false
+  },
+  {
+    "id": "o0varffmsr82pv10361f8ue5t0253",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00201536521",
+    "name": "ARABELLY  YSABEL MARTINEZ\r",
+    "winner": false
+  },
+  {
+    "id": "vv14oatr0fu20s8p0212f4fm3er8",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "22301120808",
+    "name": "ARLENYS EMEY SANTOS GARCIA\r",
+    "winner": false
+  },
+  {
+    "id": "203eturfa2f1m40o140r0vv1p96fs",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00111942306",
+    "name": "ASTRID FRANCHESKA SANTIAGO NIN\r",
+    "winner": false
+  },
+  {
+    "id": "v163v05s3t01fer9o6ra8fupmf904",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "06800493139",
+    "name": "BEATRIZ MIGUELINA ALBERTO \r",
+    "winner": false
+  },
+  {
+    "id": "6pf1023vvr10sfu11emtf9140rao5",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00101162519",
+    "name": "BELKIS BERTILIA UREÑA PEÑA\r",
+    "winner": false
+  },
+  {
+    "id": "ta24eff7mr00u2vrfs11p376o1v",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00117632471",
+    "name": "CARLOS RAFAEL PAULINO PEREZ\r",
+    "winner": false
+  },
+  {
+    "id": "0vo70f42a03fpr6ru6f0t76vme16s",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00201460367",
+    "name": "ERICO LUIS RAMIREZ HERNANDEZ\r",
+    "winner": false
+  },
+  {
+    "id": "01rt24rf23p8o051fuf8v0esa4v3m",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "22400134015",
+    "name": "ESMAILYN  NUÑEZ DE AZA\r",
+    "winner": false
+  },
+  {
+    "id": "0mf8106a400st732ovv1rfeprfu36",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00201637360",
+    "name": "ESTEFANY VICTORIA SANCHEZ PEREZ\r",
+    "winner": false
+  },
+  {
+    "id": "81frv102aufermfp48s6071v6to0",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00111486072",
+    "name": "FELICIA ADALGISA LEYBA ALMONTE\r",
+    "winner": false
+  },
+  {
+    "id": "ov960vea0tu000f4f5p0m02rs57rf",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "06500400970",
+    "name": "GABRIELA VIRGINIA NEUMAN HERNANDEZ\r",
+    "winner": false
+  },
+  {
+    "id": "mfr46f82pts03rf623e00ovu3av61",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "40223086360",
+    "name": "GENESIS ADALGISA DISLA PEREZ\r",
+    "winner": false
+  },
+  {
+    "id": "t2pfrv1607amf02o9uvs70e907fr6",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00109076729",
+    "name": "GLORIVY  HERNANDEZ RIVERA\r",
+    "winner": false
+  },
+  {
+    "id": "39ff7tm2vref2as444r033opuv580",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "40224335048",
+    "name": "JAROLD JANEYRO ROA POLANCO\r",
+    "winner": false
+  },
+  {
+    "id": "vr80e042f092tpsmuafr5f8o830v5",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "22900085543",
+    "name": "JERARDIN  VARGAS VALERIO\r",
+    "winner": false
+  },
+  {
+    "id": "3m5ffvv7ae9trf40o01rpsu001062",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00200131506",
+    "name": "JOAQUIN ENRIQUE LEGER TEJADA\r",
+    "winner": false
+  },
+  {
+    "id": "4909sm0vr99raf70172ovfufe67pt",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "01700249996",
+    "name": "JOSE ERMINIO DELGADO QUEZADA\r",
+    "winner": false
+  },
+  {
+    "id": "6ast1r3uf4v93f117oep0f0rm47v7",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00113476741",
+    "name": "JULISSA  SOTO MEJÍA\r",
+    "winner": false
+  },
+  {
+    "id": "pr8f0for6u560ts02f5vamv11e210",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00116520826",
+    "name": "MADELEINI  ENCARNACION DE LA ROSA\r",
+    "winner": false
+  },
+  {
+    "id": "51uv2v5m44532fr8ftpf0r5es22ao",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "40225245253",
+    "name": "MARY ISABEL CIPRIAN NIVAR DE ALMONTE\r",
+    "winner": false
+  },
+  {
+    "id": "4fat3fv8m6rpo0v9ru306f18e81s0",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "01100394368",
+    "name": "ROBINSON  BOCIO PEREZ\r",
+    "winner": false
+  },
+  {
+    "id": "fapfs2tr2efvv8mo20r43720u0994",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "22900097423",
+    "name": "ROSAURIS CHANEL RODRIGUEZ SALCEDO\r",
+    "winner": false
+  },
+  {
+    "id": "afo59f80spu3e00rrt26v170f3mv0",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "16700003508",
+    "name": "RUBEN DARIO FELIZ RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "000v7005f53vf6etuporm972fsr1a",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00301097507",
+    "name": "SANTA EULALIA MOTA AYBAR\r",
+    "winner": false
+  },
+  {
+    "id": "ve442off0718m72s0p652f5rturav",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "22400726851",
+    "name": "SARAH ISABEL HERRERA \r",
+    "winner": false
+  },
+  {
+    "id": "2r8t05muvef8v3o58f0f8a2sr0p2",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "22300888058",
+    "name": "SELENIA  RODRIGUEZ CASTRO\r",
+    "winner": false
+  },
+  {
+    "id": "pfo4v213ff3r1sr3tm1ev3au03410",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00111333134",
+    "name": "SONIA  GARCIA DE LA CRUZ\r",
+    "winner": false
+  },
+  {
+    "id": "40emaffrs10046rp7338vfvo15ut",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "01800135434",
+    "name": "XIOMARA  PIMENTEL LEDESMA\r",
+    "winner": false
+  },
+  {
+    "id": "vo910m1a0t2frp9fr0v618s51f0eu",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "00108962911",
+    "name": "YAQUELIN  ALVAREZ NUÑEZ\r",
+    "winner": false
+  },
+  {
+    "id": "1t59f8o601rf01040vusfv0m8pear",
+    "company": "AFP",
+    "department": "FFVV METRO SUR",
+    "identification": "01001008489",
+    "name": "YENIFEL CESARINA LABOURT SANTA\r",
+    "winner": false
+  },
+  {
+    "id": "o797ff720af0azv6ese4pt2098nv",
+    "company": "AFP",
+    "department": "FFVV ZONA ESTE",
+    "identification": "02600974287",
+    "name": "CAROLINA  DE LA CRUZ MOSCOSO\r",
+    "winner": false
+  },
+  {
+    "id": "z3vp1f64sf0aeo2vt24f11ane200",
+    "company": "AFP",
+    "department": "FFVV ZONA ESTE",
+    "identification": "40226401301",
+    "name": "ESCARLEN PAOLA RIVERA GARCIA\r",
+    "winner": false
+  },
+  {
+    "id": "t46vfsaf0o3ezfv01e8760na6p22",
+    "company": "AFP",
+    "department": "FFVV ZONA ESTE",
+    "identification": "02301274680",
+    "name": "JORGE AMADO ROJAS LUGO\r",
+    "winner": false
+  },
+  {
+    "id": "of9envve7138t06sfa20f6a70z26p",
+    "company": "AFP",
+    "department": "FFVV ZONA ESTE",
+    "identification": "02301660672",
+    "name": "RANDY ANDRES UREÑA VASQUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "fvaz8f0ep2vo9t91nsf0316785a1e",
+    "company": "AFP",
+    "department": "FFVV ZONA ESTE",
+    "identification": "02601178359",
+    "name": "RAYMUNDO  BELEN ALVAREZ\r",
+    "winner": false
+  },
+  {
+    "id": "0per493av4an221n80ofot52f2zfv3",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "22500223494",
+    "name": "ANA ROSALIA GONZALEZ DE ARIAS\r",
+    "winner": false
+  },
+  {
+    "id": "t7f34a52vn2noa024fof022p8v2ezr",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "40220223248",
+    "name": "ANA MILAGROS MENA RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "9pf1089a5ov13ea4znf122ftnro2v0",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03105292811",
+    "name": "ANABEL ELIZABETH CASADO DE REINOSO\r",
+    "winner": false
+  },
+  {
+    "id": "pnf4148toz0a9f6e2v7v2n00fo2ar9",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "40221600972",
+    "name": "ANDY RACHEL NUÑEZ HERNANDEZ\r",
+    "winner": false
+  },
+  {
+    "id": "v343znft8r20foe8o9vp2n02f94aa3",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "40220828939",
+    "name": "ARONNY ENMANUEL RAMOS GOMEZ\r",
+    "winner": false
+  },
+  {
+    "id": "ft0fp7rnzovf5a04e2028v8on214a9",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "40221870492",
+    "name": "BELKIS MARIA ALONZO DE LA ROSA\r",
+    "winner": false
+  },
+  {
+    "id": "anf4prff94984t3oo1n8500zaev91v",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "05401488993",
+    "name": "CARLOS MAURICIO LOPEZ ROSARIO\r",
+    "winner": false
+  },
+  {
+    "id": "2av074ne0o2f417r1ofzvnpa7622tf",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "04701712624",
+    "name": "CESAR ARISMENDY LOPEZ RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "2pf24ffeav2aroo7800n0vz3n823t",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "22400088237",
+    "name": "CRISTINA  RAMIREZ DIAZ\r",
+    "winner": false
+  },
+  {
+    "id": "afpfean9nt05z56o0fvvr551o32596",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03105259695",
+    "name": "DOUGLAS NICOLAS CALDERON CANELA \r",
+    "winner": false
+  },
+  {
+    "id": "fz1nvnov2aa20035f50t4fpe4r14o1",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "40220114405",
+    "name": "EDUARD ANTONIO NUÑEZ ROSARIO\r",
+    "winner": false
+  },
+  {
+    "id": "n09po75fz20v015reotna77af9v1f",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "09500177572",
+    "name": "ELVIS MANUEL JIMENEZ RESTITUYO\r",
+    "winner": false
+  },
+  {
+    "id": "fp9ff0vt02no3an06a5o0z9684vre3",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "02600963835",
+    "name": "FIOR D’ ALIZA CUEVAS \r",
+    "winner": false
+  },
+  {
+    "id": "90ea474n0n4fpz162foro4t1va50vf",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "05401210496",
+    "name": "FRANCISCO ZACARIAS BENCOSME GONZALEZ\r",
+    "winner": false
+  },
+  {
+    "id": "08zv720aefrva797f0f64op53onnt4",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03700982675",
+    "name": "HECTOR ELIESER VASQUEZ CABRERA\r",
+    "winner": false
+  },
+  {
+    "id": "4epfvfno3z1t9afo3142a017nvr251",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "40211237314",
+    "name": "JAMES LUIS TEJADA VASQUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "zf17n300va1afpo76r0o101vte6f5n",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "11600011560",
+    "name": "JISSELLY DEL CARMEN FERNANDEZ RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "o2zfn37r8v075ofa8f28at4p2vn3e8",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "40225788823",
+    "name": "JULISA YOLANDA DIAZ MARTE\r",
+    "winner": false
+  },
+  {
+    "id": "ne49zaf0oafrpf00905vo41tv7n380",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03105094480",
+    "name": "LARISSA GISELLE LAZALA GRISANTY\r",
+    "winner": false
+  },
+  {
+    "id": "fzo770et0970n441av17arvf6n9opf",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "04701497796",
+    "name": "MARIA SOLEDAD DE LA CRUZ ROSARIO\r",
+    "winner": false
+  },
+  {
+    "id": "f04371np08ztfa4on3f5e0211oavvr",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03104107812",
+    "name": "MELODY YSABEL VASQUEZ DE PEÑA\r",
+    "winner": false
+  },
+  {
+    "id": "ae1no1f2z0v532t60ponf623fvar47",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03103562421",
+    "name": "NELSON ALBERTO TAVAREZ CRISOSTOMO\r",
+    "winner": false
+  },
+  {
+    "id": "v10erfpvt05a1nfo6a45nz37f303o2",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "04600357323",
+    "name": "ODALIS  PEÑA LIMA\r",
+    "winner": false
+  },
+  {
+    "id": "r3n0fpvv1fo70ano00fz011eta1432",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03104711001",
+    "name": "OLGA LIDIA TORRES DE LOPEZ\r",
+    "winner": false
+  },
+  {
+    "id": "tanf0n19e07pv4227fo9f0oavzr617",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "40221997170",
+    "name": "OLISANDRA  GARCIA MUÑOZ\r",
+    "winner": false
+  },
+  {
+    "id": "ftp3n20f5o42azv24ev00ra6f5no82",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "40225603204",
+    "name": "OLIVER  CARDENAS JIMENEZ\r",
+    "winner": false
+  },
+  {
+    "id": "e0952nf6nofa23fvo4592azpv0rt00",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03400529560",
+    "name": "OMAR ALEJANDRO ORTIZ RODRIGUEZ \r",
+    "winner": false
+  },
+  {
+    "id": "4zf4n2t111fna0v45eo01orpfv8a03",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03104142108",
+    "name": "RAFAEL TOMAS ALONZO FELIZ\r",
+    "winner": false
+  },
+  {
+    "id": "3n4aot068p40fozrefn58f41v2v49a",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03104984442",
+    "name": "ROCIO  PEREZ DE ROZON\r",
+    "winner": false
+  },
+  {
+    "id": "1zfn3ov8t6noa1ff3700avpr01e198",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03101161093",
+    "name": "VÍCTOR JOSE CUEVAS JIMÉNEZ\r",
+    "winner": false
+  },
+  {
+    "id": "n640vfo03v48a5ft690p4fzrona3e3",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03600398444",
+    "name": "WANDA GRISEL PEREZ PERALTA\r",
+    "winner": false
+  },
+  {
+    "id": "e40frz9200aofv70ft2ann72v8o15p",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "40227800097",
+    "name": "WENDOLIN ALTAGRACIA SANCHEZ SURIEL \r",
+    "winner": false
+  },
+  {
+    "id": "nna6627ftz9900v7oov5ffearp9011",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "06600219577",
+    "name": "YOVANNY FRANCISCO CEPEDA DE LA CRUZ\r",
+    "winner": false
+  },
+  {
+    "id": "efn7ovzf63oap1tfavnr0070895754",
+    "company": "AFP",
+    "department": "FFVV ZONA NORTE",
+    "identification": "03700917754",
+    "name": "YUANDY  MARTINEZ MARTE\r",
+    "winner": false
+  },
+  {
+    "id": "5fa7aa7302937f625nnp0z0si",
+    "company": "AFP",
+    "department": "FINANZAS",
+    "identification": "22300537069",
+    "name": "LUIS ALBERTO LEON PIMENTEL\r",
+    "winner": false
+  },
+  {
+    "id": "nc8p9ay1f53apor3np3zmfoas0isa721as6-20g",
+    "company": "AFP",
+    "department": "FINANZAS-COMPRAS Y PAGOS",
+    "identification": "03105617322",
+    "name": "CRISTOPHER WARREN RAMIREZ MANCEBO\r",
+    "winner": false
+  },
+  {
+    "id": "spm9a5c85p24r3nno6g8iz-0ayfpo2s6fa0sa8a",
+    "company": "AFP",
+    "department": "FINANZAS-COMPRAS Y PAGOS",
+    "identification": "40226088355",
+    "name": "DANIELA ESTHER SANCHEZ PEREZ\r",
+    "winner": false
+  },
+  {
+    "id": "f2o4ic274a437afp-zp5annasy4p003sgmsa5or",
+    "company": "AFP",
+    "department": "FINANZAS-COMPRAS Y PAGOS",
+    "identification": "40223535077",
+    "name": "ELIANI ALTAGRACIA OGANDO MEJÍA\r",
+    "winner": false
+  },
+  {
+    "id": "pa1sfs9ca-00p6si36o10anpyf3g55rn2oaazm8",
+    "company": "AFP",
+    "department": "FINANZAS-COMPRAS Y PAGOS",
+    "identification": "00118596303",
+    "name": "GISELLE INDHIRA VARGAS \r",
+    "winner": false
+  },
+  {
+    "id": "nsp3nzcsapay861ro0o22aa1-f237f7ig1as4pm",
+    "company": "AFP",
+    "department": "FINANZAS-COMPRAS Y PAGOS",
+    "identification": "40237123118",
+    "name": "PERLA CRISTAL MENA REYES\r",
+    "winner": false
+  },
+  {
+    "id": "caifsdnz06pf8tan53dlb546o1ia0a8-9na9i0",
+    "company": "AFP",
+    "department": "FINANZAS-CONTABILIDAD",
+    "identification": "00109366849",
+    "name": "ANDRES AVELINO BELLO BELLO\r",
+    "winner": false
+  },
+  {
+    "id": "z60c4ba64a0ofi0diaalp10d0fnn4n-66ait2s",
+    "company": "AFP",
+    "department": "FINANZAS-CONTABILIDAD",
+    "identification": "00104660204",
+    "name": "CELSO MANUEL MARTE DESCHAMPS\r",
+    "winner": false
+  },
+  {
+    "id": "t0ni3bds0faaa0-lfp73nza2d2ic7ao20i442n",
+    "company": "AFP",
+    "department": "FINANZAS-CONTABILIDAD",
+    "identification": "02400223042",
+    "name": "NEYLA OSTAVIA CORNIELLE SANTANA\r",
+    "winner": false
+  },
+  {
+    "id": "anifnai30ni01a91102-do04ap07fldbztasc4",
+    "company": "AFP",
+    "department": "FINANZAS-CONTABILIDAD",
+    "identification": "04900024011",
+    "name": "ROSA ESMERALDA SUÁREZ REGALADO\r",
+    "winner": false
+  },
+  {
+    "id": "n2i79da02ni12azaniaf441-po0sftdabc5l0",
+    "company": "AFP",
+    "department": "FINANZAS-CONTABILIDAD",
+    "identification": "40227014905",
+    "name": "ROSAURA  DE LA CRUZ RODRÍGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "a9f01i2tpgl22424eaete5too90nlsnd01",
+    "company": "AFP",
+    "department": "GESTION DEL TALENTO",
+    "identification": "01400229124",
+    "name": "GENESIS  MONTERO DE LOS SANTOS\r",
+    "winner": false
+  },
+  {
+    "id": "f0tees0gl11t8pto5i7a087oe2adn7ln4",
+    "company": "AFP",
+    "department": "GESTION DEL TALENTO",
+    "identification": "00118045277",
+    "name": "NAIROBI DE LOS ANGELES CACERES MARTINEZ DE ALVAREZ\r",
+    "winner": false
+  },
+  {
+    "id": "2e083o2t5g8lpf93a71te4lit14nasedon",
+    "company": "AFP",
+    "department": "GESTION DEL TALENTO",
+    "identification": "40213917582",
+    "name": "PAOLA ALTAGRACIA BRITO DIAZ\r",
+    "winner": false
+  },
+  {
+    "id": "ti3neoge2at2lp9f4d16e54ol580an1t2s",
+    "company": "AFP",
+    "department": "GESTION DEL TALENTO",
+    "identification": "22301195446",
+    "name": "ROCIO DEL ALBA SANTANA FERNANDEZ\r",
+    "winner": false
+  },
+  {
+    "id": "t1an224e8geaenced505afii0283pnelos1c3ifogp",
+    "company": "AFP",
+    "department": "INTELEGENCIA DE NEGOCIOS AFP",
+    "identification": "40213812528",
+    "name": "LIZBETH CAROLINA TORIBIO GILBERT\r",
+    "winner": false
+  },
+  {
+    "id": "p103fas3negt4597caaoiodif0lc4geep18ni3ene1",
+    "company": "AFP",
+    "department": "INTELEGENCIA DE NEGOCIOS AFP",
+    "identification": "00117339135",
+    "name": "ORLANDO ANDRES BAUTISTA NUÑEZ\r",
+    "winner": false
+  },
+  {
+    "id": "dfaspcp0f3ie7n9oe1ainnei3c10o0102latg2eeg9",
+    "company": "AFP",
+    "department": "INTELEGENCIA DE NEGOCIOS AFP",
+    "identification": "00300131927",
+    "name": "WILMA RAQUEL MORFE RODRÍGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "e7fap01226ni29rs03iov6n09se9",
+    "company": "AFP",
+    "department": "Inversiones",
+    "identification": "22900039961",
+    "name": "MARIA DE LOS ANGELES LAVATTA \r",
+    "winner": false
+  },
+  {
+    "id": "v0364f1s11psar4en8ni0i8o40e2",
+    "company": "AFP",
+    "department": "Inversiones",
+    "identification": "40210180481",
+    "name": "SEBASTIAN  ELMUDESI MUNNE\r",
+    "winner": false
+  },
+  {
+    "id": "956isn6811ir57esvpfna007eo60",
+    "company": "AFP",
+    "department": "INVERSIONES",
+    "identification": "00115860967",
+    "name": "YULEIKA  HIDALGO LUCIANO\r",
+    "winner": false
+  },
+  {
+    "id": "0c0e0l0p2mimapftg41lyiuo284al014ne8",
+    "company": "AFP",
+    "department": "LEGAL Y CUMPLIMIENTO",
+    "identification": "40221844000",
+    "name": "ELAINE MARIENY REYES CRUZ\r",
+    "winner": false
+  },
+  {
+    "id": "l484i9nm12elae00iylpm11tfoca0u690pg",
+    "company": "AFP",
+    "department": "LEGAL Y CUMPLIMIENTO",
+    "identification": "00119268910",
+    "name": "KARLA MASSIEL PEÑA PEREZ\r",
+    "winner": false
+  },
+  {
+    "id": "061ml6fa8yeic1nepul1otp6ag63i080ml9",
+    "company": "AFP",
+    "department": "LEGAL Y CUMPLIMIENTO",
+    "identification": "00116681396",
+    "name": "YAJAIRA  KING MOLINA\r",
+    "winner": false
+  },
+  {
+    "id": "p1850fe00ac50oa582mder213",
+    "company": "AFP",
+    "department": "MERCADEO",
+    "identification": "00201518255",
+    "name": "DESIREE  FERREIRA PEREZ DE REYES\r",
+    "winner": false
+  },
+  {
+    "id": "aa0fe78cmro86000ep43184d1",
+    "company": "AFP",
+    "department": "MERCADEO",
+    "identification": "00118674043",
+    "name": "GABRIEL MARTIN SANCHEZ BELLO\r",
+    "winner": false
+  },
+  {
+    "id": "ra04eo72d27204m2af9epc047",
+    "company": "AFP",
+    "department": "MERCADEO",
+    "identification": "40224204707",
+    "name": "JOAN PATRICIO SURIEL OZUNA\r",
+    "winner": false
+  },
+  {
+    "id": "226aoere0dm8af04683c37p44",
+    "company": "AFP",
+    "department": "MERCADEO",
+    "identification": "40224837860",
+    "name": "LAURA PATRICIA SANTOS TORIBIO \r",
+    "winner": false
+  },
+  {
+    "id": "f2a044apodcm9902e78e024r6",
+    "company": "AFP",
+    "department": "MERCADEO",
+    "identification": "40220904987",
+    "name": "LOREN ESTEPHANNY PEÑA HIDALGO\r",
+    "winner": false
+  },
+  {
+    "id": "33541a5merfd0oap40ec28011",
+    "company": "AFP",
+    "department": "MERCADEO",
+    "identification": "40215013430",
+    "name": "MANUEL  LLANES GONZALEZ\r",
+    "winner": false
+  },
+  {
+    "id": "ma4449237f5rd0oa8pcee4295",
+    "company": "AFP",
+    "department": "MERCADEO",
+    "identification": "40224954574",
+    "name": "PAULA MARIA INOA ARIAS\r",
+    "winner": false
+  },
+  {
+    "id": "p90eafamed13r13c21o550200",
+    "company": "AFP",
+    "department": "MERCADEO",
+    "identification": "00111535092",
+    "name": "VERUSCHKA ONDINA SANTANA VICENTE\r",
+    "winner": false
+  },
+  {
+    "id": "i4afpoo97n3p00a90c988ser2e03",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "40233009790",
+    "name": "CARLOS JOSE JIMENEZ FELIZ\r",
+    "winner": false
+  },
+  {
+    "id": "af01911ce99ppo80ar20nso0i60e",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "00116900192",
+    "name": "CHANTAL ARIANA CRUZ RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "4p222i1o7ep8cs3f1a8ao99re90n",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "40229918913",
+    "name": "EDDY FRANKELY JIMENEZ SANTIAGO\r",
+    "winner": false
+  },
+  {
+    "id": "faos4r4a27ce95p3i2p5654e0o0n",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "40225504493",
+    "name": "ELVIS ISMAEL RAMOS GARCIA\r",
+    "winner": false
+  },
+  {
+    "id": "4a4272fcr636es7n8iopa990o3pe",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "40223749967",
+    "name": "ISETI  NOVAS CORDERO\r",
+    "winner": false
+  },
+  {
+    "id": "i3r183oe88co1f02esapp8n0a170",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "00118788108",
+    "name": "JOSE ANTONIO CEPEDA SANTANA\r",
+    "winner": false
+  },
+  {
+    "id": "3ofee033s18oprn4aac10i8p7258",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "00115734238",
+    "name": "LORENZO ARGENIS BIDO VALDEZ\r",
+    "winner": false
+  },
+  {
+    "id": "2scir6ao83pn4e392oe3fa0p602",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "22300823964",
+    "name": "LUIS ENMANUEL THEN DIAZ\r",
+    "winner": false
+  },
+  {
+    "id": "if4en9o44pe87oa9r76pc328as02",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "40243989627",
+    "name": "MARBELIS JOANNA BRITO FELIZ\r",
+    "winner": false
+  },
+  {
+    "id": "88p4fap4cr01o883ei8sea2no100",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "00102883881",
+    "name": "MOISES IGDALIAS VALLEJO VALLEJO\r",
+    "winner": false
+  },
+  {
+    "id": "r3a28124pi370e2apf46cneoo0s0",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "40230630184",
+    "name": "RADHYS NICOLLE TRONCOSO MATOS\r",
+    "winner": false
+  },
+  {
+    "id": "e74nai6o5f8c2e810a2ppr2s0o6",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "40222708816",
+    "name": "RICHARD DE JESUS ULLOA PARRA\r",
+    "winner": false
+  },
+  {
+    "id": "7ea6o4722sfpp0a74n56e1co6ri4",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "40226457766",
+    "name": "STIVEN MIGUEL BUSSI CASTILLO\r",
+    "winner": false
+  },
+  {
+    "id": "r2n5366oe0fe4ai2071cs7ppa3o4",
+    "company": "AFP",
+    "department": "OPERACIONES",
+    "identification": "40210476632",
+    "name": "YULEIDY RAFELINA ÁLVAREZ FELIPE\r",
+    "winner": false
+  },
+  {
+    "id": "5tjn3i7rf20ese4742di40avaeucp3piae71c",
+    "company": "AFP",
+    "department": "PRESIDENCIA EJECUTIVA",
+    "identification": "40224017547",
+    "name": "YOLENNY ALTAGRACIA MARTINEZ AMPARO\r",
+    "winner": false
+  },
+  {
+    "id": "e2pn1f5t1rieo01ovuooycia1pi688drtdac2on0egesailo1gidn0",
+    "company": "AFP",
+    "department": "RIESGO OPERATIVO Y CONTINUIDAD DEL NEGOCIO",
+    "identification": "02801181211",
+    "name": "CLAUDIA ANGELINA AVILA SANTANA\r",
+    "winner": false
+  },
+  {
+    "id": "eat5nidono4dlv1pfouoo0n502eprdegia7ic1rgie5tic3s722aoy",
+    "company": "AFP",
+    "department": "RIESGO OPERATIVO Y CONTINUIDAD DEL NEGOCIO",
+    "identification": "40225720115",
+    "name": "FRANCINI DEYALI MORILLO DE OLEO\r",
+    "winner": false
+  },
+  {
+    "id": "ta5eto2ov27d7ry2eedocediinfginao0ipu72gr6o94lcspno57ai",
+    "company": "AFP",
+    "department": "RIESGO OPERATIVO Y CONTINUIDAD DEL NEGOCIO",
+    "identification": "40225775762",
+    "name": "GINA ERIKA FERRERA RAMIREZ\r",
+    "winner": false
+  },
+  {
+    "id": "520psa3845te0veif4l9c23ieoar6i1lnc",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "40226184535",
+    "name": "ADY YISSEL TORRES TAVARES\r",
+    "winner": false
+  },
+  {
+    "id": "6l21rcvioef0t4na0epce5sl29a6772i2i",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "22400725762",
+    "name": "ALLAN RAYMOND PERALTA JAQUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "5tpri34fve15eicaaei8llsn671o79c009",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "04701615959",
+    "name": "AUSTRALIA  LIMA GARCIA\r",
+    "winner": false
+  },
+  {
+    "id": "eo342fpieline0t522ivslr9a4c434ac20",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "40223022944",
+    "name": "CAMILO  GAITAN DAZA\r",
+    "winner": false
+  },
+  {
+    "id": "c498ie7ao081fia3l1nr9vsectipl0e693",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "03101839847",
+    "name": "CARMEN JOSEFINA SAVIÑÓN VARGAS\r",
+    "winner": false
+  },
+  {
+    "id": "aievf2e3a3ci7l4loc00n0e1261p2ir2st",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "40221172360",
+    "name": "CARMEN VICTORIA DE LA CRUZ PEGUERO\r",
+    "winner": false
+  },
+  {
+    "id": "6i0i1e6avpiolfl0ta6r0c21e7ns1c2e14",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "00117412106",
+    "name": "DANIA JOSEFINA MORA CUELLO\r",
+    "winner": false
+  },
+  {
+    "id": "lsna4l6ip2ef30eicire0a39voc240t354",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "40200533442",
+    "name": "DANIEL GUSTAVO CALDERON TINEO\r",
+    "winner": false
+  },
+  {
+    "id": "lac0n6seie0o2lift115i40p27v5arc8e",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "22500508167",
+    "name": "DILENIA  DOMINGUEZ BATISTA\r",
+    "winner": false
+  },
+  {
+    "id": "nc828l02lopat5v9ra41f7esii140ee5ic",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "40212907584",
+    "name": "EIZEL PAMELA HENRIQUEZ JIMINIAN\r",
+    "winner": false
+  },
+  {
+    "id": "9838ovnit32pf0l6i3ra2eec01saei2cl4",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "22300381948",
+    "name": "ELIAS  DE LA CRUZ SANTOS\r",
+    "winner": false
+  },
+  {
+    "id": "iafp71lc370s470avn4c3eei1itl7e3o2r",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "40237473117",
+    "name": "FIRELEY ANALY DAVID JIMENEZ\r",
+    "winner": false
+  },
+  {
+    "id": "ao26rct227fpcie52li4aensv002e0l49i",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "40220205492",
+    "name": "INDHIRA LISSETTE JONES FORTUNATO\r",
+    "winner": false
+  },
+  {
+    "id": "te90aca3rsf151v5eii0epl31li0no6c45",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "00119416535",
+    "name": "KAREN NATALI PERALTA TAPIA\r",
+    "winner": false
+  },
+  {
+    "id": "c7130ra075ifpl4vec1t0ia1i1sneel64o",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "00115177610",
+    "name": "KENIA CONCEPCION LIZARDO HENRIQUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "afnlieis4c5ace801222rpeot1vi22l098",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "40209128228",
+    "name": "MARIA DILENIA DIAZ SUERO\r",
+    "winner": false
+  },
+  {
+    "id": "iaco30ltfecae1e016r6iv604inlp6s103",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "11600016403",
+    "name": "MARITZA ALTAGRACIA ESPINAL VARGAS \r",
+    "winner": false
+  },
+  {
+    "id": "8sp0vn5c4lai5ee0f8til3ac54i5e27o2r",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "40234258875",
+    "name": "SERGIO LUIS BONILLA ROMERO\r",
+    "winner": false
+  },
+  {
+    "id": "8f05e0en1s1licla703raivo910tc52eip",
+    "company": "AFP",
+    "department": "SERVICIO AL CLIENTE",
+    "identification": "00119520807",
+    "name": "TARSYS PAMELA DE JESUS \r",
+    "winner": false
+  },
+  {
+    "id": "2p8ftm6s2e9aa99051s1s00i8",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "00119229086",
+    "name": "ANGEL MANUEL ALMANZAR MONTERO\r",
+    "winner": false
+  },
+  {
+    "id": "003i074ft2eam68p1a20s23ss",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "40213700202",
+    "name": "CAROLINA  VICENTE MONTERO\r",
+    "winner": false
+  },
+  {
+    "id": "4ssie41a02s3247pf08485tma",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "40221485044",
+    "name": "CHRISTIAN MANUEL CABALLERO ALVAREZ\r",
+    "winner": false
+  },
+  {
+    "id": "3s4s623aes0tp1027i1121fam",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "22300162371",
+    "name": "DERVIN LEANDRO MORA SUERO\r",
+    "winner": false
+  },
+  {
+    "id": "68a6s6m0t5fi51511ps1e0as0",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "00111510566",
+    "name": "FRANCISCO MANFREDO FERRERAS SENA\r",
+    "winner": false
+  },
+  {
+    "id": "23e93afpsm849s250t0s2a84i",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "40223520988",
+    "name": "HAROL STEVEN GOMEZ BENJAMIN\r",
+    "winner": false
+  },
+  {
+    "id": "pfa8ei00774m1sta1ss060190",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "00107890147",
+    "name": "JUAN CRISTINO JIMENEZ COLLADO\r",
+    "winner": false
+  },
+  {
+    "id": "a3s203927220458sft3piemsa",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "22300397225",
+    "name": "JUAN ANTONIO BOTELLO HILARIO\r",
+    "winner": false
+  },
+  {
+    "id": "3eapt1080f202i8sam4s8s465",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "22300184680",
+    "name": "JULIO OSCAR TEJEDA RECIO\r",
+    "winner": false
+  },
+  {
+    "id": "ss20af38ts0pa41184m256ie0",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "40214586238",
+    "name": "JUNIOR CAMILO DE LA CRUZ BERNABE\r",
+    "winner": false
+  },
+  {
+    "id": "a31pfi7645s440smts7a7e203",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "40237670134",
+    "name": "LILIANA MARIA HERNANDEZ TOIRAC\r",
+    "winner": false
+  },
+  {
+    "id": "pt933sa0s074033a1f0m60ise",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "00300703634",
+    "name": "LUIS ANTONIO CASTILLO CRUZ\r",
+    "winner": false
+  },
+  {
+    "id": "ta6em5a948090fs81118sp6si",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "00118519669",
+    "name": "LUIS ALBERTO REYES PEÑA\r",
+    "winner": false
+  },
+  {
+    "id": "427esti4sp3s5m6234af07a84",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "40223768744",
+    "name": "LUISA MARIA RUIZ MORA\r",
+    "winner": false
+  },
+  {
+    "id": "13014t2s1siea28s4f20m5pa",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "00112124482",
+    "name": "MANUEL DE JESUS SOTO GUERRERO\r",
+    "winner": false
+  },
+  {
+    "id": "aspa3s1tem1208s10140fi263",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "00113820211",
+    "name": "MARISOL DEL CARMEN DE MESA REYES\r",
+    "winner": false
+  },
+  {
+    "id": "t1es9691af215i0ap0ms13s19",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "00111921631",
+    "name": "MIGUEL ARMANDO REYES MENDEZ\r",
+    "winner": false
+  },
+  {
+    "id": "4asf771es5562p2msi0at3552",
+    "company": "AFP",
+    "department": "SISTEMAS",
+    "identification": "40222715555",
+    "name": "OLIVER EMMANUEL FERMIN RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "en5rcp213po0oc1asr45ait8i5idceeavf4pi403rav",
+    "company": "AFP",
+    "department": "VICEPRESIDENCIA CORPORATIVA",
+    "identification": "00112535448",
+    "name": "JULIO CESAR NUÑEZ ENCARNACION\r",
+    "winner": false
+  },
+  {
+    "id": "arp2aei3sr31tice1r2i8901vapnv89pcfadie4ooc2",
+    "company": "AFP",
+    "department": "VICEPRESIDENCIA CORPORATIVA",
+    "identification": "22301419382",
+    "name": "MENCÍA ISANEC VICTORIA MARTINEZ\r",
+    "winner": false
+  },
+  {
+    "id": "341",
+    "company": "",
+    "department": "",
+    "identification": "",
+    "name": " \r",
+    "winner": false
+  },
+  {
+    "id": "g104rmi5easusroi9sd89ca290n4o0nit81",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "00104148259",
+    "name": "ARQUIMEDES  ZABALA BENITEZ\r",
+    "winner": false
+  },
+  {
+    "id": "1no20e82a2186ud0c8moiitr0na9s2srgsi",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "00109826222",
+    "name": "CARMENCITA  SANTANA EUCEBIO \r",
+    "winner": false
+  },
+  {
+    "id": "orrs0i6m29dcoia2aes624siu0t08n88gn1",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "00102968468",
+    "name": "CONFESOR  GONZALEZ VALDEZ\r",
+    "winner": false
+  },
+  {
+    "id": "2tu45dnog793oe8iasi1srsc050imran671",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "00117578542",
+    "name": "ELIZABETH  RODRIGUEZ LOPEZ\r",
+    "winner": false
+  },
+  {
+    "id": "o8rr5ase7m1g79064ustdan1iic0ni7so0",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "00117059774",
+    "name": "ENDERSON  AYBAR NUÑEZ\r",
+    "winner": false
+  },
+  {
+    "id": "30idss29e5gaaio5ncurs1im9t4or4n6007",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "00105947352",
+    "name": "FRANCISCA  HERNANDEZ JOSE\r",
+    "winner": false
+  },
+  {
+    "id": "a00t6co00iie9d1unimrsrn655ss867aog5",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "05601655698",
+    "name": "ISMAEL  DE LA CRUZ ACOSTA \r",
+    "winner": false
+  },
+  {
+    "id": "oin2cs54s4emita9203ig202n8d3urarso0",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "22500824390",
+    "name": "JEISON  FARIA BURGOS\r",
+    "winner": false
+  },
+  {
+    "id": "igt32ai0o4snnuso030333a5rcmd5e7sr2i",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "22500347335",
+    "name": "JUAN RAFAEL DECENA SORIANO\r",
+    "winner": false
+  },
+  {
+    "id": "0s278ise2idtsur180ric0aao0mo20nng91",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "07200082928",
+    "name": "KELVIN RAFAEL PERDOMO RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "getnorm8a9d091r5071i2ssi52sunaci1o9",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "00112172895",
+    "name": "MARIE MICHELINE PHILIDOR \r",
+    "winner": false
+  },
+  {
+    "id": "0u0i2ni851r12os7mtges8n0rados3ai3c",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "22300311507",
+    "name": "MONICA  PEREZ OGANDO\r",
+    "winner": false
+  },
+  {
+    "id": "i0nses8058d3r1ca811n90oturgiaiosm58",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "11800088913",
+    "name": "ROBERTO  ULLOA \r",
+    "winner": false
+  },
+  {
+    "id": "0nu8a3r2id9sng07ois03acteo9i10r6ms0",
+    "company": "SEGUROS",
+    "department": "ADMINISTRACION",
+    "identification": "06900081933",
+    "name": "YAKANDYS  PEREZ CASTILLO\r",
+    "winner": false
+  },
+  {
+    "id": "2saue5rr5sio771t0u24g6ao7di281",
+    "company": "SEGUROS",
+    "department": "AUDITORIA",
+    "identification": "40221775725",
+    "name": "RAWEL ESTEFANO LUCIANO BONIFACIO\r",
+    "winner": false
+  },
+  {
+    "id": "ro6gseio820ris594t7425uda2u1a5",
+    "company": "SEGUROS",
+    "department": "AUDITORIA",
+    "identification": "40225189725",
+    "name": "SARA LINET RICARDO PINEDA\r",
+    "winner": false
+  },
+  {
+    "id": "14gs44nzs0fe12aa61r62iuo21n8s",
+    "company": "SEGUROS",
+    "department": "FINANZAS",
+    "identification": "40221681121",
+    "name": "DANIEL ANDRES GUZMAN RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "14un1s2af4so4n89eg2r0a6s75zi5",
+    "company": "SEGUROS",
+    "department": "FINANZAS",
+    "identification": "40247458561",
+    "name": "FRANK REINALDO AGUILERA GARCIA\r",
+    "winner": false
+  },
+  {
+    "id": "su3ga2fr66nea9s0sn42oiz259322",
+    "company": "SEGUROS",
+    "department": "FINANZAS",
+    "identification": "40225623392",
+    "name": "JESUS MANUEL MENDEZ MEJIA\r",
+    "winner": false
+  },
+  {
+    "id": "9gsnn5fu0011aezsra62i5o0706s0",
+    "company": "SEGUROS",
+    "department": "FINANZAS",
+    "identification": "00119250066",
+    "name": "JOEL SILVESTRE LARA HERNANDEZ\r",
+    "winner": true
+  },
+  {
+    "id": "7snus1e12403fniz98g1osa4180ra",
+    "company": "SEGUROS",
+    "department": "FINANZAS",
+    "identification": "00111474912",
+    "name": "JONATHAN OMAR FERMIN MELO\r",
+    "winner": false
+  },
+  {
+    "id": "s8174o10f86i7u3e6ags08snn1arz",
+    "company": "SEGUROS",
+    "department": "FINANZAS",
+    "identification": "00118663871",
+    "name": "JUAN CARLOS  CONTRERAS RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "fas64az023ie9u2r50n7sg2n589so",
+    "company": "SEGUROS",
+    "department": "FINANZAS",
+    "identification": "40220983569",
+    "name": "NAICOL JESÚS URRACA MATOS\r",
+    "winner": false
+  },
+  {
+    "id": "1nf4269s0a80uzge9as06os0r91in",
+    "company": "SEGUROS",
+    "department": "FINANZAS",
+    "identification": "00102046919",
+    "name": "OVIDIO  CEBALLO BAEZ\r",
+    "winner": false
+  },
+  {
+    "id": "fs0nosu1z8ien81gsar15011163a",
+    "company": "SEGUROS",
+    "department": "FINANZAS",
+    "identification": "00118136811",
+    "name": "RICARDO EMILIO VILLEGAS HOUELLEMONT\r",
+    "winner": false
+  },
+  {
+    "id": "sun3rs57n90oai4e2gfa2s43067z",
+    "company": "SEGUROS",
+    "department": "FINANZAS",
+    "identification": "40223657970",
+    "name": "RUTH MARIA GUZMAN ALVAREZ\r",
+    "winner": false
+  },
+  {
+    "id": "geaon81r1158u6fz7sa3s8n00is76",
+    "company": "SEGUROS",
+    "department": "FINANZAS",
+    "identification": "00118688571",
+    "name": "SAYMI CAROLINE CAMILO PUNTIEL\r",
+    "winner": false
+  },
+  {
+    "id": "ysnpp0easa1gm1gr0s8o7af5s34o5zuc4a21-rinso0",
+    "company": "SEGUROS",
+    "department": "FINANZAS-COMPRAS Y PAGOS",
+    "identification": "00110255437",
+    "name": "ALBANNY BIENVENIDO REGALADO VELOZ\r",
+    "winner": false
+  },
+  {
+    "id": "earcn9i4pnsf-s3rps7549gao08uya2sosz702moag",
+    "company": "SEGUROS",
+    "department": "FINANZAS-COMPRAS Y PAGOS",
+    "identification": "40225879374",
+    "name": "AURY CHAMELY RAMIREZ DIAZ\r",
+    "winner": false
+  },
+  {
+    "id": "4-50oauors40r16sgcfze9ioyp1snm21a9sagp4nas0",
+    "company": "SEGUROS",
+    "department": "FINANZAS-COMPRAS Y PAGOS",
+    "identification": "40209140116",
+    "name": "GABRIEL ALBERTO NOLASCO ORTIZ\r",
+    "winner": false
+  },
+  {
+    "id": "naz18cs90defga2tuiirn2sbaa3od700sloni1690-",
+    "company": "SEGUROS",
+    "department": "FINANZAS-CONTABILIDAD",
+    "identification": "22600109130",
+    "name": "ADA YAGEYRI SANTANA GUZMAN\r",
+    "winner": false
+  },
+  {
+    "id": "16ossine2r081-t6f0ia7uadons5idg0acznabl904",
+    "company": "SEGUROS",
+    "department": "FINANZAS-CONTABILIDAD",
+    "identification": "00118609270",
+    "name": "CESAR ARIEL RODRIGUEZ GUERRERO\r",
+    "winner": false
+  },
+  {
+    "id": "09oe-sgli1an0sn5fu4aroan4c66zd43s14da3biti",
+    "company": "SEGUROS",
+    "department": "FINANZAS-CONTABILIDAD",
+    "identification": "00116493453",
+    "name": "DAISY MARIA MOREL GARCIA\r",
+    "winner": false
+  },
+  {
+    "id": "nf21na9oso29g031sessuaz9eur69i17g-sr0",
+    "company": "SEGUROS",
+    "department": "FINANZAS-SEGUROS",
+    "identification": "00111992962",
+    "name": "CESAR ALEXIS ORTEGA POLANCO\r",
+    "winner": false
+  },
+  {
+    "id": "uir23a740negos0n-39z9s2r24fssuoe16ags",
+    "company": "SEGUROS",
+    "department": "FINANZAS-SEGUROS",
+    "identification": "40224139390",
+    "name": "FREDERIC RAFAEL GARCIA SANTOS\r",
+    "winner": false
+  },
+  {
+    "id": "7sgro020azs0e70gf251n0u6as1soir6-esun",
+    "company": "SEGUROS",
+    "department": "FINANZAS-SEGUROS",
+    "identification": "00117020057",
+    "name": "JINECA  TRONCOSO MONTERO\r",
+    "winner": false
+  },
+  {
+    "id": "sganzs91-ef0e21o0grau6us0sn110rso9i",
+    "company": "SEGUROS",
+    "department": "FINANZAS-SEGUROS",
+    "identification": "00119021061",
+    "name": "JOHAN IGNACIO LEBRON \r",
+    "winner": false
+  },
+  {
+    "id": "4uu2rnaos0e10sssafo-n660rs90egzi1g188",
+    "company": "SEGUROS",
+    "department": "FINANZAS-SEGUROS",
+    "identification": "00110986684",
+    "name": "JOSE LUIS PAPPATERRA LEON\r",
+    "winner": false
+  },
+  {
+    "id": "nu94u9a6-9sgisre0621ss69ozgnro3a1sfe2",
+    "company": "SEGUROS",
+    "department": "FINANZAS-SEGUROS",
+    "identification": "40223916699",
+    "name": "MISAEL ELIAS RUIZ MEDINA\r",
+    "winner": false
+  },
+  {
+    "id": "oa1ssn204sfu5o946gsan0e2erz2-u9ig4rs0",
+    "company": "SEGUROS",
+    "department": "FINANZAS-SEGUROS",
+    "identification": "22500610492",
+    "name": "YONAIKEL ALEXANDER GONZALEZ ALMONTE\r",
+    "winner": false
+  },
+  {
+    "id": "011sie9sgderao6ne002900gluttls07onto0e",
+    "company": "SEGUROS",
+    "department": "GESTION DEL TALENTO",
+    "identification": "01001060902",
+    "name": "CAROLIN DAVIANA DE LA ROSA ESPINAL\r",
+    "winner": false
+  },
+  {
+    "id": "4etuget009n03droeal270g1o1esi47sl1tnos",
+    "company": "SEGUROS",
+    "department": "GESTION DEL TALENTO",
+    "identification": "00101971034",
+    "name": "INGRID ELIZABETH GARCIA OVALLES\r",
+    "winner": false
+  },
+  {
+    "id": "g9710edoe1o82ats07sesng0nrtuolt1i3l0e4",
+    "company": "SEGUROS",
+    "department": "GESTION DEL TALENTO",
+    "identification": "40219710700",
+    "name": "JENIFFER ELIZABETH MERCEDES GIL\r",
+    "winner": false
+  },
+  {
+    "id": "i4gnu4a8985oelos9srt1t0l134do27nteeesg",
+    "company": "SEGUROS",
+    "department": "GESTION DEL TALENTO",
+    "identification": "40214783959",
+    "name": "JOSE ROBERTO HERNANDEZ CARIAS\r",
+    "winner": false
+  },
+  {
+    "id": "tns2gt5oo4ertgoi0essa7e206ld9n8u02e49l",
+    "company": "SEGUROS",
+    "department": "GESTION DEL TALENTO",
+    "identification": "40222899540",
+    "name": "ROSA YSABEL BRITO RIVERA\r",
+    "winner": false
+  },
+  {
+    "id": "32nsi0v91eu53i6gc1r2snn8oo740oa",
+    "company": "SEGUROS",
+    "department": "INNOVACION",
+    "identification": "40233691175",
+    "name": "DAVID DANIEL HERNANDEZ REYNOSO\r",
+    "winner": false
+  },
+  {
+    "id": "ceisung04o0n4ro9i20o0s942n8va47",
+    "company": "SEGUROS",
+    "department": "INNOVACION",
+    "identification": "40209427489",
+    "name": "MARIO YUNIOR TORIBIO RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "02neoaic0rsn747ug192s2i76onv54o",
+    "company": "SEGUROS",
+    "department": "INNOVACION",
+    "identification": "40226709547",
+    "name": "YURIBEL  ROSARIO \r",
+    "winner": false
+  },
+  {
+    "id": "os2722eevg27srurin05i504se6son44",
+    "company": "SEGUROS",
+    "department": "INVERSIONES",
+    "identification": "40222574267",
+    "name": "ERVIN GERALDO DE JESUS NOVAS NUÑEZ\r",
+    "winner": false
+  },
+  {
+    "id": "3u39i8essn9ie2o4ss427v0rr9gne2o6",
+    "company": "SEGUROS",
+    "department": "INVERSIONES",
+    "identification": "40232479382",
+    "name": "JEISY DANIELA BOON MEJIA\r",
+    "winner": false
+  },
+  {
+    "id": "v8o21rri0sn02e3eg1i40s1nu9esso46",
+    "company": "SEGUROS",
+    "department": "INVERSIONES",
+    "identification": "40210136194",
+    "name": "MARIA ALEJANDRA GUZMAN NAZARIO\r",
+    "winner": false
+  },
+  {
+    "id": "e8sgl7y0uumn21i3gescp20i4e47m25o5llrtao",
+    "company": "SEGUROS",
+    "department": "LEGAL Y CUMPLIMIENTO",
+    "identification": "40225845177",
+    "name": "DIEGO MANUEL BAEZ CRISPIN\r",
+    "winner": false
+  },
+  {
+    "id": "sg1srltingaep8l5011ui02ul8ocemy06m85e1o",
+    "company": "SEGUROS",
+    "department": "LEGAL Y CUMPLIMIENTO",
+    "identification": "00118258185",
+    "name": "FARAH MASSIEL RODRIGUEZ MAZARA\r",
+    "winner": false
+  },
+  {
+    "id": "enl8109llu0ieogtscuir3a0o3eg31s37ypm5m",
+    "company": "SEGUROS",
+    "department": "LEGAL Y CUMPLIMIENTO",
+    "identification": "00113303895",
+    "name": "MARIBEL  GOMEZ ORTIZ\r",
+    "winner": false
+  },
+  {
+    "id": "4rassedosc0e0g0m59es24g0o3o2e41urru0",
+    "company": "SEGUROS",
+    "department": "MERCADEO SEGUROS",
+    "identification": "40224190005",
+    "name": "ROSA ELAUDIT DOMINGUEZ SANTO\r",
+    "winner": false
+  },
+  {
+    "id": "muor3s02s400ee1e4sgeug16droa1o3rc0s2",
+    "company": "SEGUROS",
+    "department": "Mercadeo Seguros",
+    "identification": "00112004163",
+    "name": "VERONICA MARIA TAVAREZ ORIACH\r",
+    "winner": false
+  },
+  {
+    "id": "924u14ioe0epgsean7evids97cre9a0sujt0i1r6c",
+    "company": "SEGUROS",
+    "department": "PRESIDENCIA EJECUTIVA",
+    "identification": "00119207496",
+    "name": "JUAN ERNESTO JIMENEZ GUERRERO\r",
+    "winner": false
+  },
+  {
+    "id": "e7c9ee150opr0sedturnsi7s9g4ciu04a22aveji",
+    "company": "SEGUROS",
+    "department": "PRESIDENCIA EJECUTIVA",
+    "identification": "40200574917",
+    "name": "LAURENT  DIAZ GARCIA\r",
+    "winner": false
+  },
+  {
+    "id": "g40e4ic8uaui0eaeno40pde6sitr157ec19rs3svj",
+    "company": "SEGUROS",
+    "department": "PRESIDENCIA EJECUTIVA",
+    "identification": "04900474356",
+    "name": "MARIA  BATISTA MARCELINO\r",
+    "winner": false
+  },
+  {
+    "id": "evii10p6sa0orsgt8cijuen49u9ea5cdeer4223s",
+    "company": "SEGUROS",
+    "department": "PRESIDENCIA EJECUTIVA",
+    "identification": "22400148965",
+    "name": "ROBERT ALBERTO NUÑEZ VALDEZ\r",
+    "winner": false
+  },
+  {
+    "id": "so70o1ruypge03e3sro0c79407t1s0",
+    "company": "SEGUROS",
+    "department": "PROYECTOS",
+    "identification": "03701104709",
+    "name": "GABRIELA  CID CRUZ\r",
+    "winner": false
+  },
+  {
+    "id": "s5s7nl0m6104cou23seiea97erao26rc8g",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "22400785196",
+    "name": "ANA LISBETH GONZALEZ SILVERIO\r",
+    "winner": false
+  },
+  {
+    "id": "i1s0s4aes03e3on18ar3g9ec2c6u8lor0m",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "00109183236",
+    "name": "ANDRES AVELINO LORA PEÑA\r",
+    "winner": false
+  },
+  {
+    "id": "10m7s231l401crasc40irenaeoo8gu6e1s",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "02601134840",
+    "name": "CALIXTO ENRIQUE CASTILLO MUÑOZ\r",
+    "winner": false
+  },
+  {
+    "id": "0u4g3na98aei0ms3ee22cs0c429o8orrls",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "40229328030",
+    "name": "CORAL MICHELLE PENA RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "0saoe1s0ce1n8c44u5agr1sier484olm08",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "00111084844",
+    "name": "DARWIN OSCAR LOPEZ AQUINO\r",
+    "winner": false
+  },
+  {
+    "id": "aei3srsl0n4c817g01ero01u0a1o3semc0",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "11300014013",
+    "name": "DIANNY  LUCIANO DIAZ\r",
+    "winner": false
+  },
+  {
+    "id": "7s0eec41ocrmgr0sl7i9003so54en2uaa2",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "05300422770",
+    "name": "ELVIS RAFAEL SEPULVEDA DURAN\r",
+    "winner": false
+  },
+  {
+    "id": "5nuga5l057c80ermaeo01si1e51socsr70",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "00115051807",
+    "name": "ESTEBAN AUGUSTO FEBLES CONTRERAS\r",
+    "winner": false
+  },
+  {
+    "id": "53cmr1os09l1esieag0c08636oau20resn",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "01000636215",
+    "name": "HECTOR MUSETH MARTINEZ ROJAS\r",
+    "winner": false
+  },
+  {
+    "id": "csse3a154n3gam22rulr8coe1062ie00os",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "03104202258",
+    "name": "JOEL ALEXIS FERREIRA FELIZ\r",
+    "winner": false
+  },
+  {
+    "id": "n0se008l625ooag663e97aecrs1curims7",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "00107667826",
+    "name": "JUAN GERARDO FLORES ESPINAL\r",
+    "winner": false
+  },
+  {
+    "id": "g8sns93ul811ea00re6oa0s1m0orie0cc8",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "00101806198",
+    "name": "MODESTO  ANICO VARELA\r",
+    "winner": false
+  },
+  {
+    "id": "se0se2s12g3na6aurc9172om2r03ec1iol",
+    "company": "SEGUROS",
+    "department": "RECLAMACIONES",
+    "identification": "22301013912",
+    "name": "WILLY ALEXANDER MENDOZA MENDOZA\r",
+    "winner": false
+  },
+  {
+    "id": "2isio08getysdectoeeieu2asvorprodi08n6dn04i4oa0cgor73gnolu7",
+    "company": "SEGUROS",
+    "department": "RIESGO OPERATIVO Y CONTINUIDAD DEL NEGOCIO",
+    "identification": "40200740328",
+    "name": "JOSKIN MANUEL VILLAMAN GUZMAN\r",
+    "winner": false
+  },
+  {
+    "id": "ddu544s0irsgce8el7idauaerig1giooo1p1oeeyni7ct4otr24ns3noov",
+    "company": "SEGUROS",
+    "department": "RIESGO OPERATIVO Y CONTINUIDAD DEL NEGOCIO",
+    "identification": "40214418374",
+    "name": "SARA GERALDINE D'OLEO ARGUELLES\r",
+    "winner": false
+  },
+  {
+    "id": "r6das40g1g50i2223oeurdeu4s701s",
+    "company": "SEGUROS",
+    "department": "SEGURIDAD",
+    "identification": "40220150631",
+    "name": "MIRIDIO STALING CUEVAS MONTILLA\r",
+    "winner": false
+  },
+  {
+    "id": "seucce03ssrm125rius8o205lgo29r-e29o5ag",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "22301598250",
+    "name": "ANDERLINA  COLOME LANTIGUA\r",
+    "winner": false
+  },
+  {
+    "id": "o1919rmios107oruc1ecg87grs1asl7u5e-se0",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "00119111797",
+    "name": "ANGELA MARIA GUTIERREZ \r",
+    "winner": false
+  },
+  {
+    "id": "9eo6ur022a52gmce15lirse426s1s-rgou4ocs",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "40221962554",
+    "name": "BRYAN ROBERTO RUIZ PEREZ\r",
+    "winner": false
+  },
+  {
+    "id": "coeos4ge3r20lg133-o0mu8r1r54eu24ssicsa",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "40224303418",
+    "name": "CHAJUD BASHIR HESNI ABREU\r",
+    "winner": false
+  },
+  {
+    "id": "iscl24esrm7ogur-o1es0eo262415g50ascr1u",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "40221251065",
+    "name": "DAHIANA MASSIEL GARCIA FAMILIA\r",
+    "winner": false
+  },
+  {
+    "id": "-e0cr0s83om6serr1s3gs3e6cu89io1a4gulo7",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "00117364836",
+    "name": "DARWIN DARIO REYES ENCARNACION\r",
+    "winner": false
+  },
+  {
+    "id": "sseal30oer1g324cgerso1ocu2-9u0i7s0r5m6",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "40236320517",
+    "name": "DIEGO JOSE GARRIGO MEJIA\r",
+    "winner": false
+  },
+  {
+    "id": "orl50aue0g52e-rgs128oi4s3eocc6ms4us47r",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "40223576048",
+    "name": "DOLPHY INDHIRA ANDELIZ PANIAGUA\r",
+    "winner": false
+  },
+  {
+    "id": "8ces7r5ca01smg3o2u6gu1oor5ss048e3-erli",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "00118276435",
+    "name": "EDUARDO JOSE MALLEN MATOS\r",
+    "winner": false
+  },
+  {
+    "id": "serro64473oelu0ssec8060guig035-socamr2",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "40236065740",
+    "name": "FEDERICO  DE LA ROSA PAZ\r",
+    "winner": false
+  },
+  {
+    "id": "-mr7u7ocaeoig50ou5rl0ce7re9ss823s1g7s1",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "00117723577",
+    "name": "IBELKA MARIA ESPINAL MARTINEZ\r",
+    "winner": false
+  },
+  {
+    "id": "0rs5u000rgau69eroe0o-msc1ss08gceio682l",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "01800805002",
+    "name": "JAZMIN PRISCILA CABRERA DE LA PAZ\r",
+    "winner": false
+  },
+  {
+    "id": "asus12c51oer01r0uegerisl4c4o5564-s0gom",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "00201456415",
+    "name": "OLGA VIRGINIA RAMIREZ MONTAS\r",
+    "winner": false
+  },
+  {
+    "id": "e2s5gm0s5g84s091o14rs1luue-rciar7o5oce",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "00114845571",
+    "name": "PABLO JUAN BEATO GONZALEZ\r",
+    "winner": false
+  },
+  {
+    "id": "grcu54lriog4ese2c091s0o-s31o0rmu09eas1",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "40200530919",
+    "name": "PAULA CHERLYN RICARDO NAVARRO\r",
+    "winner": false
+  },
+  {
+    "id": "s2s342e4eus9gl408415r8ce-uisacmgrooro0",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "22300444985",
+    "name": "RAUL FRANCISCO CRUZ RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "orusg51oe41-e0ear554u21s26ro0mcgc4issl",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "40225461140",
+    "name": "SALIM  RIZEK CANAAN\r",
+    "winner": false
+  },
+  {
+    "id": "lgooc7su77ire0ec0s82r1ums0gros41e0-1a",
+    "company": "SEGUROS",
+    "department": "SEGUROS - COMERCIAL",
+    "identification": "00117204701",
+    "name": "YOVENKY ANDRES GUERRERO DIAZ\r",
+    "winner": false
+  },
+  {
+    "id": "76asolsssgsnes0gee4rie0e0rs33r60ug-g204o1reou",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "00100742063",
+    "name": "ALBA MARIA PEÑA PEREZ\r",
+    "winner": false
+  },
+  {
+    "id": "0032gsgeslur201g9-ee7ross5rsniros4oa70eegsu0e",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "09100053470",
+    "name": "ANA VIRGINIA CARRERA \r",
+    "winner": false
+  },
+  {
+    "id": "eoe6uors0sessg37s041i8e-sgl4rer11ao2ng4r6sgeu",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "03104614486",
+    "name": "ANTONIO DE JESUS PACHECO ACOSTA\r",
+    "winner": false
+  },
+  {
+    "id": "ruergeaol03is2o1sgnseeue922s0sr86gro-4s8ge1s",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "22300881194",
+    "name": "EVANGELISTA  ALCANTARA PEREZ\r",
+    "winner": false
+  },
+  {
+    "id": "asres1gong-oe5rs3e30es05i1rl48uge8re04oss8sgu",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "00108833484",
+    "name": "FIOR D'ALIZA ENCARNACION DE OLEO\r",
+    "winner": false
+  },
+  {
+    "id": "ue6110oss8e4ensgos9eursogrsl0sg9ir46ge-5ea5r1",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "00118661545",
+    "name": "GEORGE ELIAS DIAZ PAULINO\r",
+    "winner": false
+  },
+  {
+    "id": "g14esrs9gsnss0eoseg-gr2u70iea0l60eur1o005rsoe",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "00100501790",
+    "name": "GILENA TERESA BOBADILLA LEO\r",
+    "winner": false
+  },
+  {
+    "id": "es3arugs2our07o1egg-egin0356sseol0r1s0rssee30",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "00113036305",
+    "name": "JOAN MANUEL ARAUJO DIAZ\r",
+    "winner": false
+  },
+  {
+    "id": "sesr7so5e4enu0-4rsigr1gel7soas9e7580roe1usg1g",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "00114981475",
+    "name": "JOSE FRANCISCO MARTINEZ PASCUAL\r",
+    "winner": false
+  },
+  {
+    "id": "e0ss6596g9g0n2rorrg1eeigs8orseeoauseus472ls8-",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "40229891805",
+    "name": "JUAN SEBASTIAN BRITO AGESTA\r",
+    "winner": false
+  },
+  {
+    "id": "usno19gsgoeeg18eeeur0salr21i408sserr-83sog2s",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "00118188234",
+    "name": "LAURA  SOSA LAMARCHE\r",
+    "winner": false
+  },
+  {
+    "id": "osu20lgr5oessseesin7a-sege2rs7gr49eg2o45ru749",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "40224574927",
+    "name": "MIRANDA  HARPER MONTES\r",
+    "winner": false
+  },
+  {
+    "id": "se5ge6serinr02054us4e1ogrug5rsgo1s-ss65lae3oe",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "40230155166",
+    "name": "NATALIA VIRGINIA MONZON ALVAREZ\r",
+    "winner": false
+  },
+  {
+    "id": "es0ng-r1u1rgr4ge2es8oseeso1sio6g5u9s3r7a0l2es",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "40209176235",
+    "name": "PAMELA MARCIEL RIJO MONTAS \r",
+    "winner": false
+  },
+  {
+    "id": "o-s0r5rsn2goree43sse9gliu0eeos2asug032e7g0sr1",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "22301042093",
+    "name": "PAUL ALEXANDER RICARDO SANCHEZ\r",
+    "winner": false
+  },
+  {
+    "id": "e48resgeu8a50roisgog5er1rss82s996oneussg2e-l5",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "40229918558",
+    "name": "RAMON DE JESUS VELEZ FERNANDEZ\r",
+    "winner": false
+  },
+  {
+    "id": "sssg0geue27rsr3oseee907s02-0lrgnu33ge9riasoo6",
+    "company": "SEGUROS",
+    "department": "SEGUROS -RIESGOS GENERALES",
+    "identification": "00300927332",
+    "name": "WENDY ROSALY TEJEDA PEÑA\r",
+    "winner": false
+  },
+  {
+    "id": "en0gusols4sg04n2d2rie5tooeec3-grioi92i2uc5sgans1ee",
+    "company": "SEGUROS",
+    "department": "SEGUROS-INTELIGENCIA DE NEGOCIOS",
+    "identification": "40223022951",
+    "name": "AMAURY JESUS CABRERA SANTANA\r",
+    "winner": false
+  },
+  {
+    "id": "0segelcd2i6g406s-oi2o5eegussor1onsc1i3au41ne5nriteg",
+    "company": "SEGUROS",
+    "department": "SEGUROS-INTELIGENCIA DE NEGOCIOS",
+    "identification": "40215653102",
+    "name": "EDWALY ENMANUEL GONZALEZ RODRIGUEZ\r",
+    "winner": false
+  },
+  {
+    "id": "gloinu0ne264isec8g105tie0eoess-s1iasrodeg8n18ru1ogc",
+    "company": "SEGUROS",
+    "department": "SEGUROS-INTELIGENCIA DE NEGOCIOS",
+    "identification": "00116188541",
+    "name": "RODOLFO ARIEL GARCIA DIAZ\r",
+    "winner": false
+  },
+  {
+    "id": "7yeue4p04162spus9gese5io9osss4so8-4nnoer2rgnsar",
+    "company": "SEGUROS",
+    "department": "SEGUROS-PENSIONES Y PERSONAS",
+    "identification": "40225417894",
+    "name": "CARLA DARLENY AMEZQUITA GARCIA\r",
+    "winner": false
+  },
+  {
+    "id": "0su04s043ei0prnoeuas0sy-rroosgs694o5speegen6sn",
+    "company": "SEGUROS",
+    "department": "SEGUROS-PENSIONES Y PERSONAS",
+    "identification": "00500440466",
+    "name": "GENARA  QUEZADA LAUREANO\r",
+    "winner": false
+  },
+  {
+    "id": "5rane14-e0snse74nso0e2gpr1peoosgusirs2o1ssu4y8",
+    "company": "SEGUROS",
+    "department": "SEGUROS-PENSIONES Y PERSONAS",
+    "identification": "40221544170",
+    "name": "HAROLIN MILAGROS REYNOSO DIAZ\r",
+    "winner": false
+  },
+  {
+    "id": "us102s-nsnso1sngo1rpeuayspeiger1oe2s1o0er0s9407",
+    "company": "SEGUROS",
+    "department": "SEGUROS-PENSIONES Y PERSONAS",
+    "identification": "00111129102",
+    "name": "JORGE ALBERTO PAULINO CARELA\r",
+    "winner": false
+  },
+  {
+    "id": "aogrnue2o-058s1e4oru2en510goes2yssre4p5sisspn4s",
+    "company": "SEGUROS",
+    "department": "SEGUROS-PENSIONES Y PERSONAS",
+    "identification": "40212415208",
+    "name": "KELVIN DE JESUS RIVERAS ALMONTE\r",
+    "winner": false
+  },
+  {
+    "id": "se6s4oyssor6esn1e1g0un80pi0sogr3roasue42psen6-5",
+    "company": "SEGUROS",
+    "department": "SEGUROS-PENSIONES Y PERSONAS",
+    "identification": "00116436528",
+    "name": "MAYORYS MARLENY LÓPEZ BUENO\r",
+    "winner": false
+  },
+  {
+    "id": "6s-us0ons81gyseirp0184snerooeoasg9s1es1r0pn8u6e",
+    "company": "SEGUROS",
+    "department": "SEGUROS-PENSIONES Y PERSONAS",
+    "identification": "00118961408",
+    "name": "RUDDY NOEL CANDELARIO GONZALEZ\r",
+    "winner": false
+  },
+  {
+    "id": "g3ene9pe0320y4pr9u4ss-ss3uros2gss1senoronoi18ea",
+    "company": "SEGUROS",
+    "department": "SEGUROS-PENSIONES Y PERSONAS",
+    "identification": "40220113993",
+    "name": "YUNIOR ALEXANDER PAULINO VALDEZ\r",
+    "winner": false
+  },
+  {
+    "id": "cve3sus5s99i4oggous732r6i0r280rese-o0",
+    "company": "SEGUROS",
+    "department": "SEGUROS-SERVICIO",
+    "identification": "40200579239",
+    "name": "BRYAN  ROSARIO GARCIA\r",
+    "winner": false
+  },
+  {
+    "id": "rs6v9ur4uie8s08cggroos672si21es-e4o0",
+    "company": "SEGUROS",
+    "department": "SEGUROS-SERVICIO",
+    "identification": "40212896480",
+    "name": "INGRID NICOLE GARCIA ALMANZAR\r",
+    "winner": false
+  },
+  {
+    "id": "o11g1cvu6r6ss-redgu34es0r028peoai4in1e6csies",
+    "company": "SEGUROS",
+    "department": "SEGUROS-VICEPRESIDENCIA",
+    "identification": "00111462164",
+    "name": "CARLOS DAVID PEREZ MARMOL\r",
+    "winner": false
+  },
+  {
+    "id": "g1sergenersev106s5psuocs4o4i60a041i-diucer08",
+    "company": "SEGUROS",
+    "department": "SEGUROS-VICEPRESIDENCIA",
+    "identification": "00116401506",
+    "name": "HENRY  RAMOS PATIÑO\r",
+    "winner": false
+  },
+  {
+    "id": "2pssi2gse60cee-2da1g90580srur4eresui1nooc5vi",
+    "company": "SEGUROS",
+    "department": "SEGUROS-VICEPRESIDENCIA",
+    "identification": "00112085659",
+    "name": "NINA NATALIA D AGOSTINI DEL VALLE \r",
+    "winner": false
+  },
+  {
+    "id": "o1sse4sgma3u0rs6i59se0732t546",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "40245566373",
+    "name": "CARLOS ROMNEY NOTARIO GUERRERO\r",
+    "winner": false
+  },
+  {
+    "id": "61raus90e1e84smt80s18i4s4sg3o",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "00111886834",
+    "name": "DAGOBERTO  QUEZADA  D‘ OLEO\r",
+    "winner": false
+  },
+  {
+    "id": "0159m6or11ai103sugeet49ss4ss9",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "00119491314",
+    "name": "DARWIN ANTONIO FERREYRA PERALTA\r",
+    "winner": false
+  },
+  {
+    "id": "2916ss7eu1assr3t06m1i3eg00os4",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "01100336419",
+    "name": "DERYS JHOEL PEREZ FULCAR\r",
+    "winner": false
+  },
+  {
+    "id": "ust921r6msa9ei31s25go6401sse",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "40212119966",
+    "name": "ERICK MANUEL HASBUN VIGIL\r",
+    "winner": false
+  },
+  {
+    "id": "3teu4ar2sg32s878i00e0mos420ss",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "40220430728",
+    "name": "ESTHER  DE LA PORTILLA LOPEZ\r",
+    "winner": false
+  },
+  {
+    "id": "si85e0e1123mgs0a96s2070rtsous",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "00112590203",
+    "name": "FELIPE ALEXANDER SANCHEZ LIRANZO\r",
+    "winner": false
+  },
+  {
+    "id": "06ese01us87i6sr32o019mg2ass1t",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "00118276013",
+    "name": "FRED ABNER FABIAN ALVAREZ\r",
+    "winner": false
+  },
+  {
+    "id": "e0s51u0rags01o08030ssmi6e1ts1",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "00101615003",
+    "name": "JACQUELINE  SCHEPHARD \r",
+    "winner": false
+  },
+  {
+    "id": "55g0sas1r95m6o0tss7e20ieu26s",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "22500550169",
+    "name": "JESUS NAZARE SORIANO SEPULVEDA\r",
+    "winner": false
+  },
+  {
+    "id": "eusse52so1r50i6asg230tm33s11",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "22300553611",
+    "name": "JOSE  MORA MENA\r",
+    "winner": false
+  },
+  {
+    "id": "ss0s9r2ie217auss4t034gm06oe46",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "22400374140",
+    "name": "LAURA GISSELLE FERNANDEZ FIGUEROA\r",
+    "winner": false
+  },
+  {
+    "id": "s64s7s53m20a2ue3it4r3sseo9g26",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "40236253643",
+    "name": "LUIS RAFAEL GERALDO CONTRERAS \r",
+    "winner": false
+  },
+  {
+    "id": "104s4s422egr2eamtius20so8130s",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "40220213041",
+    "name": "MAGNOLIA SAGRARIO HOPPE CASILLA\r",
+    "winner": false
+  },
+  {
+    "id": "susssr50e57m9i6t6010es0g88ao2",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "01200806956",
+    "name": "MARIA ALTAGRACIA DOTEL VILLEGAS\r",
+    "winner": false
+  },
+  {
+    "id": "ueo28ss2egistsr7649s0a64m2240",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "40222742609",
+    "name": "MICHAEL  DE LA CRUZ DURAN\r",
+    "winner": false
+  },
+  {
+    "id": "eo2as4s2rem250g25sis1s04tu460",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "40212262055",
+    "name": "WILLY RICARDO SARMIENTO GERMAN\r",
+    "winner": false
+  },
+  {
+    "id": "umtgi026s3r2ose0s1572s4ea02s5",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "40212067025",
+    "name": "YOAN JOSUE BUENO ESTEVEZ\r",
+    "winner": false
+  },
+  {
+    "id": "1s0sr8e4u8ge7m9i01ts9s10so0a0",
+    "company": "SEGUROS",
+    "department": "SISTEMAS",
+    "identification": "00118740091",
+    "name": "YOCELYN INDHIRA FLORES MORENO\r",
+    "winner": false
+  }
+]

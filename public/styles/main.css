@@ -20,7 +20,7 @@ header {
 }
 
 main {
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
 }
 
 .container {
@@ -28,7 +28,7 @@ main {
     width: 100%;
     display: flex;
     flex-direction: column;
-    max-width: 950px;
+    max-width: 960px;
 }
 
 #menu-list {
@@ -41,8 +41,7 @@ ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
-    gap: 24px;
+    gap: .75rem;
 }
 
 li {
@@ -50,17 +49,15 @@ li {
 }
 
 a {
-    padding: 16px;
+    padding: .5rem 1rem;
     text-decoration: none;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 16px;
+    font-family: 'Gilroy', system-ui;
     color: var(--primary-purple);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    gap: .25rem;
+    transition: all ease 150ms;
 }
 
 a svg {
@@ -69,7 +66,7 @@ a svg {
 
 a.active,
 a:hover {
-    background: var(--primary-purple);
+    background: var(--primary-purple-2);
     border-radius: 56px;
     color: var(--neutral-white);
 }
@@ -81,26 +78,34 @@ a:hover svg {
 
 /* body */
 .title {
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 32px;
+    font-size: 1.5rem;
+    font-weight: bold;
     color: var(--neutral-black);
-    margin-bottom: 24px;
 }
 
 button {
-    padding: 1rem 1.5rem;
+    padding: .5rem 1rem;
     border-radius: 3rem;
     background: var(--primary-purple);
     color: var(--neutral-white);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 16px;
     border: none;
     cursor: pointer;
+    transition: all ease 150ms;
 }
+
+button:hover {
+  background: var(--primary-purple-2);
+}
+
+button.clear { 
+    background: var(--secondary-orange-1);
+    transition: all ease 150ms;
+}
+
+button.clear:hover { 
+    background: var(--secondary-yellow-1);
+}
+
 
 .icon-button {
     background: transparent;
@@ -135,13 +140,13 @@ footer {
 
 .card {
     background: var(--neutral-white);
-    padding: 32px 25px;
-    border-radius: 4px;
+    padding: 2rem 1.5rem;
+    border-radius: .25rem;
 }
 
 input,
 select {
-    padding: .5rem 1.5rem;
+    padding: .5rem 1rem;
     border-radius: 2rem;
     border: 1px solid var(--neutral-gray);
     background: var(--neutral-white);

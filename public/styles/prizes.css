@@ -20,7 +20,6 @@ form .control {
 
 form .control label {
     display: block;
-    align-items: center;
     color: var(--neutral-black);
     font-size: .95rem;
     font-style: bold;
@@ -37,20 +36,17 @@ form .money {
 
 form .custom-quantity {
     display: flex;
-    align-items: center;
-    outline: 1px solid var(--neutral-black);
-    border-radius: 3rem;
-    outline: 1px solid var(--neutral-black);
-    max-width: 181px;
+    justify-content: space-between;
+    border: 1px solid var(--neutral-gray);
+    border-radius: 2rem;
 }
 
 form .static-quantity {
-    border-radius: 3rem;
+    border-radius: 2rem;
 
 }
 
 form .custom-quantity input {
-    border-radius: 0px;
     max-width: 72px;
     border: none;
     outline: none;
@@ -82,6 +78,8 @@ form .remove-row {
 }
 
 input[type='number'] {
+    appearance: textfield;
+    -webkit-appearance: textfield;
     -moz-appearance: textfield;
 }
 
