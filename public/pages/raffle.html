@@ -60,9 +60,8 @@
 				<img src="images/mask@2x.png" class="image-logo" alt="logo_raffle" />
 				<h1 class="text-white">
 					Fiesta de Navidad Crecer
-					<small class="text-white small" id="round"></small>
 				</h1>
-
+                <span class="text-white" id="round"></span>
 			</div>
 			<button class="init-raffle btn-raffle" onclick="startRaffle()">Iniciar rifa</button>
 			<!-- Add link to add prizes-->
@@ -246,7 +245,7 @@
 					if (isLastPrice) {
 						console.log('is last price')
 						const restartRaffleBtn = btnContainer.querySelector(".restart-raffle");
-						restartRaffleBtn.innerText = "Ronda Finalizada!";
+						restartRaffleBtn.innerText = "Terminar ronda";
 					}
 
 				}, 5000);
