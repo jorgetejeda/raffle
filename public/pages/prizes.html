@@ -8,9 +8,15 @@
     <link type="text/css" rel="stylesheet" href="styles/main.css" />
     <link type="text/css" rel="stylesheet" href="styles/util.css" />
     <link type="text/css" rel="stylesheet" href="styles/prizes.css" />
-
+    <link type="text/css" rel="stylesheet" href="styles/participants.css" />
     <style>
+        input {
+            margin-bottom: 0;
+        }
 
+        .save-prizes {
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -27,10 +33,14 @@
                 <button class="clear" onclick="clearPrizes()">Limpiar lista de premios</button>
             </div>
             <div class="card">
-                <form>
-                    <div class="form-control" id="firstRow-1" attr="1">
+                <form onsubmit="saveForm(event)">
+                    <div class="form-control">
+                        <div class="control round">
+                            <label for="round">Ronda</label>
+                            <input type="text" id="round" name="round" placeholder="Ronda" required>
+                        </div>
                         <div class="control money">
-                            <label for="money">#1 Monto en RD$</label>
+                            <label for="money">Monto en RD$</label>
                             <input type="text" id="money" name="money" placeholder="Monto en RD$"
                                 oninput="moneyMask(event)" onpaste="handlePaste(event)" required>
                         </div>
@@ -38,39 +48,43 @@
                             <label for="quantity">Cantidad de premios</label>
                             <div class="custom-quantity">
                                 <button type="button" class="less" onclick="lessInput(1)">-</button>
-                                <input class="quantityOfPrices" type="number" name="quantity" placeholder="0" required>
+                                <input class="quantityOfPrices" type="number" name="quantity" placeholder="0" value="0"
+                                    required>
                                 <button type="button" class="add" onclick="addInput(1)">
                                     +
                                 </button>
                             </div>
                         </div>
                         <div class="control">
-                            <button class="add-row" onclick="addRow()">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M18.8571 10.2857H13.7143V5.14286C13.7143 4.51179 13.2025 4 12.5714 4H11.4286C10.7975 4 10.2857 4.51179 10.2857 5.14286V10.2857H5.14286C4.51179 10.2857 4 10.7975 4 11.4286V12.5714C4 13.2025 4.51179 13.7143 5.14286 13.7143H10.2857V18.8571C10.2857 19.4882 10.7975 20 11.4286 20H12.5714C13.2025 20 13.7143 19.4882 13.7143 18.8571V13.7143H18.8571C19.4882 13.7143 20 13.2025 20 12.5714V11.4286C20 10.7975 19.4882 10.2857 18.8571 10.2857Z"
-                                        fill="white" />
-                                </svg>
-                            </button>
-                            <button class="remove-row" onclick="removeRow(this)">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21.75 12C21.75 12.8297 21.0797 13.5 20.25 13.5H3.75C2.92031 13.5 2.25 12.8297 2.25 12C2.25 11.1703 2.92031 10.5 3.75 10.5H20.25C21.0797 10.5 21.75 11.1703 21.75 12Z"
-                                        fill="white" />
-                                </svg>
-                            </button>
+                            <button type="submit" class="save-prizes">Guardar premio</button>
                         </div>
                     </div>
-                    <!-- Botón para agregar nuevas filas -->
-
                 </form>
+                <div class="error-message hidden"></div>
+                <div class="success-message hidden"></div>
+                <div>
+                </div>
             </div>
-            <div class="error-message hidden"></div>
-            <div class="success-message hidden"></div>
-            <div>
-                <button type="submit" onclick="saveForm()">Guardar sorteo</button>
+
+            <div class="card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Ronda</th>
+                            <th>Monto</th>
+                            <th>Cantidad</th>
+                            <th>Quedan</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data"></tbody>
+                </table>
+            </div>
+
+            <div class="table-footer">
+                <div id="pagination"></div>
+                <select id="row-view" onchange="selectView()"></select>
             </div>
 
         </div>
@@ -79,147 +93,186 @@
     <footer></footer>
 
     <script src="scripts/common.js"></script>
+    <script src="scripts/api.js"></script>
     <script>
-        let prizesArr = [];
+        let dataArr = [];
+        let filterData = [];
+
+        let currentPage = 1;
+
+        let selectedPageSize = 10;
+        const pageSizeOptions = [10, 20, 50];
+
+        const paginationContainer = document.getElementById('pagination');
+        const dataContent = document.getElementById('data');
         const successMessage = document.querySelector(".success-message");
         const errorMessage = document.querySelector(".error-message");
 
-        const onLoad = async () => {
-            const response = await fetch('/prizes/view');
-            const json = await response.json();
-            prizesArr = json.prizes;
 
-            // first row is already in the html
-            const firstRow = document.querySelector("#firstRow-1");
-            const addButton = firstRow.querySelector(".remove-row");
-            addButton.style.display = 'none';
-            buildForm();
+        const getData = async () => {
+            const dataResponse = await callIn('GET', '/prizes/view');
+            if (dataResponse.status === 400) {
+                console.log("it doesnt have prizes");
+            }
+
+            dataArr = dataResponse.prizes;
+            filterData = dataArr;
+        }
+
+        const onLoad = async () => {
+            buildDropdownView();
+            await getData();
+            displayData();
         };
 
-        // build form prizes base on prizesArr
-        const buildForm = () => {
-            if (prizesArr.length === 0) {
+        const displayData = () => {
+            dataContent.innerHTML = '';
+
+            const startIndex = (currentPage - 1) * selectedPageSize;
+            const endIndex = startIndex + selectedPageSize;
+
+            if (filterData.length === 0) {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.textContent = 'No hay registros';
+                td.colSpan = 6;
+                td.style.textAlign = 'center';
+                tr.appendChild(td);
+                dataContent.appendChild(tr);
+
+                //disabled export button
                 const clearButton = document.querySelector('.clear');
                 clearButton.disabled = true;
                 return;
             }
-            prizesArr.forEach((prize, index) => {
-                if (index === 0) {
-                    const moneyInput = document.querySelector("#firstRow-1 input[name='money']");
-                    const quantityInput = document.querySelector("#firstRow-1 input[name='quantity']");
-                    moneyInput.value = prize.amount;
-                    quantityInput.value = prize.quantity;
-                } else {
-                    addRow();
-                    const lastRow = document.querySelector(`#firstRow-${index + 1}`);
-                    const moneyInput = lastRow.querySelector("input[name='money']");
-                    const quantityInput = lastRow.querySelector("input[name='quantity']");
-                    moneyInput.value = prize.amount;
-                    quantityInput.value = prize.quantity;
+
+            for (let i = startIndex; i < endIndex && i < filterData.length; i++) {
+                const dataToDisplay = filterData[i];
+
+                const tr = document.createElement('tr');
+                const tdId = document.createElement('td');
+                const tdRound = document.createElement('td');
+                const tdAmount = document.createElement('td');
+                const tdQuantity = document.createElement('td');
+                const tdLeft = document.createElement('td');
+
+                tdId.textContent = dataToDisplay.id;
+                tdRound.textContent = dataToDisplay.round;
+                tdAmount.textContent = dataToDisplay.amount;
+                tdQuantity.textContent = dataToDisplay.quantity;
+                tdLeft.textContent = dataToDisplay.left;
+
+                tr.appendChild(tdId);
+                tr.appendChild(tdRound);
+                tr.appendChild(tdAmount);
+                tr.appendChild(tdQuantity);
+                tr.appendChild(tdLeft);
+
+                dataContent.appendChild(tr);
+            }
+
+            updatePagination();
+            buildDropdownView();
+        };
+
+        const updatePagination = () => {
+            const totalData = filterData.length;
+            const pageSize = parseInt(document.getElementById('row-view').value);
+            const totalPages = Math.ceil(totalData / pageSize);
+
+            paginationContainer.innerHTML = '';
+
+            const maxVisiblePages = 10;
+            const middlePage = Math.ceil(maxVisiblePages / 2);
+            let startPage, endPage;
+
+            if (currentPage <= middlePage || totalPages <= maxVisiblePages) {
+                startPage = 1;
+                endPage = Math.min(totalPages, maxVisiblePages);
+            } else if (currentPage + middlePage > totalPages) {
+                startPage = totalPages - maxVisiblePages + 1;
+                endPage = totalPages;
+            } else {
+                startPage = currentPage - middlePage + 1;
+                endPage = currentPage + middlePage - 1;
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const pageButton = document.createElement('button');
+                if (i === currentPage) {
+                    pageButton.classList.add('active');
                 }
-                
+                pageButton.textContent = i;
+
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;
+                    displayParticipants();
+                });
+
+                paginationContainer.appendChild(pageButton);
+            }
+
+            if (startPage > 1) {
+                const ellipsis = document.createElement('span');
+                ellipsis.textContent = '...';
+                paginationContainer.insertBefore(ellipsis, paginationContainer.firstChild);
+
+                const firstPageButton = document.createElement('button');
+                firstPageButton.textContent = '1';
+
+                firstPageButton.addEventListener('click', () => {
+                    currentPage = 1;
+                    displayParticipants();
+                });
+
+                paginationContainer.insertBefore(firstPageButton, paginationContainer.firstChild);
+            }
+
+            if (endPage < totalPages) {
+                const ellipsis = document.createElement('span');
+                ellipsis.textContent = '...';
+                paginationContainer.appendChild(ellipsis);
+
+                const lastPageButton = document.createElement('button');
+                lastPageButton.textContent = totalPages;
+
+                lastPageButton.addEventListener('click', () => {
+                    currentPage = totalPages;
+                    displayParticipants();
+                });
+
+                paginationContainer.appendChild(lastPageButton);
+            }
+        };
+
+        const buildDropdownView = () => {
+            const rowView = document.getElementById('row-view');
+            rowView.innerHTML = '';
+
+            pageSizeOptions.forEach(optionValue => {
+                const option = document.createElement('option');
+                option.value = optionValue;
+                option.textContent = optionValue.toString();
+                option.selected = optionValue === selectedPageSize;
+                rowView.appendChild(option);
             });
-        }
 
-        let counter = 1;
-        const addRow = () => {
-            const form = document.querySelector("form");
-            const container = document.querySelector(`#firstRow-${counter}`);
-
-            if (counter > 1) {
-                const remove = container.querySelector(".remove-row");
-                remove.style.display = 'inline-flex';
-            }
-
-            const moneyInput = container.querySelector(".money input");
-            const quantityInput = container.querySelector(".custom-quantity input");
-            if (moneyInput.value === '' || quantityInput.value === '') {
-                return;
-            }
-
-            const newRow = document.createElement("div");
-            newRow.classList.add("form-control");
-            newRow.setAttribute("id", `firstRow-${counter + 1}`);
-            newRow.setAttribute("attr", `${counter + 1}`);
-            newRow.innerHTML = container.innerHTML;
-
-            // Update label and button attributes
-            const label = newRow.querySelector(".money label");
-            label.textContent = `#${parseInt(counter) + 1} Monto en RD$`;
-
-            const add = newRow.querySelector(".add");
-            add.setAttribute("onclick", `addInput(${counter + 1})`);
-            const less = newRow.querySelector(".less");
-            less.setAttribute("onclick", `lessInput(${counter + 1})`);
-
-            // hide add button in the previous row
-            const previousRow = document.querySelector(`#firstRow-${counter}`);
-            const addButton = previousRow.querySelector(".add-row");
-            addButton.style.display = 'none';
-            //Make the button + - dissapear
-            const customQuantity = document.querySelector('.custom-quantity')
-            customQuantity.querySelector('.less').remove()
-            customQuantity.querySelector('.add').remove()
-
-
-            quantityOfPrices = customQuantity.querySelector('.quantityOfPrices')
-            quantityOfPrices.setAttribute('readonly','true')
-        
-
-            form.appendChild(newRow);
-            counter++;
+            rowView.addEventListener('change', () => {
+                const selectedPageSize = parseInt(rowView.value);
+                getData();
+            });
         };
 
-
-        const removeRow = (button) => {
-            const form = document.querySelector("form");
-            // cannot remove the first row
-            if (counter === 1) {
-                return;
-            }
-
-            const rowNumber = button.parentNode.parentNode.getAttribute('attr')
-            const countRows = document.querySelectorAll('.form-control').length;
-
-            counter = countRows - 1;
-
-            // if the row to remove is not the last one reorder the rows
-            if (rowNumber != countRows) {
-                for (let i = parseInt(rowNumber) + 1; i <= countRows; i++) {
-                    const row = document.querySelector(`#firstRow-${i}`);
-                    const label = row.querySelector(".money label");
-                    label.textContent = `#${parseInt(i) - 1} Monto en RD$`;
-
-                    const add = row.querySelector(".add");
-                    add.setAttribute("onclick", `addInput(${i - 1})`);
-                    const less = row.querySelector(".less");
-                    less.setAttribute("onclick", `lessInput(${i - 1})`);
-
-                    row.setAttribute("id", `firstRow-${i - 1}`);
-                    row.setAttribute("attr", `${i - 1}`);
-                }
-            }
-
-            // there always be add button in the previous row, unless you remove a middle row
-            if (rowNumber == countRows) {
-                const previousRow = document.querySelector(`#firstRow-${parseInt(rowNumber) - 1}`);
-                const addButton = previousRow.querySelector(".add-row");
-                addButton.style.display = 'inline-flex';
-            }
-
-            form.removeChild(button.parentNode.parentNode);
-        };
-
-        const addInput = (rowNumber) => {
-            const input = document.querySelector(`#firstRow-${rowNumber} input[name='quantity']`);
+        const addInput = () => {
+            const input = document.querySelector(`input[name='quantity']`);
             if (input.value === '') {
                 input.value = 0;
             }
             input.value = parseInt(input.value) + 1;
         };
 
-        const lessInput = (rowNumber) => {
-            const input = document.querySelector(`#firstRow-${rowNumber} input[name='quantity']`);
+        const lessInput = () => {
+            const input = document.querySelector(`input[name='quantity']`);
             if (input.value === '') {
                 input.value = 0;
             }
@@ -227,8 +280,6 @@
                 input.value = parseInt(input.value) - 1;
             }
         };
-
-        let numericValue = 0;
 
         const moneyMask = (event) => {
             const value = event.target.value.replace(/\D/g, '');
@@ -244,65 +295,43 @@
             }
         };
 
+        const saveForm = async (event) => {
+            event.preventDefault();
 
-        const saveForm = async () => {
+            // Obtén los elementos del formulario
+            const roundInput = document.getElementById("round");
+            const moneyInput = document.getElementById("money");
+            const quantityInput = document.querySelector(".quantityOfPrices");
+
+            // Obtén los valores de los elementos
+            const roundValue = roundInput.value;
+            const moneyValue = moneyInput.value;
+            const quantityValue = quantityInput.value;
+
+            // Ahora puedes usar roundValue, moneyValue y quantityValue según tus necesidades
+
             const form = document.querySelector("form");
             const formControls = form.querySelectorAll(".form-control");
+
             errorMessage.classList.add("hidden");
             successMessage.classList.add("hidden");
 
-            const formData = [];
+            const data = {
+                round: roundValue,
+                amount: moneyValue,
+                quantity: quantityValue,
+            };
 
-            let isValid = true;
-
-            formControls.forEach((control) => {
-                const moneyInput = control.querySelector(".money input");
-                const quantityInput = control.querySelector(".custom-quantity input");
-
-                const amount = moneyInput.value.replace(/[^\d]/g, ''); // Remove non-numeric characters
-                const quantity = quantityInput.value;
-
-                if (amount === '' || quantity === '') {
-                    isValid = false;
-
-                    // Highlight or display an error for the user
-                    moneyInput.classList.toggle("error", amount === '');
-                    quantityInput.classList.toggle("error", quantity === '');
-
-                    // Focus on the first empty input
-                    if (amount === '' && isValid) {
-                        moneyInput.focus();
-                    } else if (quantity === '' && isValid) {
-                        quantityInput.focus();
-                    }
-                } else {
-                    formData.push({
-                        // amount should be in money format
-                        amount: currencyFormat(amount) || 0,
-                        quantity: parseInt(quantity) || 0,
-                    });
-                }
-            });
-
-            if (isValid) {
-                // Do something with the form data
-                const response = await fetch('/prizes/upload', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData),
-                });
-                const json = await response.json();
-                // success message
-                successMessage.classList.remove("hidden");
-                successMessage.textContent = json.message;
-            } else {
-                // Optionally, display an error message or take appropriate action
+            const response = await callIn("POST", "/prizes/create", data);
+            if (response.status === 400) {
                 errorMessage.classList.remove("hidden");
-                errorMessage.textContent = "Debe llenar todos los campos";
+                errorMessage.textContent = response.message;
+                return;
             }
+            form.reset();
+            onLoad();
         };
+
 
         const clearPrizes = async () => {
             const confirmation = confirm('¿Está seguro que desea eliminar la lista de premios?');

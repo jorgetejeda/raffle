@@ -14,6 +14,10 @@ form .form-control {
     gap: 24px;
 }
 
+form .control {
+    flex: 1;
+}
+
 form .control label {
     display: block;
     align-items: center;
@@ -27,7 +31,6 @@ form .control label {
 
 form .money {
     width: 100%;
-    max-width: 452px;
     display: flex;
     flex-direction: column;
 }
@@ -38,6 +41,7 @@ form .custom-quantity {
     outline: 1px solid var(--neutral-black);
     border-radius: 3rem;
     outline: 1px solid var(--neutral-black);
+    max-width: 181px;
 }
 
 form .static-quantity {

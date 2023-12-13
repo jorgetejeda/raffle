@@ -6,6 +6,10 @@ const DIRECTORY = './database';
 
 router.get('/prizes/view', (req, res) => {
     const prizes = fs.readFileSync('./database/prizes.json', 'utf8');
+
+    if (!prizes) {
+        return res.json({ status: 404, message: 'No hay premios disponibles', prizes: [] });
+    }
     return res.json({ status: 'success', message: 'success', prizes: JSON.parse(prizes) });
 })
 
@@ -34,25 +38,30 @@ router.get('/prizes/round', (req, res) => {
     }
 });
 
-router.post('/prizes/upload', async (req, res) => {
+router.post('/prizes/create', async (req, res) => {
     const prizes = req.body;
 
-    const prizesArr = prizes.map(prize => ({
+    const prizesArr = {
         id: new Date().getTime() + Math.floor(Math.random() * 1000),
-        amount: prize.amount,
-        quantity: prize.quantity,
-        left: prize.quantity,
+        amount: prizes.amount,
+        quantity: parseInt(prizes.quantity),
+        left: parseInt(prizes.quantity),
+        round: parseInt(prizes.round),
     }
-    ));
+
+    const filePrizes = fs.readFileSync('./database/prizes.json', 'utf8');
+    const prizesJSON = JSON.parse(filePrizes);
+    prizesJSON.push(prizesArr);
+    prizesJSON.sort((a, b) => a.round - b.round);
 
     fs.mkdirSync(DIRECTORY, { recursive: true });
-    fs.writeFileSync('./database/prizes.json', JSON.stringify(prizesArr, null, 2));
+    fs.writeFileSync('./database/prizes.json', JSON.stringify(prizesJSON, null, 2));
     return res.json({ status: 'success', message: "Los premios han sido creado con exito!" });
 })
 
 router.delete('/prizes/delete', (req, res) => {
     fs.writeFileSync('./database/prizes.json', JSON.stringify([], null, 2));
-    return res.json({ status: 'success', message: 'Los premios han sido eliminados' });
+    return res.json({ status: 200, message: 'Los premios han sido eliminados' });
 });
 
 module.exports = router;
