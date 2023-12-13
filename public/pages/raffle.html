@@ -105,13 +105,13 @@
 		let selectedPrize = null;
 		let winnerId = null;
 		let round = null;
+		let isLastPrice = false;
 
 		const namesEl = document.querySelector(".names");
 		const winnerEl = document.querySelector(".winner");
 		const attrId = document.querySelector(".names").getAttribute("attr");
 		const winnerContainer = document.querySelector(".winner");
 		const confettiContainer = document.querySelector("#confetti-container");
-
 
 		const init = () => {
 			winnerEl.classList.add("hidden");
@@ -127,6 +127,9 @@
 			imgs.forEach((img) => {
 				img.style.width = "auto";
 			});
+
+			const roundEl = document.querySelector("#round");
+			roundEl.innerText = isLastPrice ? `Ronda ${round} completada` : "";
 		};
 
 		const onLoad = async () => {
@@ -146,10 +149,19 @@
 				addPrize.classList.remove("hidden");
 				return;
 			}
+
+			if (prizesResponse.prizes.length === 0) {
+				initRaffle.setAttribute("disabled", true);
+				const addPrize = document.querySelector(".add-prize");
+				addPrize.classList.remove("hidden");
+				return;
+			}
+
 			prizes = prizesResponse.prizes;
 			round = prizesResponse.prizes[0].round;
 			const roundEl = document.querySelector("#round");
-			roundEl.innerText = `Ronda ${round}`;
+			roundEl.innerText = !!round ? `Ronda ${round}` : "";
+			isLastPrice = prizes.reduce((acc, prize) => acc + prize.left, 0) === 1
 		};
 
 		const startRaffle = () => {
@@ -168,7 +180,7 @@
 		const counter = () => {
 			if (prizes.every(p => p.left === 0)) {
 				const textCompleteRound = document.querySelector("#complete-round");
-				textCompleteRound.innerText = "Ronda Finalizada!";
+				textCompleteRound.innerText = "Finalizar Ronda!";
 				winnerEl.style.display = "none";
 				return
 			}
@@ -194,13 +206,15 @@
 		};
 
 		function randomName() {
-			const rand = Math.floor(Math.random() * participants.length);
-			const name = participants[rand].name;
-			namesEl.setAttribute("attr", participants[rand].id);
+			const randomParticipantsWithoutWinner = participants.filter((p) => !p.winner);
+			const rand = Math.floor(Math.random() * randomParticipantsWithoutWinner.length);
+			const name = randomParticipantsWithoutWinner[rand].name;
+			namesEl.setAttribute("attr", randomParticipantsWithoutWinner[rand].id);
 			namesEl.innerText = capitalize(name);
 		}
 
 		function showRaffle() {
+
 			winnerEl.classList.add("hidden");
 			namesEl.classList.remove("hidden");
 			winnerContainer.style.display = "none";
@@ -228,6 +242,13 @@
 					confetti.stop();
 					confettiContainer.classList.add("hidden");
 					btnContainer.classList.remove("opacity");
+
+					if (isLastPrice) {
+						console.log('is last price')
+						const restartRaffleBtn = btnContainer.querySelector(".restart-raffle");
+						restartRaffleBtn.innerText = "Ronda Finalizada!";
+					}
+
 				}, 5000);
 
 				const winner = participants.find((p) => p.id === winnerId);
@@ -249,16 +270,20 @@
 			const prize = prizes.find((p) => p.id == selectedPrize);
 			prize.left = prize.left - 1;
 
-			const participant = participants.find((p) => p.id == winnerId);
-			participant.winner = true;
+			participants.map((p) => {
+				if (p.id === winnerId) {
+					p.winner = true;
+				}
+				return p;
+			});
+
 
 			if (prizes.every((p) => p.left === 0)) {
-				const textCompleteRound = document.querySelector("#complete-round");
-				textCompleteRound.innerText = "Ronda Finalizada!";
-				// const btnContainer = document.querySelector(".btn-raffle-actions");
-				// btnContainer.classList.add("opacity");
+				winnerEl.style.display = "none";
+				init();
 				return
 			}
+			isLastPrice = prizes.reduce((acc, prize) => acc + prize.left, 0) === 1
 
 			showRaffle();
 		};
