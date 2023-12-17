@@ -33,7 +33,7 @@
 			}
 		}
 
-		.add-award {
+		.add-resources {
 			color: #fff;
 			font-size: 1.5rem;
 			text-decoration: none;
@@ -42,7 +42,7 @@
 		}
 
 		/* hover and text decoraton*/
-		.add-award:hover {
+		.add-resources:hover {
 			text-decoration: underline;
 		}
 	</style>
@@ -65,7 +65,7 @@
 			</div>
 			<button class="init-raffle btn-raffle" onclick="startRaffle()">Iniciar rifa</button>
 			<!-- Add link to add awards-->
-			<a href="/awards" class="add-award hidden">Click para agregar premios</a>
+			<a href="/" class="add-resources hidden">Click para agregar los recursos necesarios</a>
 
 			<!-- Show counter -->
 			<div class="counter"></div>
@@ -136,23 +136,24 @@
 			const initRaffle = document.querySelector(".init-raffle");
 			initRaffle.classList.remove("hidden");
 
-			const response = await fetch("/participants/view");
-			const json = await response.json();
-			participants = json.participants.filter((p) => !p.winner);
-
+			const participantsResponse = await callIn("GET", "/participants/view");
 			const awardsResponse = await callIn("GET", "/awards/round");
-			if (awardsResponse.status === 400) {
-				console.log("it doesnt have awards");
+
+			participants = participantsResponse.participants;
+
+
+			if (participantsResponse.status === 400 || awardsResponse.status === 400) {
+				console.log("it doesnt have participants or awards");
 				initRaffle.setAttribute("disabled", true);
-				const addaward = document.querySelector(".add-award");
-				addaward.classList.remove("hidden");
+				const addParticipant = document.querySelector(".add-resources");
+				addParticipant.classList.remove("hidden");
 				return;
 			}
 
-			if (awardsResponse.awards.length === 0) {
+			if (awardsResponse.awards.length === 0 || participants.length === 0) {
 				initRaffle.setAttribute("disabled", true);
-				const addaward = document.querySelector(".add-award");
-				addaward.classList.remove("hidden");
+				const addResources = document.querySelector(".add-resources");
+				addResources.classList.remove("hidden");
 				return;
 			}
 
