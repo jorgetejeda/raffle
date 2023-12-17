@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path");
-const fs = require('fs-extra');
 
 const participantRoute = require('./src/route/participant');
 const winnerRoute = require('./src/route/winner');
@@ -22,7 +21,7 @@ app.get('/participants', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/pages/participants.html'));
 })
 
-app.get('/prizes', (req, res) => {
+app.get('/awards', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/pages/prizes.html'));
 })
 
@@ -35,6 +34,25 @@ app.get('/winners', (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-    console.log(`OPEN: http://localhost:${PORT}`)
+    const resetColor = '\x1b[0m';
+    const greenColor = '\x1b[32m';
+    const yellowColor = '\x1b[33m';
+    const cyanColor = '\x1b[36m';
+
+    isFirstRun = false;
+    // Título de bienvenida
+    console.log('');
+    console.log(greenColor, '¡Bienvenido a Raffle App!', resetColor);
+    console.log(greenColor, '   -------------------', resetColor);
+    console.log('');
+
+    // Mensajes informativos con colores
+    console.log(cyanColor, 'Para una mejor experiencia, la aplicación se ejecuta en el DNS "raffle-app", que debe estar configurado previamente en tu host de Windows o Mac.', resetColor);
+    console.log(cyanColor, 'Si aún no has configurado el DNS en tu host, puedes acceder a la aplicación mediante el puerto 3500.', resetColor);
+    console.log('');
+
+    // Enlaces para acceder a la aplicación
+    console.log(yellowColor, 'Usar DNS:        ', `http://raffle-app.crecer:${PORT}`, resetColor);
+    console.log(yellowColor, 'Usar Localhost:  ', `http://localhost:${PORT}`, resetColor);
 });
+
