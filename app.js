@@ -22,7 +22,7 @@ app.get('/participants', (req, res) => {
 })
 
 app.get('/awards', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/pages/prizes.html'));
+res.sendFile(path.join(__dirname, 'public/pages/awards.html'));
 })
 
 app.get('/raffle', (req, res) => {
