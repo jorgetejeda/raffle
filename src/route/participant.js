@@ -55,10 +55,10 @@ router.get('/participants/view', (req, res) => {
     return res.json({ status: 'success', message: 'success', participants: JSON.parse(participants) });
 });
 
-router.put('/participants/winner/:winnerId/:prizeId', (req, res) => {
+router.put('/participants/winner/:winnerId/:awardId', (req, res) => {
 
     try {
-        const { winnerId, prizeId } = req.params;
+        const { winnerId, awardId } = req.params;
 
         const fileParticipants = fs.readFileSync('./database/participants.json', 'utf8');
         const participants = JSON.parse(fileParticipants)
@@ -74,19 +74,19 @@ router.put('/participants/winner/:winnerId/:prizeId', (req, res) => {
             return participant;
         });
 
-        const filePrizes = fs.readFileSync('./database/prizes.json', 'utf8');
-        const updatedPrizes = JSON.parse(filePrizes).map(prize => {
-            if (prize.id === parseInt(prizeId)) {
-                console.log(typeof prize.id, typeof parseInt(prizeId))
+        const fileawards = fs.readFileSync('./database/awards.json', 'utf8');
+        const updatedAwards = JSON.parse(fileawards).map(award => {
+            if (award.id === parseInt(awardId)) {
+                console.log(typeof award.id, typeof parseInt(awardId))
                 return {
-                    ...prize,
-                    left: prize.left - 1,
+                    ...award,
+                    left: award.left - 1,
                 }
             }
-            return prize;
+            return award;
         });
 
-        const amount = updatedPrizes.find(prize => prize.id === parseInt(prizeId)).amount;
+        const amount = updatedAwards.find(award => award.id === parseInt(awardId)).amount;
 
         if (amount === 0) {
             throw new Error('No hay premios disponibles');
@@ -100,11 +100,11 @@ router.put('/participants/winner/:winnerId/:prizeId', (req, res) => {
         const winnersArray = fileWinners ? JSON.parse(fileWinners) : [];
         winnersArray.push(findWinner);
 
-        fs.writeFileSync('./database/prizes.json', JSON.stringify(updatedPrizes, null, 2));
+        fs.writeFileSync('./database/awards.json', JSON.stringify(updatedAwards, null, 2));
         fs.writeFileSync('./database/participants.json', JSON.stringify(updateParticipants, null, 2));
         fs.writeFileSync('./database/winners.json', JSON.stringify(winnersArray, null, 2));
 
-        return res.json({ status: 200, message: 'success', prizes: updatedPrizes });
+        return res.json({ status: 200, message: 'success', awards: updatedAwards });
     }
     catch (error) {
         return res.json({ status: 400, message: 'error', error: error.message });
