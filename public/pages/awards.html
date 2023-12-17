@@ -62,31 +62,11 @@
                 </form>
                 <div class="error-message hidden"></div>
                 <div class="success-message hidden"></div>
-                <div>
-                </div>
             </div>
 
             <div class="card">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Ronda</th>
-                            <th>Monto</th>
-                            <th>Cantidad</th>
-                            <th>Quedan</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody id="data"></tbody>
-                </table>
+                <table id="data-table"></table>
             </div>
-
-            <div class="table-footer">
-                <div id="pagination"></div>
-                <select id="row-view" onchange="selectView()"></select>
-            </div>
-
         </div>
     </main>
 
@@ -94,173 +74,31 @@
 
     <script src="scripts/common.js"></script>
     <script src="scripts/api.js"></script>
+    <script src="scripts/datatable.js"></script>
     <script>
-        let dataArr = [];
-        let filterData = [];
 
-        let currentPage = 1;
-
-        let selectedPageSize = 10;
-        const pageSizeOptions = [10, 20, 50];
-
-        const paginationContainer = document.getElementById('pagination');
-        const dataContent = document.getElementById('data');
         const successMessage = document.querySelector(".success-message");
         const errorMessage = document.querySelector(".error-message");
 
-
-        const getData = async () => {
-            const dataResponse = await callIn('GET', '/prizes/view');
-            if (dataResponse.status === 400) {
+        const onLoad = async () => {
+            const { awards, status } = await callIn('GET', '/awards/view');
+            if (status === 400) {
                 console.log("it doesnt have prizes");
             }
 
-            dataArr = dataResponse.prizes;
-            filterData = dataArr;
-        }
-
-        const onLoad = async () => {
-            buildDropdownView();
-            await getData();
-            displayData();
-        };
-
-        const displayData = () => {
-            dataContent.innerHTML = '';
-
-            const startIndex = (currentPage - 1) * selectedPageSize;
-            const endIndex = startIndex + selectedPageSize;
-
-            if (filterData.length === 0) {
-                const tr = document.createElement('tr');
-                const td = document.createElement('td');
-                td.textContent = 'No hay registros';
-                td.colSpan = 6;
-                td.style.textAlign = 'center';
-                tr.appendChild(td);
-                dataContent.appendChild(tr);
-
-                //disabled export button
-                const clearButton = document.querySelector('.clear');
-                clearButton.disabled = true;
-                return;
-            }
-
-            for (let i = startIndex; i < endIndex && i < filterData.length; i++) {
-                const dataToDisplay = filterData[i];
-
-                const tr = document.createElement('tr');
-                const tdId = document.createElement('td');
-                const tdRound = document.createElement('td');
-                const tdAmount = document.createElement('td');
-                const tdQuantity = document.createElement('td');
-                const tdLeft = document.createElement('td');
-
-                tdId.textContent = dataToDisplay.id;
-                tdRound.textContent = dataToDisplay.round;
-                tdAmount.textContent = dataToDisplay.amount;
-                tdQuantity.textContent = dataToDisplay.quantity;
-                tdLeft.textContent = dataToDisplay.left;
-
-                tr.appendChild(tdId);
-                tr.appendChild(tdRound);
-                tr.appendChild(tdAmount);
-                tr.appendChild(tdQuantity);
-                tr.appendChild(tdLeft);
-
-                dataContent.appendChild(tr);
-            }
-
-            updatePagination();
-            buildDropdownView();
-        };
-
-        const updatePagination = () => {
-            const totalData = filterData.length;
-            const pageSize = parseInt(document.getElementById('row-view').value);
-            const totalPages = Math.ceil(totalData / pageSize);
-
-            paginationContainer.innerHTML = '';
-
-            const maxVisiblePages = 10;
-            const middlePage = Math.ceil(maxVisiblePages / 2);
-            let startPage, endPage;
-
-            if (currentPage <= middlePage || totalPages <= maxVisiblePages) {
-                startPage = 1;
-                endPage = Math.min(totalPages, maxVisiblePages);
-            } else if (currentPage + middlePage > totalPages) {
-                startPage = totalPages - maxVisiblePages + 1;
-                endPage = totalPages;
-            } else {
-                startPage = currentPage - middlePage + 1;
-                endPage = currentPage + middlePage - 1;
-            }
-
-            for (let i = startPage; i <= endPage; i++) {
-                const pageButton = document.createElement('button');
-                if (i === currentPage) {
-                    pageButton.classList.add('active');
-                }
-                pageButton.textContent = i;
-
-                pageButton.addEventListener('click', () => {
-                    currentPage = i;
-                    displayParticipants();
-                });
-
-                paginationContainer.appendChild(pageButton);
-            }
-
-            if (startPage > 1) {
-                const ellipsis = document.createElement('span');
-                ellipsis.textContent = '...';
-                paginationContainer.insertBefore(ellipsis, paginationContainer.firstChild);
-
-                const firstPageButton = document.createElement('button');
-                firstPageButton.textContent = '1';
-
-                firstPageButton.addEventListener('click', () => {
-                    currentPage = 1;
-                    displayParticipants();
-                });
-
-                paginationContainer.insertBefore(firstPageButton, paginationContainer.firstChild);
-            }
-
-            if (endPage < totalPages) {
-                const ellipsis = document.createElement('span');
-                ellipsis.textContent = '...';
-                paginationContainer.appendChild(ellipsis);
-
-                const lastPageButton = document.createElement('button');
-                lastPageButton.textContent = totalPages;
-
-                lastPageButton.addEventListener('click', () => {
-                    currentPage = totalPages;
-                    displayParticipants();
-                });
-
-                paginationContainer.appendChild(lastPageButton);
-            }
-        };
-
-        const buildDropdownView = () => {
-            const rowView = document.getElementById('row-view');
-            rowView.innerHTML = '';
-
-            pageSizeOptions.forEach(optionValue => {
-                const option = document.createElement('option');
-                option.value = optionValue;
-                option.textContent = optionValue.toString();
-                option.selected = optionValue === selectedPageSize;
-                rowView.appendChild(option);
-            });
-
-            rowView.addEventListener('change', () => {
-                const selectedPageSize = parseInt(rowView.value);
-                getData();
-            });
+            initDataTable({
+                data: awards,
+                columns: [
+                    { name: 'round', title: 'Ronda' },
+                    { name: 'amount', title: 'Monto en RD$' },
+                    { name: 'quantity', title: 'Cantidad de premios' },
+                ],
+                pagination: {
+                    currentPage: 1,
+                    LimitView: 10,
+                    collectionView: [10, 20, 50],
+                },
+            })
         };
 
         const addInput = () => {
@@ -285,7 +123,6 @@
             const value = event.target.value.replace(/\D/g, '');
             event.target.value = currencyFormat(value);
         };
-
 
         const handlePaste = (event) => {
             const clipboardData = event.clipboardData || window.clipboardData;
@@ -322,7 +159,7 @@
                 quantity: quantityValue,
             };
 
-            const response = await callIn("POST", "/prizes/create", data);
+            const response = await callIn("POST", "/awards/create", data);
             if (response.status === 400) {
                 errorMessage.classList.remove("hidden");
                 errorMessage.textContent = response.message;
@@ -336,16 +173,17 @@
         const clearPrizes = async () => {
             const confirmation = confirm('¿Está seguro que desea eliminar la lista de premios?');
             if (!confirmation) return;
-            fetch('/prizes/delete', {
-                method: 'DELETE'
-            })
-                .then(response => response.json())
-                .then(json => {
-                    if (json.success) {
-                        alert('Lista de participantes eliminada');
-                        window.location.reload();
-                    }
-                });
+
+            const response = await callIn("DELETE", "/awards/delete");
+            if (response.status === 400) {
+                errorMessage.classList.remove("hidden");
+                errorMessage.textContent = response.message;
+                return;
+            }
+            successMessage.classList.remove("hidden");
+            successMessage.textContent = response.message;
+            // TODO: add modal with message
+            alert('Lista de participantes eliminada');
             onLoad();
         }
 

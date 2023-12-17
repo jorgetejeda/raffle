@@ -24,6 +24,7 @@ const initDataTable = ({
     onDelete = null,
     onEdit = null,
     pagination = null,
+    hasSearch = false,
 }) => {
 
     const countData = data.length
@@ -96,7 +97,7 @@ const initDataTable = ({
     }
     pagination = { ...pagination, totalPages: countData }
     footerDataTable(pagination);
-    if (!document.querySelector('.search-input')) {
+    if ( hasSearch && !document.querySelector('.search-input')) {
         searchDataTable();
     }
 }

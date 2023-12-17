@@ -33,7 +33,7 @@
 			}
 		}
 
-		.add-prize {
+		.add-award {
 			color: #fff;
 			font-size: 1.5rem;
 			text-decoration: none;
@@ -42,7 +42,7 @@
 		}
 
 		/* hover and text decoraton*/
-		.add-prize:hover {
+		.add-award:hover {
 			text-decoration: underline;
 		}
 	</style>
@@ -64,8 +64,8 @@
                 <span class="text-white" id="round"></span>
 			</div>
 			<button class="init-raffle btn-raffle" onclick="startRaffle()">Iniciar rifa</button>
-			<!-- Add link to add prizes-->
-			<a href="/prizes" class="add-prize hidden">Click para agregar premios</a>
+			<!-- Add link to add awards-->
+			<a href="/awards" class="add-award hidden">Click para agregar premios</a>
 
 			<!-- Show counter -->
 			<div class="counter"></div>
@@ -100,8 +100,8 @@
 	<script src="scripts/api.js"></script>
 	<script>
 		let participants = [];
-		let prizes = [];
-		let selectedPrize = null;
+		let awards = [];
+		let selectedAward = null;
 		let winnerId = null;
 		let round = null;
 		let isLastPrice = false;
@@ -140,27 +140,27 @@
 			const json = await response.json();
 			participants = json.participants.filter((p) => !p.winner);
 
-			const prizesResponse = await callIn("GET", "/prizes/round");
-			if (prizesResponse.status === 400) {
-				console.log("it doesnt have prizes");
+			const awardsResponse = await callIn("GET", "/awards/round");
+			if (awardsResponse.status === 400) {
+				console.log("it doesnt have awards");
 				initRaffle.setAttribute("disabled", true);
-				const addPrize = document.querySelector(".add-prize");
-				addPrize.classList.remove("hidden");
+				const addaward = document.querySelector(".add-award");
+				addaward.classList.remove("hidden");
 				return;
 			}
 
-			if (prizesResponse.prizes.length === 0) {
+			if (awardsResponse.awards.length === 0) {
 				initRaffle.setAttribute("disabled", true);
-				const addPrize = document.querySelector(".add-prize");
-				addPrize.classList.remove("hidden");
+				const addaward = document.querySelector(".add-award");
+				addaward.classList.remove("hidden");
 				return;
 			}
 
-			prizes = prizesResponse.prizes;
-			round = prizesResponse.prizes[0].round;
+			awards = awardsResponse.awards;
+			round = awardsResponse.awards[0].round;
 			const roundEl = document.querySelector("#round");
 			roundEl.innerText = !!round ? `Ronda ${round}` : "";
-			isLastPrice = prizes.reduce((acc, prize) => acc + prize.left, 0) === 1
+			isLastPrice = awards.reduce((acc, award) => acc + award.left, 0) === 1
 		};
 
 		const startRaffle = () => {
@@ -177,7 +177,7 @@
 		};
 
 		const counter = () => {
-			if (prizes.every(p => p.left === 0)) {
+			if (awards.every(p => p.left === 0)) {
 				const textCompleteRound = document.querySelector("#complete-round");
 				textCompleteRound.innerText = "Finalizar Ronda!";
 				winnerEl.style.display = "none";
@@ -218,7 +218,7 @@
 			namesEl.classList.remove("hidden");
 			winnerContainer.style.display = "none";
 
-			selectedPrize = prizes.find((p) => p.left > 0).id;
+			selectedAward = awards.find((p) => p.left > 0).id;
 
 			const btnContainer = document.querySelector(".btn-raffle-actions");
 			btnContainer.classList.add("opacity");
@@ -251,7 +251,7 @@
 				}, 5000);
 
 				const winner = participants.find((p) => p.id === winnerId);
-				const amount = prizes.find((p) => p.id == selectedPrize).amount;
+				const amount = awards.find((p) => p.id == selectedAward).amount;
 				winnerContainer.classList.remove("hidden");
 
 				winnerEl.querySelector(".name").innerText = capitalize(namesEl.innerText);
@@ -264,10 +264,10 @@
 		}
 
 		const restartInitRaffle = async () => {
-			const prizeResponse = await callIn("PUT", `/participants/winner/${winnerId}/${selectedPrize}`);
-
-			const prize = prizes.find((p) => p.id == selectedPrize);
-			prize.left = prize.left - 1;
+			const awardResponse = await callIn("PUT", `/participants/winner/${winnerId}/${selectedAward}`);
+			console.log(awardResponse);
+			const award = awards.find((p) => p.id == selectedAward);
+			award.left = award.left - 1;
 
 			participants.map((p) => {
 				if (p.id === winnerId) {
@@ -277,12 +277,12 @@
 			});
 
 
-			if (prizes.every((p) => p.left === 0)) {
+			if (awards.every((p) => p.left === 0)) {
 				winnerEl.style.display = "none";
 				init();
 				return
 			}
-			isLastPrice = prizes.reduce((acc, prize) => acc + prize.left, 0) === 1
+			isLastPrice = awards.reduce((acc, award) => acc + award.left, 0) === 1
 
 			showRaffle();
 		};
