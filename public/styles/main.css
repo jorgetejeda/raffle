@@ -157,6 +157,10 @@ select {
     background: var(--neutral-white);
 }
 
+input{
+    width: 100%;
+}
+
 input:focus {
     border: 1px solid #C09FE3;
 }

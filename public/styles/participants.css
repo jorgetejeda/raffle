@@ -34,13 +34,13 @@ input {
     margin-top: 16px;
 }
 
-#pagination {
+.pagination {
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
 }
 
-#pagination button {
+.pagination button {
     border-radius: 1px;
     border: 1px solid #F3F0FD;
     padding: .5rem 1rem;
@@ -49,11 +49,11 @@ input {
     text-align: center;
 }
 
-#pagination button:hover{
+.pagination button:hover{
     background: #F3F0FD;
 }
 
-#pagination button.active{
+.pagination button.active{
     background: var(--primary-purple);
     color: var(--neutral-white);
 }
