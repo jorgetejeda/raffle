@@ -110,6 +110,7 @@ button.clear:hover {
 .icon-button {
     background: transparent;
     padding: 0;
+    display: flex;
 }
 
 
@@ -147,6 +148,7 @@ footer {
     background: var(--neutral-white);
     padding: 2rem 1.5rem;
     border-radius: .25rem;
+    margin-bottom: 24px;
 }
 
 input,

@@ -20,7 +20,7 @@
 
             <div class="header-content">
                 <h1 class="title">Lista de participantes</h1>
-                <button class="clear" onclick="clearParticipants()">Limpiar lista de participantes</button>
+                <button class="clear hidden" onclick="clearParticipants()">Limpiar lista de participantes</button>
             </div>
 
             <div class="card">
@@ -39,6 +39,10 @@
             const { participants, status } = await callIn('GET', '/participants/view')
             if (status === 400) {
                 console.log("it doesnt have prizes");
+            }
+
+            if (participants.length !== 0) {
+                document.querySelector('.clear').classList.remove('hidden');
             }
 
             initDataTable({
