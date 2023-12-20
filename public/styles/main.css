@@ -110,6 +110,7 @@ button.clear:hover {
 .icon-button {
     background: transparent;
     padding: 0;
+    display: flex;
 }
 
 

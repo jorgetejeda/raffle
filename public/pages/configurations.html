@@ -93,15 +93,57 @@
             font-weight: 400;
         }
 
-        input[type=file]::file-selector-button {
+        .image-picker .input-image-container {
             display: flex;
-            justify-content: center;
-            align-self: center;
+            gap: 8px;
+            border: 1px solid var(--neutral-gray);
+            border-radius: 50px;
+            padding: .5rem .5rem;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
+            max-height: 50px;
+        }
+
+        .image-picker .input-image-container h5 {
+            margin: 0px;
+        }
+
+        .image-picker .input-image-container label {
+            font-family: Manrope;
+            font-size: 12px;
+            line-height: 16px;
+            font-weight: 700;
+            cursor: pointer;
             padding: 8px 24px;
             border-radius: 56px;
             border: none;
             color: var(--neutral-white);
             background: var(--secondary-orange-1);
+            cursor: pointer;
+        }
+
+        .image-picker input[type=file]::file-selector-button {
+            padding: 8px 24px;
+            border-radius: 56px;
+            border: none;
+            color: var(--neutral-white);
+            background: var(--secondary-orange-1);
+            cursor: pointer;
+            display: none;
+        }
+
+        .image-picker input[type=file] {
+            padding: 0;
+            border: none;
+        }
+
+        .image-picker svg {
+            fill: var(--primary-purple);
+        }
+
+        .transparency-text {
+            color: transparent;
         }
     </style>
 </head>
@@ -140,7 +182,19 @@
                     <div class="image-content">
                         <div class="image-picker">
                             <h5>Imagen principal</h5>
-                            <input type="file" name="main-image" id="main-image" accept=".jpg, .png, .jpeg">
+                            <div class="input-image-container">
+                                <label id="main-image-label" for="main-image">Selecciona la imagen</label>
+                                <h5></h5>
+                                <input type="file" name="main-image" class="hidden" id="main-image"
+                                    accept=".jpg, .png, .jpeg" onchange="handleFileChange('main-image')">
+                                <button type="button" class="icon-button remove-file hidden" onclick="clearInput('main-image')">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M19.5265 6.73247C20.1512 6.10776 20.1512 5.09324 19.5265 4.46853C18.9018 3.84382 17.8872 3.84382 17.2625 4.46853L12 9.73606L6.73247 4.47353C6.10776 3.84882 5.09324 3.84882 4.46853 4.47353C3.84382 5.09824 3.84382 6.11276 4.46853 6.73747L9.73606 12L4.47353 17.2675C3.84882 17.8922 3.84882 18.9068 4.47353 19.5315C5.09824 20.1562 6.11276 20.1562 6.73747 19.5315L12 14.2639L17.2675 19.5265C17.8922 20.1512 18.9068 20.1512 19.5315 19.5265C20.1562 18.9018 20.1562 17.8872 19.5315 17.2625L14.2639 12L19.5265 6.73247Z"
+                                            fill="#E42313" />
+                                    </svg>
+                                </button>
+                            </div>
                             <div class="footer-image">
                                 <div class="extension-images">
                                     <small>Extensiones permitidas: <span>.jgp</span>, <span>.png</span></small>
@@ -151,8 +205,20 @@
                             </div>
                         </div>
                         <div class="image-picker">
-                            <h5>Imagen principal</h5>
-                            <input type="file" name="header-image" id="header-image" accept=".jpg, .png, .jpeg">
+                            <h5>Imagen Cabecera (opcional)</h5>
+                            <div class="input-image-container">
+                                <label id="header-image-label" for="header-image">Selecciona la imagen</label>
+                                <h5></h5>
+                                <input type="file" name="header-image" class="hidden" id="header-image"
+                                    accept=".jpg, .png, .jpeg" onchange="handleFileChange('header-image')">
+                                <button type="button" class="icon-button remove-file hidden" onclick="clearInput('header-image')">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M19.5265 6.73247C20.1512 6.10776 20.1512 5.09324 19.5265 4.46853C18.9018 3.84382 17.8872 3.84382 17.2625 4.46853L12 9.73606L6.73247 4.47353C6.10776 3.84882 5.09324 3.84882 4.46853 4.47353C3.84382 5.09824 3.84382 6.11276 4.46853 6.73747L9.73606 12L4.47353 17.2675C3.84882 17.8922 3.84882 18.9068 4.47353 19.5315C5.09824 20.1562 6.11276 20.1562 6.73747 19.5315L12 14.2639L17.2675 19.5265C17.8922 20.1512 18.9068 20.1512 19.5315 19.5265C20.1562 18.9018 20.1562 17.8872 19.5315 17.2625L14.2639 12L19.5265 6.73247Z"
+                                            fill="#E42313" />
+                                    </svg>
+                                </button>
+                            </div>
                             <div class="footer-image">
                                 <div class="extension-images">
                                     <small>Extensiones permitidas: <span>.jgp</span>, <span>.png</span></small>
@@ -178,6 +244,22 @@
 
     <script src="scripts/common.js"></script>
     <script src="scripts/api.js"></script>
+    <script>
+        const handleFileChange = (inputId) => {
+            const inputElement = document.getElementById(inputId);
+            const fileName = inputElement.files[0].name;
+            inputElement.previousElementSibling.textContent = fileName;
+            inputElement.nextElementSibling.classList.remove('hidden');
+            inputElement.previousElementSibling.previousElementSibling.classList.add('hidden');
+        }
+
+        const clearInput = (inputId) => {
+            const inputElement = document.getElementById(inputId);
+            inputElement.previousElementSibling.textContent = '';
+            inputElement.nextElementSibling.classList.add('hidden');
+            inputElement.previousElementSibling.previousElementSibling.classList.remove('hidden');
+        }
+    </script>
 </body>
 
 </html>
