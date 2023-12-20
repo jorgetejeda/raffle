@@ -50,6 +50,7 @@ const initDataTable = ({
         const td = document.createElement('td');
         td.textContent = 'No hay datos para mostrar';
         td.setAttribute('colspan', columns.length);
+        td.classList.add('text-center');
         tr.appendChild(td);
         dataTable.appendChild(tr);
     }
@@ -64,6 +65,10 @@ const initDataTable = ({
     });
     header.appendChild(row);
     dataTable.appendChild(header);
+
+    if (countData === 0) {
+        return;
+    }
 
     for (let i = startIndex; i < endIndex && i < countData; i++) {
         const item = dataArr[i];

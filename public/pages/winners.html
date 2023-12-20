@@ -20,14 +20,14 @@
 
             <div class="header-content">
                 <h1 class="title">Lista de ganadores</h1>
-                <button class="clear" onclick="clearParticipants()">Limpiar lista de participantes</button>
+                <button class="clear hidden" onclick="clearParticipants()">Limpiar lista de participantes</button>
             </div>
 
             <div class="card">
                 <table id="data-table"></table>
             </div>
 
-            <button class="export" onclick="exportExcel()">Exportar a Excel</button>
+            <button class="export hidden" onclick="exportExcel()">Exportar a Excel</button>
 
         </div>
     </main>
@@ -46,6 +46,14 @@
             const { winners, status } = await callIn('GET', '/winners/view')
             if (status === 400) {
                 console.log("it doesnt have prizes");
+            }
+
+            if (winners.length === 0) {
+                document.querySelector('.clear').classList.add('hidden');
+                document.querySelector('.export').classList.add('hidden');
+            } else {
+                document.querySelector('.clear').classList.remove('hidden');
+                document.querySelector('.export').classList.remove('hidden');
             }
 
             initDataTable({

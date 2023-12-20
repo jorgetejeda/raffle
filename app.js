@@ -33,6 +33,10 @@ app.get('/winners', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/pages/winners.html'));
 })
 
+app.get('/configurations', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/pages/configurations.html'));
+})
+
 app.listen(PORT, () => {
     const resetColor = '\x1b[0m';
     const greenColor = '\x1b[32m';
