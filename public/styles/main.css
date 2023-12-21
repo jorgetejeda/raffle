@@ -14,7 +14,7 @@ body {
 header {
     width: 100%;
     height: 48px;
-    background: var(--primary-purple);
+    background: var(--main-color);
     display: flex;
     align-items: center;
 }
@@ -52,7 +52,7 @@ a {
     padding: .5rem 1rem;
     text-decoration: none;
     font-family: 'Gilroy', system-ui;
-    color: var(--primary-purple);
+    color: var(--main-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,12 +61,12 @@ a {
 }
 
 a svg {
-    fill: var(--primary-purple);
+    fill: var(--main-color);
 }
 
 a.active,
 a:hover {
-    background: var(--primary-purple-2);
+    background: var(--main-dark-color);
     border-radius: 56px;
     color: var(--neutral-white);
 }
@@ -86,7 +86,7 @@ a:hover svg {
 button {
     padding: .5rem 1rem;
     border-radius: 3rem;
-    background: var(--primary-purple);
+    background: var(--main-color);
     color: var(--neutral-white);
     border: none;
     cursor: pointer;
@@ -94,11 +94,11 @@ button {
 }
 
 button:hover {
-  background: var(--primary-purple-2);
+  background: var(--main-dark-color);
 }
 
 button.clear { 
-    background: var(--secondary-orange-1);
+    background: var(--secondary-color);
     transition: all ease 150ms;
 }
 
@@ -133,7 +133,7 @@ footer {
 }
 
 .content .right-reserved {
-    color: var(--primary-purple);
+    color: var(--main-color);
     font-size: 12px;
     font-style: normal;
     font-weight: 400;

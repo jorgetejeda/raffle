@@ -4,6 +4,7 @@ const path = require("path");
 const participantRoute = require('./src/route/participant');
 const winnerRoute = require('./src/route/winner');
 const awardRoute = require('./src/route/award');
+const configurationRoute= require('./src/route/configuration');
 
 const PORT = process.env.PORT || 3500;
 
@@ -11,7 +12,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(participantRoute, winnerRoute, awardRoute);
+app.use(participantRoute, winnerRoute, awardRoute, configurationRoute);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/pages/index.html'));
