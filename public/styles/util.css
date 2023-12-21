@@ -32,3 +32,19 @@ button[disabled] {
 	font-size: 14px;
 	display: block;
 }
+
+.d-flex { 
+	display: flex;
+}
+
+.flex-row {
+	flex-direction: row;
+}
+
+.items-between{
+	justify-content: space-between;
+}
+
+.px-1 {
+	padding-block: .5rem;
+}
