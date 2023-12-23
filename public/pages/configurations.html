@@ -160,7 +160,7 @@
             </div>
 
             <div class="card">
-                <form id="configuration" class="configuration">
+                <form id="configuration" class="configuration" enctype="multipart/form-data">
                     <h4>Colores</h4>
                     <div class="color-content">
                         <label for="main-color" class="color-picker">
@@ -168,7 +168,7 @@
                                 <div class="color main-color"></div>
                                 <h5>Color principal</h5>
                             </div>
-                            <input type="color" name="main-color" id="main-color" value="#000000"
+                            <input type="color" name="mainColor" id="main-color" value="#000000"
                                 onchange="mainColor(this)">
                         </label>
                         <label for="secondary-color" class="color-picker">
@@ -176,7 +176,7 @@
                                 <div class="color secondary-color"></div>
                                 <h5>Color principal</h5>
                             </div>
-                            <input type="color" name="secondary-color" id="secondary-color" value="#000000"
+                            <input type="color" name="secondaryColor" id="secondary-color" value="#000000"
                                 onchange="secondaryColor(this)">
                         </label>
                     </div>
@@ -187,7 +187,7 @@
                             <div class="input-image-container">
                                 <label id="main-image-label" for="main-image">Selecciona la imagen</label>
                                 <h5></h5>
-                                <input type="file" name="main-image" class="hidden" id="main-image"
+                                <input type="file" name="mainImage" class="hidden" id="main-image"
                                     accept=".jpg, .png, .jpeg" onchange="handleFileChange('main-image')">
                                 <button type="button" class="icon-button remove-file hidden"
                                     onclick="clearInput('main-image')">
@@ -214,7 +214,7 @@
                             <div class="input-image-container">
                                 <label id="header-image-label" for="header-image">Selecciona la imagen</label>
                                 <h5></h5>
-                                <input type="file" name="header-image" class="hidden" id="header-image"
+                                <input type="file" name="headerImage" class="hidden" id="header-image"
                                     accept=".jpg, .png, .jpeg" onchange="handleFileChange('header-image')">
                                 <button type="button" class="icon-button remove-file hidden"
                                     onclick="clearInput('header-image')">
@@ -301,7 +301,7 @@
             r.style.setProperty(`--main-light-color`, lightColor);
         }
 
-        function secondaryColor(element){
+        function secondaryColor(element) {
             const r = document.querySelector(':root')
             const color = element.value;
             const colorName = element.name;
@@ -310,26 +310,20 @@
 
         const submit = async () => {
             const form = document.getElementById('configuration');
+            const formData = new FormData(form);
 
-            const mainColor = document.getElementById('main-color').value;
-            const secondaryColor = document.getElementById('secondary-color').value;
-            const mainImage = document.getElementById('main-image').files[0];
-            const headerImage = document.getElementById('header-image').files[0];
+            console.log(...formData);
 
-            const formData = new FormData();
-            formData.append('mainColor', mainColor);
-            formData.append('secondaryColor', secondaryColor);
-            formData.append('mainImage', mainImage);
-            formData.append('headerImage', headerImage);
+            const { status } = await fetch('/api/configuration', {
+                method: 'POST',
+                body: formData
+            });
 
-            console.log(formData)
+            if (status === 400) {
+                console.log('error')
+            }
 
-            // const { configuration, status } = await callIn('POST', '/api/configuration', formData);
-            // if (status === 400) {
-            //     return;
-            // }
-            
-            // console.log(configuration)
+            // onload();
         }
 
     </script>
