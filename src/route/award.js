@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs-extra');
+const HTTP_RESPONSE = require('../constant/http-response');
 
 const router = express.Router();
 const DIRECTORY = './database';
@@ -8,11 +9,11 @@ router.get('/awards/view', (req, res) => {
     try {
         const awards = fs.readFileSync('./database/awards.json', 'utf8');
         if (!awards) {
-            return res.json({ status: 404, message: 'No hay premios disponibles', awards: [] });
+            return res.json({ ...HTTP_RESPONSE[400]('No hay premios disponibles'), awards: [] });
         }
-        return res.json({ status: 'success', message: 'success', awards: JSON.parse(awards) });
+        return res.json({ ...HTTP_RESPONSE[200](), awards: JSON.parse(awards) });
     } catch (error) {
-        return res.json({ status: 400, message: 'error', error: error.message });
+        return res.json({ ...HTTP_RESPONSE[400](error.message) });
     }
 })
 
@@ -34,10 +35,10 @@ router.get('/awards/round', (req, res) => {
 
         const firstNonEmptyRound = nonEmptyRounds[0];
         const roundawards = awards.filter(prize => prize.round === firstNonEmptyRound);
-        return res.json({ status: 200, message: 'success', awards: roundawards });
+        return res.json({ ...HTTP_RESPONSE[200](), awards: roundawards });
 
     } catch (error) {
-        return res.json({ status: 400, message: 'error', error: error.message });
+        return res.json({ ...HTTP_RESPONSE[400](error.message) });
     }
 });
 
@@ -59,18 +60,18 @@ router.post('/awards/create', async (req, res) => {
 
         fs.mkdirSync(DIRECTORY, { recursive: true });
         fs.writeFileSync('./database/awards.json', JSON.stringify(awardsJSON, null, 2));
-        return res.json({ status: 200, message: "Los premios han sido creado con exito!" });
+        return res.json({ ...HTTP_RESPONSE[200]("Los premios han sido creado con exito!") });
     } catch (error) {
-        return res.json({ status: 400, message: 'error', error: error.message });
+        return res.json({ ...HTTP_RESPONSE[400](error.message) });
     }
 })
 
 router.delete('/awards/delete', (req, res) => {
     try {
         fs.writeFileSync('./database/awards.json', JSON.stringify([], null, 2));
-        return res.json({ status: 200, message: 'Los premios han sido eliminados' });
+        return res.json({ ...HTTP_RESPONSE[200]('Los premios han sido eliminados') });
     } catch (error) {
-        return res.json({ status: 400, message: 'error', error: error.message });
+        return res.json({ ...HTTP_RESPONSE[400](error.message) });
     }
 });
 

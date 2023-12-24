@@ -9,6 +9,7 @@
     <link type="text/css" rel="stylesheet" href="styles/util.css" />
     <link type="text/css" rel="stylesheet" href="styles/awards.css" />
     <link type="text/css" rel="stylesheet" href="styles/participants.css" />
+    <link type="text/css" rel="stylesheet" href="styles/messages.css" />
     <style>
         input {
             margin-bottom: 0;
@@ -66,6 +67,9 @@
 
             <div class="card">
                 <table id="data-table"></table>
+                <div class="message-container hidden">
+                    <div class="messages"></div>
+                </div>
             </div>
         </div>
     </main>
@@ -81,17 +85,18 @@
         const errorMessage = document.querySelector(".error-message");
 
         const onLoad = async () => {
-            const { awards, status } = await callIn('GET', '/awards/view');
+            const { awards, status, message } = await callIn('GET', '/awards/view');
             if (status === 400) {
-                console.log("it doesnt have prizes");
+                handleMessages(status, message);
+                return;
             }
-
             initDataTable({
                 data: awards,
                 columns: [
                     { name: 'round', title: 'Ronda' },
                     { name: 'amount', title: 'Monto en RD$' },
                     { name: 'quantity', title: 'Cantidad de premios' },
+                    {name: 'left', title: 'Cantidad restante' },
                 ],
                 pagination: {
                     currentPage: 1,
@@ -174,16 +179,13 @@
             const confirmation = confirm('¿Está seguro que desea eliminar la lista de premios?');
             if (!confirmation) return;
 
-            const response = await callIn("DELETE", "/awards/delete");
-            if (response.status === 400) {
-                errorMessage.classList.remove("hidden");
-                errorMessage.textContent = response.message;
+            const {status, message} = await callIn("DELETE", "/awards/delete");
+            if (status === 400) {
+                handleMessages(status, message);
                 return;
             }
-            successMessage.classList.remove("hidden");
-            successMessage.textContent = response.message;
-            // TODO: add modal with message
-            alert('Lista de participantes eliminada');
+
+            handleMessages(status, message);
             onLoad();
         }
 

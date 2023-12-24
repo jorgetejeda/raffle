@@ -8,6 +8,8 @@
     <link type="text/css" rel="stylesheet" href="styles/main.css" />
     <link type="text/css" rel="stylesheet" href="styles/upload-file-form.css" />
     <link type="text/css" rel="stylesheet" href="styles/util.css" />
+    <link type="text/css" rel="stylesheet" href="styles/messages.css" />
+
 </head>
 
 <body>
@@ -53,11 +55,13 @@
                 </div>
 
             </div>
-            <div class="error-message hidden"></div>
-            <div class="success-message hidden"></div>
+            
             <div class="form-links-bottom">
                 <button>Guardar cambios</button>
                 <a class="view-participants hidden" href="/participants">Ver lista de participantes</a>
+            </div>
+            <div class="message-container hidden">
+                <div class="messages"></div>
             </div>
         </form>
     </main>
@@ -131,24 +135,15 @@
                 body: formData
             });
 
-            const json = await response.json();
-
-            if (json.status === "200") {
+            const { status, message } = await response.json();
+            if (status === 200) {
+                handleMessages(status, message);
                 const viewLinkButton = document.querySelector(".view-participants");
-                const successMessage = document.querySelector(".success-message");
                 viewLinkButton.classList.remove("hidden");
-                successMessage.textContent = json.message;
-                setTimeout(() => {
-                    successMessage.textContent = "";
-                }, 3000);
-            } else {
-                const errorMessage = document.querySelector(".error-message");
-                errorMessage.classList.remove("hidden");
-                errorMessage.textContent = json.message;
-                setTimeout(() => {
-                    errorMessage.textContent = "";
-                }, 3000);
+                return;
             }
+            handleMessages(status, message);
+
         }
 
 
