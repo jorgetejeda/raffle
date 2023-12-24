@@ -142,7 +142,6 @@
 			participants = participantsResponse.participants;
 
 			if (participantsResponse.status === 400 || awardsResponse.status === 400) {
-				console.log("it doesnt have participants or awards");
 				initRaffle.setAttribute("disabled", true);
 				const addParticipant = document.querySelector(".add-resources");
 				addParticipant.classList.remove("hidden");
@@ -243,7 +242,6 @@
 					btnContainer.classList.remove("opacity");
 
 					if (isLastPrice) {
-						console.log('is last price')
 						const restartRaffleBtn = btnContainer.querySelector(".restart-raffle");
 						restartRaffleBtn.innerText = "Terminar ronda";
 					}
@@ -265,7 +263,6 @@
 
 		const restartInitRaffle = async () => {
 			const awardResponse = await callIn("PUT", `/participants/winner/${winnerId}/${selectedAward}`);
-			console.log(awardResponse);
 			const award = awards.find((p) => p.id == selectedAward);
 			award.left = award.left - 1;
 

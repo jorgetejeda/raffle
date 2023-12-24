@@ -152,7 +152,6 @@
 
         const onLoad = async () => {
             const { configuration, status, message } = await callIn('GET', '/api/configuration');
-            console.log(message)
             if (status === 400) {
                 handleMessages(status, message);
                 return;
