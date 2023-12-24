@@ -12,11 +12,11 @@ router.get('/api/configuration', (req, res) => {
     try {
         const configuration = fs.readFileSync('./database/configuration.json', 'utf8');
         if (Object.keys(configuration).length === 0 && configuration.constructor === Object) {
-            return res.json({ status: 404, message: 'No hay configuraciones disponibles', configuration: {} });
+            return res.json({ ...HTTP_RESPONSE[404](), configuration: {} });
         }
-        return res.json({ status: 200, message: HTTP_RESPONSE[200], configuration: JSON.parse(configuration) });
+        return res.json({ ...HTTP_RESPONSE[200](), configuration: JSON.parse(configuration) });
     } catch (error) {
-        return res.json({ status: 400, message: HTTP_RESPONSE[400], error: error.message });
+        return res.json({ ...HTTP_RESPONSE[400](error.message) });
     }
 });
 
@@ -66,9 +66,9 @@ router.post(
 
             fs.writeFileSync('./database/configuration.json', JSON.stringify(configuration));
 
-            return res.json({ status: 200, message: HTTP_RESPONSE[200]});
+            return res.json({ ...HTTP_RESPONSE[200]() });
         } catch (error) {
-            return res.json({ status: 400, message: HTTP_RESPONSE[400], error: error.message });
+            return res.json({ ...HTTP_RESPONSE[400](error.message) });
         }
     });
 

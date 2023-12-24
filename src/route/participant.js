@@ -2,6 +2,8 @@ const express = require('express');
 const fileUpload = require("express-fileupload");
 const fs = require('fs-extra');
 
+const HTTP_RESPONSE = require('../constant/http-response');
+
 const DIRECTORY = './database';
 
 const router = express.Router();
@@ -11,11 +13,11 @@ router.post('/particpants/upload', fileUpload({ createParentPath: true }), async
     const participantCSV = req.files;
 
     if (!participantCSV) {
-        return res.status(400).json({ status: 'error', message: 'No file uploaded' });
+        return res.json({ ...HTTP_RESPONSE[400]('No file uploaded') });
     }
 
     if (!participantCSV.csvFile.name.endsWith('.csv')) {
-        return res.status(400).json({ status: 'error', message: 'Invalid file type. Only CSV files are allowed.' });
+        return res.json({ ...HTTP_RESPONSE[400]('Invalid file type. Only CSV files are allowed.') });
     }
 
     const participants = participantCSV.csvFile.data.toString('utf8');
@@ -42,17 +44,19 @@ router.post('/particpants/upload', fileUpload({ createParentPath: true }), async
     fs.mkdirSync(DIRECTORY, { recursive: true });
     fs.writeFileSync('./database/participants.json', JSON.stringify(participantsJSON, null, 2));
 
-    return res.json({ status: '200', message: 'Archivo se ha subido con exito', track: participantCSV })
+    console.log({ ...HTTP_RESPONSE[200]('Archivo se ha subido con exito') })
+
+    return res.json({ ...HTTP_RESPONSE[200]('Archivo se ha subido con exito'), track: participantCSV })
 });
 
 router.delete('/participants/delete', (req, res) => {
     fs.writeFileSync('./database/participants.json', JSON.stringify([], null, 2));
-    return res.json({ status: 'success', message: 'success' });
+    return res.json({ ...HTTP_RESPONSE[200]() });
 });
 
 router.get('/participants/view', (req, res) => {
     const participants = fs.readFileSync('./database/participants.json', 'utf8');
-    return res.json({ status: 'success', message: 'success', participants: JSON.parse(participants) });
+    return res.json({ ...HTTP_RESPONSE[200](), participants: JSON.parse(participants) });
 });
 
 router.put('/participants/winner/:winnerId/:awardId', (req, res) => {
@@ -104,10 +108,10 @@ router.put('/participants/winner/:winnerId/:awardId', (req, res) => {
         fs.writeFileSync('./database/participants.json', JSON.stringify(updateParticipants, null, 2));
         fs.writeFileSync('./database/winners.json', JSON.stringify(winnersArray, null, 2));
 
-        return res.json({ status: 200, message: 'success', awards: updatedAwards });
+        return res.json({ ...HTTP_RESPONSE[200](), awards: updatedAwards });
     }
     catch (error) {
-        return res.json({ status: 400, message: 'error', error: error.message });
+        return res.json({ ...HTTP_RESPONSE[400](error.message) });
     }
 });
 

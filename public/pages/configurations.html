@@ -153,8 +153,8 @@
         const onLoad = async () => {
             const { configuration, status, message } = await callIn('GET', '/api/configuration');
             console.log(message)
-            handleMessages(status, message);
             if (status === 400) {
+                handleMessages(status, message);
                 return;
             }
 
@@ -254,15 +254,17 @@
             const form = document.getElementById('configuration');
             const formData = new FormData(form);
 
-            const { status } = await fetch('/api/configuration', {
+            const response = await fetch('/api/configuration', {
                 method: 'POST',
                 body: formData
             });
 
+            const { status, message } = await response.json();
+
             if (status === 400) {
                 handleMessages(status, message);
             }
-
+            handleMessages(status, message);
             onload();
         }
 

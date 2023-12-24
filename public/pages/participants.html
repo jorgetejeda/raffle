@@ -8,6 +8,7 @@
     <link type="text/css" rel="stylesheet" href="styles/main.css" />
     <link type="text/css" rel="stylesheet" href="styles/util.css" />
     <link type="text/css" rel="stylesheet" href="styles/participants.css" />
+    <link type="text/css" rel="stylesheet" href="styles/messages.css" />
 </head>
 
 <body class="loading" onload="onLoad()">
@@ -25,6 +26,9 @@
 
             <div class="card">
                 <table id="data-table"></table>
+                <div class="message-container hidden">
+                    <div class="messages"></div>
+                </div>
             </div>
         </div>
     </main>
@@ -38,7 +42,8 @@
         const onLoad = async () => {
             const { participants, status } = await callIn('GET', '/participants/view')
             if (status === 400) {
-                console.log("it doesnt have prizes");
+                handleMessages(status, message);
+                return;
             }
 
             if (participants.length !== 0) {
@@ -62,19 +67,12 @@
             })
         }
 
-        const clearParticipants = () => {
+        const clearParticipants = async () => {
             const confirmation = confirm('¿Está seguro que desea eliminar la lista de participantes?');
             if (!confirmation) return;
-            fetch('/participants/delete', {
-                method: 'DELETE'
-            })
-                .then(response => response.json())
-                .then(json => {
-                    if (json.success) {
-                        alert('Lista de participantes eliminada');
-                        window.location.reload();
-                    }
-                });
+
+            const { status, message } = await callIn('DELETE', '/participants/delete')
+            handleMessages(status, message);
             onLoad();
         }
 

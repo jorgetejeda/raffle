@@ -8,6 +8,8 @@
     <link type="text/css" rel="stylesheet" href="styles/main.css" />
     <link type="text/css" rel="stylesheet" href="styles/util.css" />
     <link type="text/css" rel="stylesheet" href="styles/participants.css" />
+    <link type="text/css" rel="stylesheet" href="styles/messages.css" />
+
 </head>
 
 <body class="loading" onload="onLoad()">
@@ -25,6 +27,9 @@
 
             <div class="card">
                 <table id="data-table"></table>
+                <div class="message-container hidden">
+                    <div class="messages"></div>
+                </div>
             </div>
 
             <button class="export hidden" onclick="exportExcel()">Exportar a Excel</button>
@@ -45,7 +50,8 @@
         const onLoad = async () => {
             const { winners, status } = await callIn('GET', '/winners/view')
             if (status === 400) {
-                console.log("it doesnt have prizes");
+                handleMessages(status, message);
+                return;
             }
 
             if (winners.length === 0) {
@@ -74,19 +80,16 @@
             })
         }
 
-        const clearParticipants = () => {
+        const clearParticipants = async () => {
             const confirmation = confirm('¿Está seguro que desea eliminar la lista de ganadores?');
             if (!confirmation) return;
-            fetch('/winners/delete', {
-                method: 'DELETE'
-            })
-                .then(response => response.json())
-                .then(json => {
-                    if (json.success) {
-                        alert('Lista de ganadores eliminada');
-                        window.location.reload();
-                    }
-                });
+
+            const { status, message } = await callIn('DELETE', '/winners/delete')
+            if (status === 400) {
+                handleMessages(status, message);
+                return;
+            }
+            handleMessages(status, message);
             onLoad();
         }
 
