@@ -67,6 +67,8 @@
 
         .image-picker {
             flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .image-picker h5 {
@@ -95,7 +97,7 @@
 
         .image-picker .input-image-container {
             display: flex;
-            gap: 8px;
+            /* gap: 8px; */
             border: 1px solid var(--neutral-gray);
             border-radius: 50px;
             padding: .5rem .5rem;
@@ -107,6 +109,10 @@
 
         .image-picker .input-image-container h5 {
             margin: 0px;
+            width: 50%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
 
         .image-picker .input-image-container label {
@@ -121,6 +127,7 @@
             color: var(--neutral-white);
             background: var(--secondary-color);
             cursor: pointer;
+            flex: 1;
         }
 
         .image-picker input[type=file]::file-selector-button {
@@ -144,6 +151,19 @@
 
         .transparency-text {
             color: transparent;
+        }
+
+        .images-preview {
+            margin-top: 16px;
+            border: 2px dashed var(--neutral-gray);
+            display: flex;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .images-preview>img {
+            flex: 1;
+            object-fit: scale-down;
         }
     </style>
 </head>
@@ -186,7 +206,7 @@
                             <h5>Imagen principal</h5>
                             <div class="input-image-container">
                                 <label id="main-image-label" for="main-image">Selecciona la imagen</label>
-                                <h5></h5>
+                                <h5 class="hidden"></h5>
                                 <input type="file" name="mainImage" class="hidden" id="main-image"
                                     accept=".jpg, .png, .jpeg" onchange="handleFileChange('main-image')">
                                 <button type="button" class="icon-button remove-file hidden"
@@ -197,8 +217,6 @@
                                             fill="#E42313" />
                                     </svg>
                                 </button>
-                                <div class="images-preview"></div>
-
                             </div>
                             <div class="footer-image">
                                 <div class="extension-images">
@@ -208,12 +226,13 @@
                                     <small>Tamaño máximo: <span>500px400px</span></small>
                                 </div>
                             </div>
+                            <div class="images-preview" id="main-image-preview"></div>
                         </div>
                         <div class="image-picker">
                             <h5>Imagen Cabecera (opcional)</h5>
                             <div class="input-image-container">
                                 <label id="header-image-label" for="header-image">Selecciona la imagen</label>
-                                <h5></h5>
+                                <h5 class="hidden"></h5>
                                 <input type="file" name="headerImage" class="hidden" id="header-image"
                                     accept=".jpg, .png, .jpeg" onchange="handleFileChange('header-image')">
                                 <button type="button" class="icon-button remove-file hidden"
@@ -225,7 +244,6 @@
                                     </svg>
                                 </button>
 
-                                <div class="images-preview"></div>
                             </div>
                             <div class="footer-image">
                                 <div class="extension-images">
@@ -235,6 +253,8 @@
                                     <small>Tamaño permitido: <span>500px400px</span></small>
                                 </div>
                             </div>
+                            <div class="images-preview" id="header-image-preview"></div>
+
                         </div>
                     </div>
                 </form>
@@ -270,6 +290,20 @@
 
             r.style.setProperty('--main-color', mainColor);
             r.style.setProperty('--secondary-color', secondaryColor);
+
+            if (mainImage) {
+                const mainImagePreview = document.createElement('img');
+                mainImagePreview.src = `/images/${mainImage}`;
+                mainImagePreview.classList.add('image-preview');
+                document.getElementById('main-image-preview').appendChild(mainImagePreview);
+            }
+
+            if (headerImage) {
+                const headerImagePreview = document.createElement('img');
+                headerImagePreview.src = `/images/${headerImage}`;
+                headerImagePreview.classList.add('image-preview');
+                document.getElementById('header-image-preview').appendChild(headerImagePreview);
+            }
         }
 
         const handleFileChange = (inputId) => {
