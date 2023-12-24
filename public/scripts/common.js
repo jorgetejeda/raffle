@@ -1,12 +1,64 @@
 const RAFFLE_PATH = '/raffle';
-document.addEventListener("DOMContentLoaded", () => {
+const CONFIGURATION_PATH = '/configurations';
+document.addEventListener("DOMContentLoaded", async () => {
     const pathname = window.location.pathname;
+    const { mainImage, headerImage } = await getTemplateColors()
+    const mainImageElement = document.querySelector('#mainLogo');
+    const headerImageElement = document.querySelector('#headerImage');
+
+    if (pathname === RAFFLE_PATH) {
+        if (mainImage) {
+            mainImageElement.src = `images/raffle/${mainImage}`;
+        }
+        if (headerImage) {
+            headerImageElement.src = `images/raffle/${headerImage}`;
+        }
+    }
+
     if (pathname !== RAFFLE_PATH) {
         buildHeader();
         buildMenu();
     }
     buildFooter();
 });
+
+const getTemplateColors = async () => {
+    const { configuration, status } = await callIn('GET', '/api/configuration');
+    if (status === 400) {
+        return;
+    }
+    const r = document.querySelector(':root')
+
+    const { mainColor, secondaryColor, mainImage, headerImage } = configuration;
+
+    r.style.setProperty('--main-color', mainColor);
+    const darkerColor = shadeColor(mainColor, -50)
+    r.style.setProperty('--main-dark-color', darkerColor);
+    const lightColor = shadeColor(mainColor, 50)
+    r.style.setProperty('--main-light-color', lightColor);
+    const lightenerColor = hexToRGB(shadeColor(mainColor, 2600).replace('#', ''))
+
+    r.style.setProperty('--main-lighter-color', lightenerColor);
+    r.style.setProperty('--secondary-color', secondaryColor);
+    return { mainImage, headerImage };
+}
+
+function hexToRGB(hex) {
+    if (hex.length != 6) {
+        throw "Only six-digit hex colors are allowed.";
+    }
+
+    var aRgbHex = hex.match(/.{1,2}/g);
+    var aRgb = [
+        parseInt(aRgbHex[0], 16),
+        parseInt(aRgbHex[1], 16),
+        parseInt(aRgbHex[2], 16)
+    ];
+
+    // return rgb color with transparency
+    return "rgb(" + aRgb.join(",") + ",0.1)";
+}
+
 
 const buildHeader = () => {
     // header not id="raffle"
@@ -62,6 +114,7 @@ const buildMenu = () => {
         ul.appendChild(li);
         menuList.appendChild(ul);
     });
+    if (pathname !== RAFFLE_PATH) return;
     menuList.querySelector(`a[href="${pathname}"]`).classList.add('active');
 }
 
@@ -69,7 +122,6 @@ const buildFooter = () => {
     const isRaffle = window.location.pathname;
     const footer = document.querySelector('footer');
     const images = isRaffle === RAFFLE_PATH ? 'Logos Crecer - blancos-01.png' : 'Logos Crecer 2 - Gris-01.png';
-    console.log('footer')
     footer.innerHTML = `
         <div class="container">
             <div class="divider"></div>
@@ -83,7 +135,6 @@ const buildFooter = () => {
    
     `
 }
-
 
 const capitalize = (string) => {
     return string.toLowerCase().split(' ').map(name => {
@@ -103,4 +154,29 @@ const currencyFormat = (value) => {
     return new Intl.NumberFormat('es-DO', { style: 'currency', currency: 'DOP', ...options }).format(
         parseInt(value)
     );
+}
+
+function shadeColor(color, percent) {
+
+    var R = parseInt(color.substring(1, 3), 16);
+    var G = parseInt(color.substring(3, 5), 16);
+    var B = parseInt(color.substring(5, 7), 16);
+
+    R = parseInt(R * (100 + percent) / 100);
+    G = parseInt(G * (100 + percent) / 100);
+    B = parseInt(B * (100 + percent) / 100);
+
+    R = (R < 255) ? R : 255;
+    G = (G < 255) ? G : 255;
+    B = (B < 255) ? B : 255;
+
+    R = Math.round(R)
+    G = Math.round(G)
+    B = Math.round(B)
+
+    var RR = ((R.toString(16).length == 1) ? "0" + R.toString(16) : R.toString(16));
+    var GG = ((G.toString(16).length == 1) ? "0" + G.toString(16) : G.toString(16));
+    var BB = ((B.toString(16).length == 1) ? "0" + B.toString(16) : B.toString(16));
+
+    return "#" + RR + GG + BB;
 }

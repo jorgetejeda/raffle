@@ -53,11 +53,11 @@
 		<dotlottie-player id="confetti" src="scripts/confetti.json" background="transparent"
 			speed="1"></dotlottie-player>
 	</div>
-	<img class="pearls" src="images/pearls@2x.png" alt="logo_header" />
+	<img class="pearls" alt="logo_header" id="headerImage" src=""/>
 	<main>
 		<div class="container">
 			<div class="mask">
-				<img src="images/mask@2x.png" class="image-logo" alt="logo_raffle" />
+				<img id="mainLogo" src="" class="image-logo" alt="logo_raffle" />
 				<h1 class="text-white">
 					Fiesta de Navidad Crecer
 				</h1>
@@ -95,9 +95,9 @@
 	</main>
 	<footer></footer>
 
+	<script src="scripts/api.js"></script>
 	<script src="scripts/dotlottie-player.js"></script>
 	<script src="scripts/common.js"></script>
-	<script src="scripts/api.js"></script>
 	<script>
 		let participants = [];
 		let awards = [];
@@ -140,7 +140,6 @@
 			const awardsResponse = await callIn("GET", "/awards/round");
 
 			participants = participantsResponse.participants;
-
 
 			if (participantsResponse.status === 400 || awardsResponse.status === 400) {
 				console.log("it doesnt have participants or awards");

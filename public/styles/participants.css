@@ -41,7 +41,7 @@ input {
     border: 1px solid #F3F0FD;
     padding: .5rem 1rem;
     background: var(--neutral-white);
-    color: var(--primary-purple);
+    color: var(--main-color);
     text-align: center;
 }
 
@@ -50,7 +50,7 @@ input {
 }
 
 .pagination button.active{
-    background: var(--primary-purple);
+    background: var(--main-color);
     color: var(--neutral-white);
 }
 

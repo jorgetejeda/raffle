@@ -43,28 +43,35 @@ router.get('/awards/round', (req, res) => {
 
 router.post('/awards/create', async (req, res) => {
     const awards = req.body;
+    try {
+        const awardsArr = {
+            id: new Date().getTime() + Math.floor(Math.random() * 1000),
+            amount: awards.amount,
+            quantity: parseInt(awards.quantity),
+            left: parseInt(awards.quantity),
+            round: parseInt(awards.round),
+        }
 
-    const awardsArr = {
-        id: new Date().getTime() + Math.floor(Math.random() * 1000),
-        amount: awards.amount,
-        quantity: parseInt(awards.quantity),
-        left: parseInt(awards.quantity),
-        round: parseInt(awards.round),
+        const fileawards = fs.readFileSync('./database/awards.json', 'utf8');
+        const awardsJSON = JSON.parse(fileawards);
+        awardsJSON.push(awardsArr);
+        awardsJSON.sort((a, b) => a.round - b.round);
+
+        fs.mkdirSync(DIRECTORY, { recursive: true });
+        fs.writeFileSync('./database/awards.json', JSON.stringify(awardsJSON, null, 2));
+        return res.json({ status: 200, message: "Los premios han sido creado con exito!" });
+    } catch (error) {
+        return res.json({ status: 400, message: 'error', error: error.message });
     }
-
-    const fileawards = fs.readFileSync('./database/awards.json', 'utf8');
-    const awardsJSON = JSON.parse(fileawards);
-    awardsJSON.push(awardsArr);
-    awardsJSON.sort((a, b) => a.round - b.round);
-
-    fs.mkdirSync(DIRECTORY, { recursive: true });
-    fs.writeFileSync('./database/awards.json', JSON.stringify(awardsJSON, null, 2));
-    return res.json({ status: 'success', message: "Los premios han sido creado con exito!" });
 })
 
 router.delete('/awards/delete', (req, res) => {
-    fs.writeFileSync('./database/awards.json', JSON.stringify([], null, 2));
-    return res.json({ status: 200, message: 'Los premios han sido eliminados' });
+    try {
+        fs.writeFileSync('./database/awards.json', JSON.stringify([], null, 2));
+        return res.json({ status: 200, message: 'Los premios han sido eliminados' });
+    } catch (error) {
+        return res.json({ status: 400, message: 'error', error: error.message });
+    }
 });
 
 module.exports = router;

@@ -7,6 +7,7 @@
     <title>App Sorteo - AFP Crecer - Configuración</title>
     <link type="text/css" rel="stylesheet" href="styles/main.css" />
     <link type="text/css" rel="stylesheet" href="styles/util.css" />
+    <link type="text/css" rel="stylesheet" href="styles/messages.css" />
     <style>
         .configuration h4 {
             font-family: Gilroy;
@@ -47,11 +48,11 @@
         }
 
         .color.main-color {
-            background-color: var(--primary-purple);
+            background-color: var(--main-color);
         }
 
         .color.secondary-color {
-            background-color: var(--secondary-orange-1);
+            background-color: var(--secondary-color);
         }
 
         .color-picker input {
@@ -67,6 +68,8 @@
 
         .image-picker {
             flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .image-picker h5 {
@@ -95,7 +98,7 @@
 
         .image-picker .input-image-container {
             display: flex;
-            gap: 8px;
+            /* gap: 8px; */
             border: 1px solid var(--neutral-gray);
             border-radius: 50px;
             padding: .5rem .5rem;
@@ -107,6 +110,10 @@
 
         .image-picker .input-image-container h5 {
             margin: 0px;
+            width: 50%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
 
         .image-picker .input-image-container label {
@@ -119,8 +126,9 @@
             border-radius: 56px;
             border: none;
             color: var(--neutral-white);
-            background: var(--secondary-orange-1);
+            background: var(--secondary-color);
             cursor: pointer;
+            flex: 1;
         }
 
         .image-picker input[type=file]::file-selector-button {
@@ -128,7 +136,7 @@
             border-radius: 56px;
             border: none;
             color: var(--neutral-white);
-            background: var(--secondary-orange-1);
+            background: var(--secondary-color);
             cursor: pointer;
             display: none;
         }
@@ -139,16 +147,29 @@
         }
 
         .image-picker svg {
-            fill: var(--primary-purple);
+            fill: var(--main-color);
         }
 
         .transparency-text {
             color: transparent;
         }
+
+        .images-preview {
+            margin-top: 16px;
+            border: 2px dashed var(--neutral-gray);
+            display: flex;
+            height: 300px;
+            border-radius: 8px;
+        }
+
+        .images-preview>img {
+            flex: 1;
+            object-fit: scale-down;
+        }
     </style>
 </head>
 
-<body>
+<body onload="onLoad()">
     <header></header>
 
     <main>
@@ -160,7 +181,7 @@
             </div>
 
             <div class="card">
-                <form class="configuration">
+                <form id="configuration" class="configuration" enctype="multipart/form-data">
                     <h4>Colores</h4>
                     <div class="color-content">
                         <label for="main-color" class="color-picker">
@@ -168,14 +189,16 @@
                                 <div class="color main-color"></div>
                                 <h5>Color principal</h5>
                             </div>
-                            <input type="color" name="main-color" id="main-color" value="#000000">
+                            <input type="color" name="mainColor" id="main-color" value="#000000"
+                                onchange="mainColorInput(this)">
                         </label>
                         <label for="secondary-color" class="color-picker">
                             <div class="color-information">
                                 <div class="color secondary-color"></div>
                                 <h5>Color principal</h5>
                             </div>
-                            <input type="color" name="secondary-color" id="secondary-color" value="#000000">
+                            <input type="color" name="secondaryColor" id="secondary-color" value="#000000"
+                                onchange="secondaryColorInput(this)">
                         </label>
                     </div>
                     <h4>Imagenes</h4>
@@ -184,10 +207,11 @@
                             <h5>Imagen principal</h5>
                             <div class="input-image-container">
                                 <label id="main-image-label" for="main-image">Selecciona la imagen</label>
-                                <h5></h5>
-                                <input type="file" name="main-image" class="hidden" id="main-image"
-                                    accept=".jpg, .png, .jpeg" onchange="handleFileChange('main-image')">
-                                <button type="button" class="icon-button remove-file hidden" onclick="clearInput('main-image')">
+                                <h5 class="hidden"></h5>
+                                <input type="file" name="mainImage" class="hidden" id="main-image"
+                                    accept=".jpg, .png, .jpeg" onchange="handleFileChange(this)">
+                                <button type="button" class="icon-button remove-file hidden"
+                                    onclick="clearInput('main-image')">
                                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M19.5265 6.73247C20.1512 6.10776 20.1512 5.09324 19.5265 4.46853C18.9018 3.84382 17.8872 3.84382 17.2625 4.46853L12 9.73606L6.73247 4.47353C6.10776 3.84882 5.09324 3.84882 4.46853 4.47353C3.84382 5.09824 3.84382 6.11276 4.46853 6.73747L9.73606 12L4.47353 17.2675C3.84882 17.8922 3.84882 18.9068 4.47353 19.5315C5.09824 20.1562 6.11276 20.1562 6.73747 19.5315L12 14.2639L17.2675 19.5265C17.8922 20.1512 18.9068 20.1512 19.5315 19.5265C20.1562 18.9018 20.1562 17.8872 19.5315 17.2625L14.2639 12L19.5265 6.73247Z"
@@ -203,21 +227,24 @@
                                     <small>Tamaño máximo: <span>500px400px</span></small>
                                 </div>
                             </div>
+                            <div class="images-preview" id="main-image-preview"></div>
                         </div>
                         <div class="image-picker">
                             <h5>Imagen Cabecera (opcional)</h5>
                             <div class="input-image-container">
                                 <label id="header-image-label" for="header-image">Selecciona la imagen</label>
-                                <h5></h5>
-                                <input type="file" name="header-image" class="hidden" id="header-image"
-                                    accept=".jpg, .png, .jpeg" onchange="handleFileChange('header-image')">
-                                <button type="button" class="icon-button remove-file hidden" onclick="clearInput('header-image')">
+                                <h5 class="hidden"></h5>
+                                <input type="file" name="headerImage" class="hidden" id="header-image"
+                                    accept=".jpg, .png, .jpeg" onchange="handleFileChange(this)">
+                                <button type="button" class="icon-button remove-file hidden"
+                                    onclick="clearInput('header-image')">
                                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M19.5265 6.73247C20.1512 6.10776 20.1512 5.09324 19.5265 4.46853C18.9018 3.84382 17.8872 3.84382 17.2625 4.46853L12 9.73606L6.73247 4.47353C6.10776 3.84882 5.09324 3.84882 4.46853 4.47353C3.84382 5.09824 3.84382 6.11276 4.46853 6.73747L9.73606 12L4.47353 17.2675C3.84882 17.8922 3.84882 18.9068 4.47353 19.5315C5.09824 20.1562 6.11276 20.1562 6.73747 19.5315L12 14.2639L17.2675 19.5265C17.8922 20.1512 18.9068 20.1512 19.5315 19.5265C20.1562 18.9018 20.1562 17.8872 19.5315 17.2625L14.2639 12L19.5265 6.73247Z"
                                             fill="#E42313" />
                                     </svg>
                                 </button>
+
                             </div>
                             <div class="footer-image">
                                 <div class="extension-images">
@@ -227,14 +254,18 @@
                                     <small>Tamaño permitido: <span>500px400px</span></small>
                                 </div>
                             </div>
+                            <div class="images-preview" id="header-image-preview"></div>
+
                         </div>
                     </div>
                 </form>
-
+                <div class="message-container hidden">
+                    <div class="messages"></div>
+                </div>
             </div>
 
             <div class="form-links-bottom">
-                <button>Guardar cambios</button>
+                <button onclick="submit()">Guardar cambios</button>
             </div>
 
         </div>
@@ -242,23 +273,157 @@
 
     <footer></footer>
 
-    <script src="scripts/common.js"></script>
     <script src="scripts/api.js"></script>
+    <script src="scripts/common.js"></script>
     <script>
-        const handleFileChange = (inputId) => {
-            const inputElement = document.getElementById(inputId);
+
+        const mainImages = (() => {
+            let images = [];
+            return {
+                setImages: (newImages) => {
+                    images = newImages;
+                },
+                getImages: () => {
+                    return images;
+                }
+            }
+        })();
+
+        const headerImages = (() => {
+            let images = [];
+            return {
+                setImages: (newImages) => {
+                    images = newImages;
+                },
+                getImages: () => {
+                    return images;
+                }
+            }
+        })();
+
+        const createPreviewImage = (container, image) => {
+            const imagePreview = document.createElement('img');
+            imagePreview.src = `/images/raffle/${image}`;
+            imagePreview.classList.add('image-preview');
+            container.appendChild(imagePreview);
+        }
+
+        const onLoad = async () => {
+            const { configuration, status, message } = await callIn('GET', '/api/configuration');
+            console.log(message)
+            handleMessages(status, message);
+            if (status === 400) {
+                return;
+            }
+
+            const r = document.querySelector(':root')
+
+            const { mainColor, secondaryColor, mainImage, headerImage } = configuration;
+            document.getElementById('main-color').value = mainColor;
+            document.getElementById('secondary-color').value = secondaryColor;
+            document.getElementById('main-image-label').textContent = mainImage;
+            document.getElementById('header-image-label').textContent = headerImage;
+
+            r.style.setProperty('--main-color', mainColor);
+            r.style.setProperty('--secondary-color', secondaryColor);
+
+            document.querySelectorAll('.images-preview').forEach((preview) => {
+                preview.innerHTML = '';
+            });
+            if (mainImage) {
+                createPreviewImage(document.getElementById('main-image-preview'), mainImage);
+                mainImages.setImages([mainImage]);
+            }
+
+            if (headerImage) {
+                createPreviewImage(document.getElementById('header-image-preview'), headerImage);
+                headerImages.setImages([headerImage]);
+            }
+        }
+
+        const handleFileChange = (inputElement) => {
+            const idElement = inputElement.id;
             const fileName = inputElement.files[0].name;
             inputElement.previousElementSibling.textContent = fileName;
+            inputElement.previousElementSibling.classList.remove('hidden');
             inputElement.nextElementSibling.classList.remove('hidden');
             inputElement.previousElementSibling.previousElementSibling.classList.add('hidden');
+
+            //preview image
+            const parent = inputElement.parentElement.parentElement;
+            const previewImage = parent.querySelector('.images-preview');
+            previewImage.innerHTML = '';
+
+            var reader = new FileReader();
+            reader.onload = function () {
+                const headerImagePreview = document.createElement('img');
+                headerImagePreview.src = reader.result;
+                document.getElementById(`${idElement}-preview`).appendChild(headerImagePreview);
+            };
+            reader.readAsDataURL(event.target.files[0]);
         }
 
         const clearInput = (inputId) => {
             const inputElement = document.getElementById(inputId);
             inputElement.previousElementSibling.textContent = '';
             inputElement.nextElementSibling.classList.add('hidden');
+            inputElement.previousElementSibling.classList.add('hidden');
             inputElement.previousElementSibling.previousElementSibling.classList.remove('hidden');
+
+            // get the preview image
+            const parent = inputElement.parentElement.parentElement;
+            const previewImage = parent.querySelector('.images-preview');
+            previewImage.innerHTML = '';
+
+            // use store image function to add image to the preview
+            const imagesContainer = (inputId === 'main-image') ? mainImages : headerImages;
+            const images = imagesContainer.getImages();
+
+            if (images.length > 0) {
+                const imagePreview = document.createElement('img');
+                imagePreview.src = `/images/raffle/${images[0]}`;
+                imagePreview.classList.add('image-preview');
+                document.getElementById(`${inputId}-preview`).appendChild(imagePreview);
+            }
+        };
+
+        const mainColorInput = (element) => {
+            const r = document.querySelector(':root')
+            const color = element.value;
+            const colorName = element.name;
+            r.style.setProperty(`--main-color`, color);
+            // darkens the color
+            const darkColor = shadeColor(color, -50);
+            // lightens the color
+            const lightColor = shadeColor(color, 50);
+
+            r.style.setProperty(`--main-dark-color`, darkColor);
+            r.style.setProperty(`--main-light-color`, lightColor);
         }
+
+        const secondaryColorInput = (element) => {
+            const r = document.querySelector(':root')
+            const color = element.value;
+            const colorName = element.name;
+            r.style.setProperty(`--secondary-color`, color);
+        }
+
+        const submit = async () => {
+            const form = document.getElementById('configuration');
+            const formData = new FormData(form);
+
+            const { status } = await fetch('/api/configuration', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (status === 400) {
+                handleMessages(status, message);
+            }
+
+            onload();
+        }
+
     </script>
 </body>
 

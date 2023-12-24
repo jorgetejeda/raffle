@@ -1,8 +1,8 @@
 @import url(fonts.css);
 
 body {
-    background-color: var(--primary-purple);
-    background: linear-gradient(315deg, var(--primary-purple) 0%, var(--primary-purple-2) 100%);
+    background-color: var(--main-color);
+    background: linear-gradient(315deg, var(--main-color) 0%, var(--main-dark-color) 100%);
     min-height: 100vh;
     margin: 0;
 }
@@ -60,7 +60,7 @@ body {
 
 .generate-new-raffle {
     border: 0;
-    background-color: var(--secondary-orange-1);
+    background-color: var(--secondary-color);
     color: var(--neutral-white);
 }
 
@@ -72,7 +72,7 @@ body {
 .init-raffle:hover,
 .btn-raffle:hover {
     background-color: var(--neutral-white);
-    color: var(--primary-purple);
+    color: var(--main-color);
 }
 
 footer {
@@ -139,7 +139,7 @@ footer {
 
 .name {
     font-size: 3rem;
-    background: linear-gradient(90deg, var(--secondary-orange-1) 0%, var(--secondary-yellow-1) 100%);
+    background: linear-gradient(90deg, var(--secondary-color) 0%, var(--secondary-yellow-1) 100%);
     background-clip: border-box;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;

@@ -1,0 +1,51 @@
+.messages {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 24px 0;
+    padding: 16px;
+}
+
+.messages .message-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.success-message {
+    color: #235F1C;
+    background: #F3FCF1;
+    border: 1px solid #66D256;
+}
+
+.error-message {
+    color: #9A1A1A;
+    background: #FEF2F2;
+    border: 1px solid #F04343;
+}
+
+.messages button {
+    color: inherit;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.messages button:hover {
+    background: var(--button-hover-background, inherit);
+    color: white;
+}
+
+.success-message button:hover {
+    --button-hover-background: #66D256;
+}
+
+.error-message button:hover {
+    --button-hover-background: #F04343;
+}
