@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const { mainImage, headerImage } = await getTemplateColors()
     const mainImageElement = document.querySelector('#mainLogo');
     const headerImageElement = document.querySelector('#headerImage');
-    
+
     if (pathname === RAFFLE_PATH) {
         if (mainImage) {
             mainImageElement.src = `images/raffle/${mainImage}`;
@@ -36,14 +36,29 @@ const getTemplateColors = async () => {
     r.style.setProperty('--main-dark-color', darkerColor);
     const lightColor = shadeColor(mainColor, 50)
     r.style.setProperty('--main-light-color', lightColor);
-    const lightenerColor = shadeColor(mainColor, 2600)
-
-    console.log(lightenerColor)
+    const lightenerColor = hexToRGB(shadeColor(mainColor, 2600).replace('#', ''))
 
     r.style.setProperty('--main-lighter-color', lightenerColor);
     r.style.setProperty('--secondary-color', secondaryColor);
     return { mainImage, headerImage };
 }
+
+function hexToRGB(hex) {
+    if (hex.length != 6) {
+        throw "Only six-digit hex colors are allowed.";
+    }
+
+    var aRgbHex = hex.match(/.{1,2}/g);
+    var aRgb = [
+        parseInt(aRgbHex[0], 16),
+        parseInt(aRgbHex[1], 16),
+        parseInt(aRgbHex[2], 16)
+    ];
+
+    // return rgb color with transparency
+    return "rgb(" + aRgb.join(",") + ",0.1)";
+}
+
 
 const buildHeader = () => {
     // header not id="raffle"
@@ -99,7 +114,7 @@ const buildMenu = () => {
         ul.appendChild(li);
         menuList.appendChild(ul);
     });
-    if(pathname !== RAFFLE_PATH) return;
+    if (pathname !== RAFFLE_PATH) return;
     menuList.querySelector(`a[href="${pathname}"]`).classList.add('active');
 }
 

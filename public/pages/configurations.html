@@ -157,7 +157,7 @@
             margin-top: 16px;
             border: 2px dashed var(--neutral-gray);
             display: flex;
-            height: 100%;
+            height: 300px;
             border-radius: 8px;
         }
 
@@ -208,7 +208,7 @@
                                 <label id="main-image-label" for="main-image">Selecciona la imagen</label>
                                 <h5 class="hidden"></h5>
                                 <input type="file" name="mainImage" class="hidden" id="main-image"
-                                    accept=".jpg, .png, .jpeg" onchange="handleFileChange('main-image')">
+                                    accept=".jpg, .png, .jpeg" onchange="handleFileChange(this)">
                                 <button type="button" class="icon-button remove-file hidden"
                                     onclick="clearInput('main-image')">
                                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -234,7 +234,7 @@
                                 <label id="header-image-label" for="header-image">Selecciona la imagen</label>
                                 <h5 class="hidden"></h5>
                                 <input type="file" name="headerImage" class="hidden" id="header-image"
-                                    accept=".jpg, .png, .jpeg" onchange="handleFileChange('header-image')">
+                                    accept=".jpg, .png, .jpeg" onchange="handleFileChange(this)">
                                 <button type="button" class="icon-button remove-file hidden"
                                     onclick="clearInput('header-image')">
                                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -274,6 +274,37 @@
     <script src="scripts/common.js"></script>
     <script>
 
+        const mainImages = (() => {
+            let images = [];
+            return {
+                setImages: (newImages) => {
+                    images = newImages;
+                },
+                getImages: () => {
+                    return images;
+                }
+            }
+        })();
+
+        const headerImages = (() => {
+            let images = [];
+            return {
+                setImages: (newImages) => {
+                    images = newImages;
+                },
+                getImages: () => {
+                    return images;
+                }
+            }
+        })();
+
+        const createPreviewImage = (container, image) => {
+            const imagePreview = document.createElement('img');
+            imagePreview.src = `/images/${image}`;
+            imagePreview.classList.add('image-preview');
+            container.appendChild(imagePreview);
+        }
+
         const onLoad = async () => {
             const { configuration, status } = await callIn('GET', '/api/configuration');
             if (status === 400) {
@@ -292,36 +323,63 @@
             r.style.setProperty('--secondary-color', secondaryColor);
 
             if (mainImage) {
-                const mainImagePreview = document.createElement('img');
-                mainImagePreview.src = `/images/${mainImage}`;
-                mainImagePreview.classList.add('image-preview');
-                document.getElementById('main-image-preview').appendChild(mainImagePreview);
+                createPreviewImage(document.getElementById('main-image-preview'), mainImage);
+                mainImages.setImages([mainImage]);
             }
 
             if (headerImage) {
-                const headerImagePreview = document.createElement('img');
-                headerImagePreview.src = `/images/${headerImage}`;
-                headerImagePreview.classList.add('image-preview');
-                document.getElementById('header-image-preview').appendChild(headerImagePreview);
+                createPreviewImage(document.getElementById('header-image-preview'), headerImage);
+                headerImages.setImages([headerImage]);
             }
         }
 
-        const handleFileChange = (inputId) => {
-            const inputElement = document.getElementById(inputId);
+        const handleFileChange = (inputElement) => {
+            const idElement = inputElement.id;
             const fileName = inputElement.files[0].name;
             inputElement.previousElementSibling.textContent = fileName;
+            inputElement.previousElementSibling.classList.remove('hidden');
             inputElement.nextElementSibling.classList.remove('hidden');
             inputElement.previousElementSibling.previousElementSibling.classList.add('hidden');
+
+            //preview image
+            const parent = inputElement.parentElement.parentElement;
+            const previewImage = parent.querySelector('.images-preview');
+            previewImage.innerHTML = '';
+
+            var reader = new FileReader();
+            reader.onload = function () {
+                const headerImagePreview = document.createElement('img');
+                headerImagePreview.src = reader.result;
+                document.getElementById(`${idElement}-preview`).appendChild(headerImagePreview);
+            };
+            reader.readAsDataURL(event.target.files[0]);
         }
 
         const clearInput = (inputId) => {
             const inputElement = document.getElementById(inputId);
             inputElement.previousElementSibling.textContent = '';
             inputElement.nextElementSibling.classList.add('hidden');
+            inputElement.previousElementSibling.classList.add('hidden');
             inputElement.previousElementSibling.previousElementSibling.classList.remove('hidden');
-        }
 
-        function mainColorInput(element) {
+            // get the preview image
+            const parent = inputElement.parentElement.parentElement;
+            const previewImage = parent.querySelector('.images-preview');
+            previewImage.innerHTML = '';
+
+            // use store image function to add image to the preview
+            const imagesContainer = (inputId === 'main-image') ? mainImages : headerImages;
+            const images = imagesContainer.getImages();
+
+            if (images.length > 0) {
+                const imagePreview = document.createElement('img');
+                imagePreview.src = `/images/${images[0]}`;
+                imagePreview.classList.add('image-preview');
+                document.getElementById(`${inputId}-preview`).appendChild(imagePreview);
+            }
+        };
+
+        const mainColorInput = (element) => {
             const r = document.querySelector(':root')
             const color = element.value;
             const colorName = element.name;
@@ -335,7 +393,7 @@
             r.style.setProperty(`--main-light-color`, lightColor);
         }
 
-        function secondaryColorInput(element) {
+        const secondaryColorInput = (element) => {
             const r = document.querySelector(':root')
             const color = element.value;
             const colorName = element.name;
