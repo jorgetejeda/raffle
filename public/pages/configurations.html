@@ -169,7 +169,7 @@
                                 <h5>Color principal</h5>
                             </div>
                             <input type="color" name="mainColor" id="main-color" value="#000000"
-                                onchange="mainColor(this)">
+                                onchange="mainColorInput(this)">
                         </label>
                         <label for="secondary-color" class="color-picker">
                             <div class="color-information">
@@ -177,7 +177,7 @@
                                 <h5>Color principal</h5>
                             </div>
                             <input type="color" name="secondaryColor" id="secondary-color" value="#000000"
-                                onchange="secondaryColor(this)">
+                                onchange="secondaryColorInput(this)">
                         </label>
                     </div>
                     <h4>Imagenes</h4>
@@ -287,7 +287,7 @@
             inputElement.previousElementSibling.previousElementSibling.classList.remove('hidden');
         }
 
-        function mainColor(element) {
+        function mainColorInput(element) {
             const r = document.querySelector(':root')
             const color = element.value;
             const colorName = element.name;
@@ -301,7 +301,7 @@
             r.style.setProperty(`--main-light-color`, lightColor);
         }
 
-        function secondaryColor(element) {
+        function secondaryColorInput(element) {
             const r = document.querySelector(':root')
             const color = element.value;
             const colorName = element.name;
@@ -312,7 +312,7 @@
             const form = document.getElementById('configuration');
             const formData = new FormData(form);
 
-            console.log(...formData);
+            console.log(...formData)
 
             const { status } = await fetch('/api/configuration', {
                 method: 'POST',
@@ -323,7 +323,7 @@
                 console.log('error')
             }
 
-            // onload();
+            onload();
         }
 
     </script>

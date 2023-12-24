@@ -1,7 +1,20 @@
 const RAFFLE_PATH = '/raffle';
-document.addEventListener("DOMContentLoaded", () => {
+const CONFIGURATION_PATH = '/configurations';
+document.addEventListener("DOMContentLoaded", async () => {
     const pathname = window.location.pathname;
-    getTemplateColors()
+    const { mainImage, headerImage } = await getTemplateColors()
+    const mainImageElement = document.querySelector('#mainLogo');
+    const headerImageElement = document.querySelector('#headerImage');
+    
+    if (pathname === RAFFLE_PATH) {
+        if (mainImage) {
+            mainImageElement.src = `images/raffle/${mainImage}`;
+        }
+        if (headerImage) {
+            headerImageElement.src = `images/raffle/${headerImage}`;
+        }
+    }
+
     if (pathname !== RAFFLE_PATH) {
         buildHeader();
         buildMenu();
@@ -24,8 +37,12 @@ const getTemplateColors = async () => {
     const lightColor = shadeColor(mainColor, 50)
     r.style.setProperty('--main-light-color', lightColor);
     const lightenerColor = shadeColor(mainColor, 2600)
+
+    console.log(lightenerColor)
+
     r.style.setProperty('--main-lighter-color', lightenerColor);
     r.style.setProperty('--secondary-color', secondaryColor);
+    return { mainImage, headerImage };
 }
 
 const buildHeader = () => {
@@ -82,6 +99,7 @@ const buildMenu = () => {
         ul.appendChild(li);
         menuList.appendChild(ul);
     });
+    if(pathname !== RAFFLE_PATH) return;
     menuList.querySelector(`a[href="${pathname}"]`).classList.add('active');
 }
 
@@ -89,7 +107,6 @@ const buildFooter = () => {
     const isRaffle = window.location.pathname;
     const footer = document.querySelector('footer');
     const images = isRaffle === RAFFLE_PATH ? 'Logos Crecer - blancos-01.png' : 'Logos Crecer 2 - Gris-01.png';
-    console.log('footer')
     footer.innerHTML = `
         <div class="container">
             <div class="divider"></div>

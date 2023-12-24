@@ -1,5 +1,4 @@
 const callIn = async (method, route, body) => {
-    console.log('callIn', method, route, body);
     const response = await fetch(route, {
         method,
         headers: {
