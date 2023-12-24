@@ -7,6 +7,7 @@
     <title>App Sorteo - AFP Crecer - Configuración</title>
     <link type="text/css" rel="stylesheet" href="styles/main.css" />
     <link type="text/css" rel="stylesheet" href="styles/util.css" />
+    <link type="text/css" rel="stylesheet" href="styles/messages.css" />
     <style>
         .configuration h4 {
             font-family: Gilroy;
@@ -258,7 +259,9 @@
                         </div>
                     </div>
                 </form>
-
+                <div class="message-container hidden">
+                    <div class="messages"></div>
+                </div>
             </div>
 
             <div class="form-links-bottom">
@@ -300,13 +303,15 @@
 
         const createPreviewImage = (container, image) => {
             const imagePreview = document.createElement('img');
-            imagePreview.src = `/images/${image}`;
+            imagePreview.src = `/images/raffle/${image}`;
             imagePreview.classList.add('image-preview');
             container.appendChild(imagePreview);
         }
 
         const onLoad = async () => {
-            const { configuration, status } = await callIn('GET', '/api/configuration');
+            const { configuration, status, message } = await callIn('GET', '/api/configuration');
+            console.log(message)
+            handleMessages(status, message);
             if (status === 400) {
                 return;
             }
@@ -322,6 +327,9 @@
             r.style.setProperty('--main-color', mainColor);
             r.style.setProperty('--secondary-color', secondaryColor);
 
+            document.querySelectorAll('.images-preview').forEach((preview) => {
+                preview.innerHTML = '';
+            });
             if (mainImage) {
                 createPreviewImage(document.getElementById('main-image-preview'), mainImage);
                 mainImages.setImages([mainImage]);
@@ -373,7 +381,7 @@
 
             if (images.length > 0) {
                 const imagePreview = document.createElement('img');
-                imagePreview.src = `/images/${images[0]}`;
+                imagePreview.src = `/images/raffle/${images[0]}`;
                 imagePreview.classList.add('image-preview');
                 document.getElementById(`${inputId}-preview`).appendChild(imagePreview);
             }
@@ -404,15 +412,13 @@
             const form = document.getElementById('configuration');
             const formData = new FormData(form);
 
-            console.log(...formData)
-
             const { status } = await fetch('/api/configuration', {
                 method: 'POST',
                 body: formData
             });
 
             if (status === 400) {
-                console.log('error')
+                handleMessages(status, message);
             }
 
             onload();

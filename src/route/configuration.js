@@ -1,9 +1,10 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const fs = require('fs-extra');
+const HTTP_RESPONSE = require('../constant/http-response');
+
 const fileExtLimiter = require('../middleware/fileExtLimiter');
 const fileSizeLimiter = require('../middleware/fileSizeLimiter');
-const filesPayloadExists = require('../middleware/filesPayloadExists');
 
 const router = express.Router();
 
@@ -13,49 +14,61 @@ router.get('/api/configuration', (req, res) => {
         if (Object.keys(configuration).length === 0 && configuration.constructor === Object) {
             return res.json({ status: 404, message: 'No hay configuraciones disponibles', configuration: {} });
         }
-        return res.json({ status: 200, message: 'success', configuration: JSON.parse(configuration) });
+        return res.json({ status: 200, message: HTTP_RESPONSE[200], configuration: JSON.parse(configuration) });
     } catch (error) {
-        return res.json({ status: 400, message: 'error', error: error.message });
+        return res.json({ status: 400, message: HTTP_RESPONSE[400], error: error.message });
     }
 });
 
 router.post(
     '/api/configuration',
     fileUpload({ createParentPath: true }),
-    filesPayloadExists,
     fileExtLimiter(['.jpg', '.png', '.jpeg']),
-    fileSizeLimiter, 
+    fileSizeLimiter,
     (req, res) => {
         const IMAGES_RAFFLE = './public/images/raffle';
         try {
 
-            const {mainColor, secondaryColor} = req.body;
-            const {mainImage, headerImage} = req.files;
+            const { mainColor, secondaryColor } = req.body;
 
-            const configuration = {
-                mainColor: mainColor || '#bdc3c7',
-                secondaryColor: secondaryColor || '#34495e',
-                mainImage: mainImage?.name || null,
-                headerImage: headerImage?.name || null,
-            };
-            fs.writeFileSync('./database/configuration.json', JSON.stringify(configuration));
+            let files = {
+                mainImage: null,
+                headerImage: null,
+            }
 
-            // before move images to images directory, check if directory exists
+            if (req.files) {
+                files = req.files;
+            }
+
             if (!fs.existsSync(IMAGES_RAFFLE)) {
-                console.log('no existe')
                 fs.mkdirSync(IMAGES_RAFFLE);
             }
 
             // clear directory before move images
             // fs.emptyDirSync(IMAGES_RAFFLE);
 
-            // move images to images directory
-            mainImage.mv(`${IMAGES_RAFFLE}/${mainImage.name}`);
-            headerImage.mv(`${IMAGES_RAFFLE}/${headerImage.name}`);
+            const configurationFile = fs.readFileSync('./database/configuration.json', 'utf8');
+            let configuration = JSON.parse(configurationFile);
 
-            return res.json({ status: 200, message: 'success', configuration });
+            configuration = {
+                mainColor: mainColor || '#bdc3c7',
+                secondaryColor: secondaryColor || '#34495e',
+                mainImage: files.mainImage ? files.mainImage.name : configuration.mainImage,
+                headerImage: files.headerImage ? files.headerImage.name : configuration.headerImage,
+            };
+
+            if (files.mainImage) {
+                files.mainImage.mv(`${IMAGES_RAFFLE}/${files.mainImage.name}`);
+            }
+            if (files.headerImage) {
+                files.headerImage.mv(`${IMAGES_RAFFLE}/${files.headerImage.name}`);
+            }
+
+            fs.writeFileSync('./database/configuration.json', JSON.stringify(configuration));
+
+            return res.json({ status: 200, message: HTTP_RESPONSE[200]});
         } catch (error) {
-            return res.json({ status: 400, message: 'error', error: error.message });
+            return res.json({ status: 400, message: HTTP_RESPONSE[400], error: error.message });
         }
     });
 
