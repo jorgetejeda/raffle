@@ -73,7 +73,7 @@
 
             const { status, message } = await callIn('DELETE', '/participants/delete')
             handleMessages(status, message);
-            onLoad();
+            window.location.reload();
         }
 
     </script>
