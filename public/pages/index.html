@@ -121,8 +121,7 @@
             const myFiles = document.getElementById('myFiles').files;
 
             if (myFiles.length === 0) {
-                const errorMessage = document.querySelector(".error-message");
-                errorMessage.textContent = "Debe seleccionar un archivo";
+                handleMessages(400, "Debe seleccionar un archivo");
                 return;
             }
 

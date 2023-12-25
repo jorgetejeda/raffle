@@ -2,9 +2,10 @@ const RAFFLE_PATH = '/raffle';
 const CONFIGURATION_PATH = '/configurations';
 document.addEventListener("DOMContentLoaded", async () => {
     const pathname = window.location.pathname;
-    const { mainImage, headerImage } = await getTemplateColors()
+    const { mainImage, headerImage, title } = await getCustomTemplate()
     const mainImageElement = document.querySelector('#mainLogo');
     const headerImageElement = document.querySelector('#headerImage');
+    const titleElement = document.querySelector('#title-raffle');
 
     if (pathname === RAFFLE_PATH) {
         if (mainImage) {
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (headerImage) {
             headerImageElement.src = `images/raffle/${headerImage}`;
         }
+        titleElement.textContent = title;
     }
 
     if (pathname !== RAFFLE_PATH) {
@@ -22,14 +24,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     buildFooter();
 });
 
-const getTemplateColors = async () => {
+const getCustomTemplate = async () => {
     const { configuration, status } = await callIn('GET', '/api/configuration');
     if (status === 400) {
         return;
     }
     const r = document.querySelector(':root')
 
-    const { mainColor, secondaryColor, mainImage, headerImage } = configuration;
+    const { mainColor, secondaryColor, mainImage, headerImage, title } = configuration;
 
     r.style.setProperty('--main-color', mainColor);
     const darkerColor = shadeColor(mainColor, -50)
@@ -40,7 +42,7 @@ const getTemplateColors = async () => {
 
     r.style.setProperty('--main-lighter-color', lightenerColor);
     r.style.setProperty('--secondary-color', secondaryColor);
-    return { mainImage, headerImage };
+    return { mainImage, headerImage, title };
 }
 
 function hexToRGB(hex) {
