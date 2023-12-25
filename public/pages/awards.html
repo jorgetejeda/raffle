@@ -108,7 +108,6 @@
                     { name: 'actions', title: 'Acciones' },
                 ],
                 onEdit: (id) => {
-                    // send information to form using id on hidden input, then show form
                     const form = document.querySelector("form");
                     const formControls = form.querySelectorAll(".form-control");
                     const prize = awards.find((award) => award.id === id);
@@ -198,6 +197,7 @@
                 errorMessage.classList.remove("hidden");
                 handleMessages(response.status, response.message);
             }
+            form.querySelector("input[name='id']").value = "";
             form.reset();
             onLoad();
         };
