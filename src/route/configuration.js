@@ -8,7 +8,7 @@ const fileSizeLimiter = require('../middleware/fileSizeLimiter');
 
 const router = express.Router();
 
-router.get('/api/configuration', (req, res) => {
+router.get('/configuration', (req, res) => {
     try {
         const configuration = fs.readFileSync('./database/configuration.json', 'utf8');
         if (Object.keys(configuration).length === 0 && configuration.constructor === Object) {
@@ -21,7 +21,7 @@ router.get('/api/configuration', (req, res) => {
 });
 
 router.post(
-    '/api/configuration',
+    '/configuration',
     fileUpload({ createParentPath: true }),
     fileExtLimiter(['.jpg', '.png', '.jpeg']),
     fileSizeLimiter,
