@@ -129,7 +129,7 @@
 
             formData.append('csvFile', myFiles.item(0));
 
-            const response = await fetch('/particpants/upload', {
+            const response = await fetch('api/particpants/upload', {
                 method: 'POST',
                 body: formData
             });

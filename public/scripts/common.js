@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 const getCustomTemplate = async () => {
-    const { configuration, status } = await callIn('GET', '/api/configuration');
+    const { configuration, status } = await callIn('GET', '/configuration');
     if (status === 400) {
         return;
     }
