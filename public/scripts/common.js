@@ -3,11 +3,11 @@ const CONFIGURATION_PATH = '/configurations';
 document.addEventListener("DOMContentLoaded", async () => {
     const pathname = window.location.pathname;
     const { mainImage, headerImage, title } = await getCustomTemplate()
-    const mainImageElement = document.querySelector('#mainLogo');
-    const headerImageElement = document.querySelector('#headerImage');
-    const titleElement = document.querySelector('#title-raffle');
 
     if (pathname === RAFFLE_PATH) {
+        const mainImageElement = document.querySelector('#mainLogo');
+        const headerImageElement = document.querySelector('#headerImage');
+        const titleElement = document.querySelector('#title-raffle');
         if (mainImage) {
             mainImageElement.src = `images/raffle/${mainImage}`;
         }
@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             headerImageElement.src = `images/raffle/${headerImage}`;
         }
         titleElement.textContent = title;
-    }
-
-    if (pathname !== RAFFLE_PATH) {
+    } else {
         buildHeader();
         buildMenu();
     }

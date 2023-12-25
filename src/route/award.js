@@ -44,10 +44,10 @@ router.get('/awards/round', (req, res) => {
 
 router.post('/awards/create', async (req, res) => {
     const awards = req.body;
-    try {
+        try {
         const awardsArr = {
             id: new Date().getTime() + Math.floor(Math.random() * 1000),
-            amount: awards.amount,
+            amount: awards.money,
             quantity: parseInt(awards.quantity),
             left: parseInt(awards.quantity),
             round: parseInt(awards.round),
@@ -65,6 +65,42 @@ router.post('/awards/create', async (req, res) => {
         return res.json({ ...HTTP_RESPONSE[400](error.message) });
     }
 })
+
+router.delete('/awards/delete/:id', (req, res) => {
+    const { id } = req.params;
+    try {
+        const fileawards = fs.readFileSync('./database/awards.json', 'utf8');
+        const awards = JSON.parse(fileawards);
+        const awardsJSON = awards.filter(prize => prize.id !== parseInt(id));
+        fs.writeFileSync('./database/awards.json', JSON.stringify(awardsJSON, null, 2));
+        return res.json({ ...HTTP_RESPONSE[200]('El premio ha sido eliminado') });
+    } catch (error) {
+        return res.json({ ...HTTP_RESPONSE[400](error.message) });
+    }
+});
+
+router.put('/awards/update/:id', (req, res) => {
+    const { id } = req.params;
+    const { money, quantity, left, round } = req.body;
+    try {
+        const fileawards = fs.readFileSync('./database/awards.json', 'utf8');
+        const awards = JSON.parse(fileawards);
+        const awardsJSON = awards.map(prize => {
+            if (prize.id === parseInt(id)) {
+                prize.round = parseInt(round);
+                prize.amount = money;
+                prize.quantity = quantity;
+                prize.left = quantity;
+            }
+            return prize;
+        });
+
+        fs.writeFileSync('./database/awards.json', JSON.stringify(awardsJSON, null, 2));
+        return res.json({ ...HTTP_RESPONSE[200]('El premio ha sido actualizado') });
+    } catch (error) {
+        return res.json({ ...HTTP_RESPONSE[400](error.message) });
+    }
+});
 
 router.delete('/awards/delete', (req, res) => {
     try {

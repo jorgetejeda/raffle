@@ -18,6 +18,13 @@
         .save-prizes {
             width: 100%;
         }
+
+        .actions-buttons {
+            display: flex;
+            justify-content: space-around;
+            gap: 8px;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -35,6 +42,7 @@
             </div>
             <div class="card">
                 <form onsubmit="saveForm(event)">
+                    <input type="hidden" name="id" value="" />
                     <div class="form-control">
                         <div class="control round">
                             <label for="round">Ronda</label>
@@ -96,8 +104,33 @@
                     { name: 'round', title: 'Ronda' },
                     { name: 'amount', title: 'Monto en RD$' },
                     { name: 'quantity', title: 'Cantidad de premios' },
-                    {name: 'left', title: 'Cantidad restante' },
+                    { name: 'left', title: 'Cantidad restante' },
+                    { name: 'actions', title: 'Acciones' },
                 ],
+                onEdit: (id) => {
+                    // send information to form using id on hidden input, then show form
+                    const form = document.querySelector("form");
+                    const formControls = form.querySelectorAll(".form-control");
+                    const prize = awards.find((award) => award.id === id);
+                    form.querySelector("input[name='id']").value = prize.id;
+                    form.querySelector("input[name='round']").value = prize.round;
+                    form.querySelector("input[name='money']").value = prize.amount;
+                    form.querySelector("input[name='quantity']").value = prize.quantity;
+                    form.querySelector("input[name='round']").focus();
+                },
+                onDelete: async (id) => {
+                    const confirmation = confirm('¿Está seguro que desea eliminar este premio?');
+                    if (!confirmation) return;
+
+                    const { status, message } = await callIn("DELETE", `/awards/delete/${id}`);
+                    if (status === 400) {
+                        handleMessages(status, message);
+                        return;
+                    }
+
+                    handleMessages(status, message);
+                    onLoad();
+                },
                 pagination: {
                     currentPage: 1,
                     LimitView: 10,
@@ -139,36 +172,31 @@
 
         const saveForm = async (event) => {
             event.preventDefault();
-
-            // Obtén los elementos del formulario
-            const roundInput = document.getElementById("round");
-            const moneyInput = document.getElementById("money");
-            const quantityInput = document.querySelector(".quantityOfPrices");
-
-            // Obtén los valores de los elementos
-            const roundValue = roundInput.value;
-            const moneyValue = moneyInput.value;
-            const quantityValue = quantityInput.value;
-
-            // Ahora puedes usar roundValue, moneyValue y quantityValue según tus necesidades
-
             const form = document.querySelector("form");
-            const formControls = form.querySelectorAll(".form-control");
-
+            const formData = new FormData(form);
+            
             errorMessage.classList.add("hidden");
             successMessage.classList.add("hidden");
 
-            const data = {
-                round: roundValue,
-                amount: moneyValue,
-                quantity: quantityValue,
+            const id = formData.get("id");
+            const actionMap = {
+                update: { endpoint: `/awards/update/${id}`, method: "PUT" },
+                create: { endpoint: "/awards/create", method: "POST" }
             };
 
-            const response = await callIn("POST", "/awards/create", data);
+            const actionType = !!id ? "update" : "create";
+            const { endpoint, method } = actionMap[actionType];
+
+            const data = {};
+            for (const [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+
+            const response = await callIn(method, endpoint, data);
+
             if (response.status === 400) {
                 errorMessage.classList.remove("hidden");
-                errorMessage.textContent = response.message;
-                return;
+                handleMessages(response.status, response.message);
             }
             form.reset();
             onLoad();
@@ -179,7 +207,7 @@
             const confirmation = confirm('¿Está seguro que desea eliminar la lista de premios?');
             if (!confirmation) return;
 
-            const {status, message} = await callIn("DELETE", "/awards/delete");
+            const { status, message } = await callIn("DELETE", "/awards/delete");
             if (status === 400) {
                 handleMessages(status, message);
                 return;

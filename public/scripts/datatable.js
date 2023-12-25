@@ -6,11 +6,20 @@ const actionButtonsTable = ({
     label,
     action,
 }) => {
-    const button = document.createElement('button');
 
-    button.textContent = label;
+    const buttonLabel = {
+        edit: '/images/icons/edit.svg',
+        delete: '/images/icons/error.svg',
+    }
+
+    const button = document.createElement('button');
+    button.classList.add('icon-button', label);
+    const icon = document.createElement('img');
+    icon.src = buttonLabel[label];
+
+    button.appendChild(icon);
     button.addEventListener('click', () => {
-        action(item);
+        action();
     });
 
     table.td.appendChild(button);
@@ -29,7 +38,7 @@ const initDataTable = ({
 
     const countData = data.length
 
-    dataArr =  data;
+    dataArr = data;
 
     storeData = {
         data,
@@ -78,23 +87,24 @@ const initDataTable = ({
             td.textContent = item[column.name];
             tr.appendChild(td);
 
-            // Actions buttons
-            if (!!onDelete) {
-                const td = document.createElement('td');
-                return actionButtonsTable({
-                    table: { tr, td },
-                    label: 'Eliminar',
-                    action: onDelete,
-                });
-            }
+            if (column.name === 'actions' && (onEdit || onDelete)) {
+                const table = { tr, td };
+                table.td.classList.add('actions-buttons');
+                if (onEdit) {
+                    actionButtonsTable({
+                        table,
+                        label: 'edit',
+                        action: () => onEdit(item.id)
+                    });
+                }
 
-            if (!!onEdit) {
-                const td = document.createElement('td');
-                return actionButtonsTable({
-                    table: { tr, td },
-                    label: 'Editar',
-                    action: onEdit,
-                });
+                if (onDelete) {
+                    actionButtonsTable({
+                        table,
+                        label: 'delete',
+                        action: () => onDelete(item.id)
+                    });
+                }
             }
 
         });
@@ -102,7 +112,7 @@ const initDataTable = ({
     }
     pagination = { ...pagination, totalPages: countData }
     footerDataTable(pagination);
-    if ( hasSearch && !document.querySelector('.search-input')) {
+    if (hasSearch && !document.querySelector('.search-input')) {
         searchDataTable();
     }
 }
@@ -223,13 +233,13 @@ const searchDataTable = () => {
     searchInput.classList.add('search-input');
     searchInput.setAttribute('type', 'text');
     searchInput.setAttribute('placeholder', 'Buscar');
-    
+
     searchInput.addEventListener('keyup', (e) => {
         const value = e.target.value;
         let data = filterData.filter((item) => {
             return item.name.toLowerCase().includes(value.toLowerCase());
         });
-        
+
         initDataTable({ ...storeData, data, pagination: { ...storeData.pagination, currentPage: 1 } });
     });
 
