@@ -43,6 +43,14 @@
                                 onchange="secondaryColorInput(this)">
                         </label>
                     </div>
+
+                    <h4>Titulo</h4>
+                    <div class="title-content">
+                        <div class="title-picker">
+                            <input type="text" name="title" id="title" placeholder="Titulo de la rifa" required>
+                        </div>
+                    </div>
+
                     <h4>Imagenes</h4>
                     <div class="image-content">
                         <div class="image-picker">
@@ -66,7 +74,7 @@
                                     <small>Extensiones permitidas: <span>.jgp</span>, <span>.png</span></small>
                                 </div>
                                 <div class="dimensions">
-                                    <small>Tamaño máximo: <span>500px400px</span></small>
+                                    <small>Tamaño máximo: <span>560px, 380PX</span></small>
                                 </div>
                             </div>
                             <div class="images-preview" id="main-image-preview"></div>
@@ -93,7 +101,7 @@
                                     <small>Extensiones permitidas: <span>.jgp</span>, <span>.png</span></small>
                                 </div>
                                 <div class="dimensions">
-                                    <small>Tamaño permitido: <span>500px400px</span></small>
+                                    <small>Tamaño permitido: <span>100%, 256px</span></small>
                                 </div>
                             </div>
                             <div class="images-preview" id="header-image-preview"></div>
@@ -159,11 +167,12 @@
 
             const r = document.querySelector(':root')
 
-            const { mainColor, secondaryColor, mainImage, headerImage } = configuration;
+            const { mainColor, secondaryColor, mainImage, headerImage, title } = configuration;
             document.getElementById('main-color').value = mainColor;
             document.getElementById('secondary-color').value = secondaryColor;
             document.getElementById('main-image-label').textContent = mainImage;
             document.getElementById('header-image-label').textContent = headerImage;
+            document.getElementById('title').value = title;
 
             r.style.setProperty('--main-color', mainColor);
             r.style.setProperty('--secondary-color', secondaryColor);

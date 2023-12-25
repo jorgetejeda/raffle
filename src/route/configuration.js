@@ -29,7 +29,7 @@ router.post(
         const IMAGES_RAFFLE = './public/images/raffle';
         try {
 
-            const { mainColor, secondaryColor } = req.body;
+            const { mainColor, secondaryColor, title } = req.body;
 
             let files = {
                 mainImage: null,
@@ -53,6 +53,7 @@ router.post(
             configuration = {
                 mainColor: mainColor || '#bdc3c7',
                 secondaryColor: secondaryColor || '#34495e',
+                title: title || 'Rifa',
                 mainImage: files.mainImage ? files.mainImage.name : configuration.mainImage,
                 headerImage: files.headerImage ? files.headerImage.name : configuration.headerImage,
             };
