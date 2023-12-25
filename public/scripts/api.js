@@ -1,5 +1,5 @@
 const callIn = async (method, route, body) => {
-    const response = await fetch(route, {
+    const response = await fetch(`api${route}`, {
         method,
         headers: {
             'Content-Type': 'application/json'
@@ -11,46 +11,45 @@ const callIn = async (method, route, body) => {
 }
 
 const buildMessage = (messageContainer, messages) => {
-    const messageIcon = document.createElement('img');
-    const messageInformation = document.createElement('div');
-    const headerContainer = document.createElement('div');
-    const messageClose = document.createElement('button');
+    const createElem = (tag, classNames = []) => {
+        const element = document.createElement(tag);
+        element.classList.add(...classNames);
+        return element;
+    };
 
-    messageInformation.classList.add('message-information');
-    headerContainer.classList.add('message-header');
-    messageClose.classList.add('message-close');
+    const messageIcon = createElem('img');
+    const messageInformation = createElem('div', ['message-information']);
+    const headerContainer = createElem('div', ['message-header']);
+    const messageClose = createElem('button', ['message-close']);
 
     messageInformation.textContent = messages;
     messageClose.textContent = 'X';
 
     messageClose.addEventListener('click', () => {
-        messageContainer.classList.remove('success-message');
-        messageContainer.classList.remove('error-message');
+        messageContainer.classList.remove('success-message', 'error-message');
         messageContainer.parentElement.classList.add('hidden');
         messageContainer.innerHTML = '';
     });
 
-    headerContainer.appendChild(messageIcon);
-    headerContainer.appendChild(messageInformation);
+    headerContainer.append(messageIcon, messageInformation);
 
     return { headerContainer, messageClose, messageIcon };
-}
+};
 
 const handleMessages = (status, messages) => {
     const iconPath = '/images/icons'
+    const SUCCESS_RESPONSE = 200;
+
     const messageContainer = document.querySelector('.messages');
     messageContainer.parentElement.classList.remove('hidden');
     messageContainer.innerHTML = '';
 
     const { headerContainer, messageClose, messageIcon } = buildMessage(messageContainer, messages);
 
-    if (status === 200) {
-        messageContainer.classList.add('success-message');
-        messageIcon.src = `${iconPath}/success.svg`;
-    } else if (status === 400) {
-        messageContainer.classList.add('error-message');
-        messageIcon.src = `${iconPath}/error.svg`;
-    }
+    const isSuccess = status === SUCCESS_RESPONSE; 
+    messageContainer.classList.add(isSuccess ? 'success-message' : 'error-message');
+    messageIcon.src = isSuccess ? `${iconPath}/success.svg` : `${iconPath}/error.svg`;
+
     messageContainer.appendChild(headerContainer);
     messageContainer.appendChild(messageClose);
 };
