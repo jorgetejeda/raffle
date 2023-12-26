@@ -45,10 +45,37 @@
 		.add-resources:hover {
 			text-decoration: underline;
 		}
+
+		.loading-page {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 9999;
+			background: #fff;
+			opacity: 1;
+		}
+
+		.loading-page.fade-out {
+			animation: fade-out 1s ease-in-out forwards;
+		}
+
+		@keyframes fade-out {
+			0% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: 0;
+			}
+		}
 	</style>
 </head>
 
 <body onload="onLoad()">
+
+	<div class="loading-page"></div>
 	<div id="confetti-container" class="hidden">
 		<dotlottie-player id="confetti" src="scripts/confetti.json" background="transparent"
 			speed="1"></dotlottie-player>
@@ -147,6 +174,9 @@
 				addParticipant.classList.remove("hidden");
 				return;
 			}
+
+			const loading = document.querySelector(".loading-page");
+			loading.classList.add("fade-out");
 
 			if (awardsResponse.awards.length === 0 || participants.length === 0) {
 				initRaffle.setAttribute("disabled", true);
