@@ -10,6 +10,8 @@
     <link type="text/css" rel="stylesheet" href="styles/awards.css" />
     <link type="text/css" rel="stylesheet" href="styles/participants.css" />
     <link type="text/css" rel="stylesheet" href="styles/messages.css" />
+    <link type="text/css" rel="stylesheet" href="styles/animation.css" />
+
     <style>
         input {
             margin-bottom: 0;
@@ -24,6 +26,7 @@
             justify-content: space-around;
             gap: 8px;
             align-items: center;
+            border: none;
         }
     </style>
 </head>
@@ -36,12 +39,12 @@
         <div class="container">
             <div id="menu-list"></div>
 
-            <div class="header-content">
+            <div class="header-content animation-fade-in-top-to-bottom">
                 <h1 class="title">Premios</h1>
                 <button class="clear" onclick="clearPrizes()">Limpiar lista de premios</button>
             </div>
             <div class="card">
-                <form onsubmit="saveForm(event)">
+                <form onsubmit="saveForm(event)" class="animation-fade-in-top-to-bottom">
                     <input type="hidden" name="id" value="" />
                     <div class="form-control">
                         <div class="control round">
@@ -132,9 +135,10 @@
                 },
                 pagination: {
                     currentPage: 1,
-                    LimitView: 10,
+                    limitView: 10,
                     collectionView: [10, 20, 50],
                 },
+                hasAnimation: true,
             })
         };
 
@@ -173,7 +177,7 @@
             event.preventDefault();
             const form = document.querySelector("form");
             const formData = new FormData(form);
-            
+
             errorMessage.classList.add("hidden");
             successMessage.classList.add("hidden");
 

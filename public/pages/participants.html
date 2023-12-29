@@ -9,6 +9,7 @@
     <link type="text/css" rel="stylesheet" href="styles/util.css" />
     <link type="text/css" rel="stylesheet" href="styles/participants.css" />
     <link type="text/css" rel="stylesheet" href="styles/messages.css" />
+    <link type="text/css" rel="stylesheet" href="styles/animation.css" />
 </head>
 
 <body class="loading" onload="onLoad()">
@@ -19,7 +20,7 @@
         <div class="container">
             <div id="menu-list"></div>
 
-            <div class="header-content">
+            <div class="header-content animation-fade-in-top-to-bottom">
                 <h1 class="title">Lista de participantes</h1>
                 <button class="clear hidden" onclick="clearParticipants()">Limpiar lista de participantes</button>
             </div>
@@ -60,10 +61,11 @@
                 ],
                 pagination: {
                     currentPage: 1,
-                    LimitView: 10,
+                    limitView: 10,
                     collectionView: [10, 20, 50],
                 },
                 hasSearch: true,
+                hasAnimation: true,
             })
         }
 
