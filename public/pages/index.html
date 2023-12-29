@@ -9,6 +9,7 @@
     <link type="text/css" rel="stylesheet" href="styles/upload-file-form.css" />
     <link type="text/css" rel="stylesheet" href="styles/util.css" />
     <link type="text/css" rel="stylesheet" href="styles/messages.css" />
+    <link type="text/css" rel="stylesheet" href="styles/animation.css" />
 
 </head>
 
@@ -18,9 +19,10 @@
     <main class="container">
         <div id="menu-list"></div>
 
-        <h1 class="title">Subir Archivo .csv</h1>
-
-        <form id="uploadForm" enctype="multipart/form-data">
+        <div class="header-content animation-fade-in-top-to-bottom">
+            <h1 class="title">Subir Archivo .csv</h1>
+        </div>
+        <form id="uploadForm" enctype="multipart/form-data" class="animation-fade-in-bottom-to-top">
             <div id="drag-file" class="drag-file-area styling-drag-file-area">
                 <div class="fileName hidden">
                     <span class="file-name-text"></span>

@@ -34,6 +34,7 @@ const initDataTable = ({
     onEdit = null,
     pagination = null,
     hasSearch = false,
+    hasAnimation = false,
 }) => {
 
     const countData = data.length
@@ -49,10 +50,11 @@ const initDataTable = ({
     }
 
     const dataTable = document.getElementById('data-table');
+    hasAnimation && dataTable.classList.add('animation-fade-in-bottom-to-top');
     dataTable.innerHTML = '';
 
-    const startIndex = (pagination.currentPage - 1) * pagination.LimitView
-    const endIndex = startIndex + pagination.LimitView;
+    const startIndex = (pagination.currentPage - 1) * pagination.limitView
+    const endIndex = startIndex + pagination.limitView;
 
     if (countData === 0) {
         const tr = document.createElement('tr');
@@ -79,9 +81,16 @@ const initDataTable = ({
         return;
     }
 
+    const tbody = document.createElement('tbody');
     for (let i = startIndex; i < endIndex && i < countData; i++) {
         const item = dataArr[i];
         const tr = document.createElement('tr');
+
+        if (hasAnimation && pagination.currentPage <= i + 1) {
+            tr.classList.add('animation-right-to-left');
+            tr.setAttribute('style', `--animation-row-order: ${i + 1};`);
+        }
+
         columns.forEach(column => {
             const td = document.createElement('td');
             td.textContent = item[column.name];
@@ -108,17 +117,18 @@ const initDataTable = ({
             }
 
         });
-        dataTable.appendChild(tr);
+        tbody.appendChild(tr);
+        dataTable.appendChild(tbody);
     }
     pagination = { ...pagination, totalPages: countData }
-    footerDataTable(pagination);
+    footerDataTable(pagination, hasAnimation);
     if (hasSearch && !document.querySelector('.search-input')) {
-        searchDataTable();
+        searchDataTable(hasAnimation);
     }
 }
 
-const footerDataTable = (pagination = null) => {
-    const pageSize = pagination.LimitView;
+const footerDataTable = (pagination = null, hasAnimation) => {
+    const pageSize = pagination.limitView;
 
     let currentPage = pagination.currentPage;
     const pages = Math.ceil(pagination.totalPages / pageSize);
@@ -130,6 +140,7 @@ const footerDataTable = (pagination = null) => {
 
     const footer = document.createElement('div');
     footer.classList.add('table-footer');
+    hasAnimation && footer.classList.add('animation-fade-in-bottom-to-top');
 
     const paginationContainer = document.createElement('div');
     paginationContainer.classList.add('pagination');
@@ -176,7 +187,13 @@ const footerDataTable = (pagination = null) => {
 
         firstPageButton.addEventListener('click', () => {
             currentPage = 1;
-            initDataTable({ ...storeData, pagination: { ...pagination, currentPage } });
+            initDataTable({
+                ...storeData,
+                pagination: {
+                    ...pagination,
+                    currentPage
+                }
+            });
         });
 
         paginationContainer.insertBefore(firstPageButton, paginationContainer.firstChild);
@@ -192,7 +209,13 @@ const footerDataTable = (pagination = null) => {
 
         lastPageButton.addEventListener('click', () => {
             currentPage = pages;
-            initDataTable({ ...storeData, pagination: { ...pagination, currentPage } });
+            initDataTable({
+                ...storeData,
+                pagination: {
+                    ...pagination,
+                    currentPage
+                }
+            });
         });
 
         paginationContainer.appendChild(lastPageButton);
@@ -210,13 +233,20 @@ const footerDataTable = (pagination = null) => {
         option.value = item;
         selectView.appendChild(option);
 
-        if (item === pagination.LimitView) {
+        if (item === pagination.limitView) {
             option.setAttribute('selected', true);
         }
     })
 
     selectView.addEventListener('change', (e) => {
-        initDataTable({ ...storeData, pagination: { ...pagination, LimitView: Number(e.target.value) } });
+        initDataTable({
+            ...storeData,
+            pagination: {
+                ...pagination,
+                currentPage: 1,
+                limitView: Number(e.target.value)
+            }
+        });
     });
 
     footer.appendChild(selectView);
@@ -226,13 +256,15 @@ const footerDataTable = (pagination = null) => {
 
 }
 
-const searchDataTable = () => {
+const searchDataTable = (hasAnimation) => {
     let filterData = storeData.data;
     const dataTable = document.getElementById('data-table');
     const searchInput = document.createElement('input');
     searchInput.classList.add('search-input');
+    hasAnimation && searchInput.classList.add('animation-fade-in-bottom-to-top');
     searchInput.setAttribute('type', 'text');
     searchInput.setAttribute('placeholder', 'Buscar');
+
 
     searchInput.addEventListener('keyup', (e) => {
         const value = e.target.value;

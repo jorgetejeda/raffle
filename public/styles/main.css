@@ -62,16 +62,18 @@ a svg {
     fill: var(--main-color);
 }
 
+
 a.active,
 a:hover {
     background: var(--main-dark-color);
     border-radius: 56px;
     color: var(--neutral-white);
+    transition: background 0.2s, border-radius 0.2s, color 0.2s;
 }
-
 a.active svg,
 a:hover svg {
     fill: var(--neutral-white);
+    transition: fill 0.2s;
 }
 
 /* body */

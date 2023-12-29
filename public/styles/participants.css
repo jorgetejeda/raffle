@@ -47,6 +47,7 @@ input {
 
 .pagination button:hover{
     background: #F3F0FD;
+    transition: background 0.2s, border-radius 0.2s, color 0.2s;
 }
 
 .pagination button.active{

@@ -114,7 +114,7 @@ const buildMenu = () => {
         ul.appendChild(li);
         menuList.appendChild(ul);
     });
-    if (pathname !== RAFFLE_PATH) return;
+    if (pathname === RAFFLE_PATH) return;
     menuList.querySelector(`a[href="${pathname}"]`).classList.add('active');
 }
 
