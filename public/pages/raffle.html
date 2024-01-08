@@ -150,10 +150,6 @@
 			const mask = document.querySelector(".mask");
 			// remove margin top
 			mask.style.marginTop = "unset";
-			const imgs = mask.querySelectorAll("img");
-			imgs.forEach((img) => {
-				img.style.width = "auto";
-			});
 
 			const roundEl = document.querySelector("#round");
 			roundEl.innerText = isLastPrice ? `Ronda ${round} completada` : "";
